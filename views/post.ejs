@@ -1,0 +1,8 @@
+<%- include('partials/header'); -%>
+<h1 ><%= post_title %></h1>
+<p ><%= post_content %></p>
+<button class="btn"><a href="/delete/<%= post_id %>">Delete post  🗑</a></button>
+<button class="btn" ><a href="/update/<%= post_id %>"> Update post ✍️ </a></button>
+
+
+<%- include('partials/footer'); -%>
