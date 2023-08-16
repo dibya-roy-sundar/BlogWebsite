@@ -13,7 +13,10 @@
     <!-- truncate upto 100 characters -->
 <%})%>
 <div>
-<button class="btn" ><a href="/compose">✒️ Compose   </a></button>
+    <form action="/compose" method="get">
+        <button class="btn" >✒️ Compose </button>
+    </form>
+
 
 </div>
 <%- include('partials/footer'); -%>

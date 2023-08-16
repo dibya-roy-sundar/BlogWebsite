@@ -198,10 +198,12 @@ app.get("/delete/:deletepostid", async (req,res)=>{
 app.post ("/search" , async (req, res)=>{
   const seachtitle=req.body.seachTitle;
   console.log(seachtitle);
-  const searchpost= seachtitle; 
+  const searchpost=(_.lowerCase(seachtitle)).replace(/\s+/g, ''); 
+  // remove space by replace
   try{ 
   const result=await Post.findOne({
-    title:searchpost,
+    title:{ $regex: new RegExp(searchpost, 'i') },
+    // for caseinsensetive  searching
   })
   if (!result) {
     return res.status(404).send("<h1>Post not found</h1>"); // Handle document not found
