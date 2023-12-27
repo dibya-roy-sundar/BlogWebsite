@@ -1,0 +1,19 @@
+<% layout('layouts/boilerplate') %>
+<h1>COMPOSE</h1>
+<form action="/post/<%=post._id %>?_method=PUT" method="post">
+<div class="title">
+    <label for="title">title</label>
+    <br />
+    <input type="text" name="blog[title]" id="title" value="<%= post.title %>" />
+</div>
+<div class="post">
+    <label for="post"> post</label>
+    <br />
+    <textarea name="blog[content]" id="post"  cols="30" rows="10"><%= post.content %></textarea>
+</div>
+
+
+<button class="btn" type="submit">Update</button>
+</form>
+<a href="/post/<%= post._id %>">back to post</a>
+

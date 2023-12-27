@@ -4,65 +4,98 @@ import bodyParser from "body-parser";
 import ejs from "ejs";
 import _ from "lodash";
 import mongoose from "mongoose";
+import methodOverride from 'method-override';
+import ejsMate from "ejs-mate";
+import cors from "cors";
+import { Post } from "./models/blog.js";
+import { ExpressError } from "./utils/ExpressError.js";
+import { catchAsync } from "./utils/CatchAsync.js";
+import session from "express-session";
+import flash from "connect-flash";
+import passport from "passport";
+import postRoutes from "./routes/blogs.js";
+import commentRoutes from "./routes/comments.js";
+import userRoutes from "./routes/user.js";
+import likeRoutes from "./routes/likes.js";
+import oauthRoutes from "./routes/oauth.js";
+import profileRoutes from "./routes/profile.js";
+import bookmarkRoutes from "./routes/bookmark.js";
 
 
 dotenv.config();
 
 // database connection 
-const dburl=process.env.ATLAS_URL;
+
+const dburl = process.env.ATLAS_URL;
 mongoose.connect(dburl)
-.then(() => {
-  console.log("connected to the mongodb server");
-})
-.catch((err)=>{
-  console.log("mongodb error!!!!");
-  console.log(err);
-})
-// formation of schema
-// for blog posts and comments
-const postSchema = new mongoose.Schema({
-  title:{
-    type : String,
-    required:[true,"title is a must"]
-  },
-  content:{
-    type :String,
-    require:[true,'content field is mandatory']
-  }
-})
-// model formation
-const Post=mongoose.model("Post",postSchema);
+  .then(() => {
+    console.log("successfully connected to the mongodb server");
+  })
+  .catch((err) => {
+    console.log("mongodb connection  error!!!!");
+    console.log(err);
+    process.exit(1);
+  })
+
 
 const homeStartingContent = "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing.";
 const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Mauris in aliquam sem fringilla. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Amet massa vitae tortor condimentum lacinia quis vel eros. Enim ut tellus elementum sagittis vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui.";
 const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
-
 const app = express();
 
-app.set('view engine', 'ejs');
 
+// app.use(cors({
+//   origin:process.env.CORS_ORIGIN,
+//   credentials:true,
+// }))
+// app.use(express.json({limit:"16kb"}));
+app.use(methodOverride('_method'));
+app.set('view engine', 'ejs');
+app.engine('ejs', ejsMate);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+const sessionconfig={
+  secret:"thisismyblog",
+  resave: false,
+  saveUninitialized: true,
+  cookie:{
+    expires:Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge:1000 * 60 * 60 * 24 * 7
+  }
+}
+app.use(session(sessionconfig));
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
-// const posts = [];
+app.use((req,res,next)=>{
+  res.locals.currentUser=req.user;
+  res.locals.success=req.flash('success');
+  res.locals.error=req.flash('error');
+  next();
+})
+
+
+
+
+
 
 app.get("/", async (req, res) => {
-  try{
-  const allPosts = await Post.find({});
-  res.render("home", {
-    home_content: homeStartingContent,
-    added_content: allPosts,
+  try {
+    const allPosts = await Post.find({}).populate('author');
+    res.render("home", {
+      home_content: homeStartingContent,
+      posts: allPosts,
 
-  });}
-  catch(err){
+    });
+  }
+  catch (err) {
     console.log(err);
   }
 })
-// console.log(posts);
-// app.post("/",(req,res)=>{
 
-// })
 
 app.get("/about", (req, res) => {
   res.render("about", {
@@ -76,147 +109,54 @@ app.get("/contact", (req, res) => {
     contact_content: contactContent,
   })
 })
-app.get("/compose", (req, res) => {
-  res.render("compose")
-})
-  // const post = {
-  //   title: req.body.compose_title,
-  //   text: req.body.compose_text,
-  // }
-  // posts.push(post);
-  app.post("/compose", async (req, res) => {
-  const new_post=new Post({
-    title :  req.body.compose_title ,
-    content : req.body.compose_text
-  })
-  await new_post.save()
-  .then(()=>{
-    console.log("New blog post successfully saved");
-    res.redirect("/");
-  })
-  .catch((err)=>{
-    console.log("document insert/save error!!!!");
-    console.log(err);
-  });
-})
-// routing parameters
-// for(let i=0;i<posts.length;i++){
-  //  if (posts[i].title === req.params.postid){
-    //   console.log("match found");
-    //  }
-    // }
-  app.get("/post/:postid", async (req, res) => {
-  let post_id = req.params.postid.trim();
-  try{
-    var result =await Post.findById(post_id);
-    res.render("post",{
-      post_title:result.title,
-      post_content:result.content,
-      post_id:result._id
-    })
-  }
-    catch(err){
-      console.log(err);
-    }
-  })
 
-  // posts.forEach((post) => {
-  //   let title_of_post = post.title;
-  //   if (_.lowerCase(title_of_post) === _.lowerCase(post_id)) {
-  //     res.render("post", {
-  //       post_title: title_of_post,
-  //       post_content: post.text,
-  //     });
-  //   } else {
-  //     console.log("match not found");
-  //   }
-  // lodash.com
-  // console.log(req.params.postid);
-// })
-// by putting rs in terminal we force terminal to restart the server
 
-////////////////////// DELETE /////////////////////////////
-app.get("/delete/:deletepostid", async (req,res)=>{
-  let delete_id=req.params.deletepostid;
-  try{
-  const deletedPost = await Post.findOneAndDelete({ _id: delete_id});
-  console.log(deletedPost);
-  console.log(`blog with id ${delete_id} successfully deleted`);
-  res.redirect("/")
-  }catch(err){
-    console.log(err);
-  }
-})
-////////////////////////////////  UPDATE /////////////////////
-    
-    app.get("/update/:updatepostid",async (req,res)=>{
-      let update_id=req.params.updatepostid;
+app.use("/auth",oauthRoutes);
+app.use("/user",userRoutes);
+app.use("/user/:id",profileRoutes);
+app.use("/post",postRoutes);
+app.use("/post/:id/Comments",commentRoutes);
+app.use("/post/:id/like",likeRoutes);
+app.use("/post/:id/bookmark",bookmarkRoutes);
 
-      try{
-        const result=await Post.findById(update_id);
-        res.render("update",{
-          pre_title:result.title,
-          pre_content:result.content,
-          id:result._id,
-        })
-      }catch(err){
-        console.log(err)
-      }
-    })
-
-    app.post("/updateindb/:id", async (req,res)=>{
-      const updatedTitle= req.body.newTitle;
-      const updatedContent= req.body.newContent;
-      const idofupdate=req.params.id.trim();
-      // console.log(idofupdate);
-      // console.log(updatedContent);
-      // console.log(updatedTitle);
-      try {
-        if (!mongoose.Types.ObjectId.isValid(idofupdate)) {
-          return res.status(400).send('Invalid ID'); // Handle invalid ObjectId
-        }
-    
-        const result = await Post.findByIdAndUpdate(idofupdate, {
-          content: updatedContent,
-          title: updatedTitle,
-        }, {
-          new: true, // Return the updated document
-        });
-    
-        if (!result) {
-          return res.status(404).send('Document not found'); // Handle document not found
-        }
-    
-        res.redirect("/post/"+result._id);
-      } catch (err) {
-        console.log(err);
-        res.status(500).send('Server error'); // Handle server error
-      }
-    });
-    
-    /////////////////////////////// read / search ////////////////////////////////
-app.post ("/search" , async (req, res)=>{
-  const seachtitle=req.body.seachTitle;
+/////////////////////////////// read / search ////////////////////////////////
+app.post("/search", catchAsync(async (req, res) => {
+  const seachtitle = req.body.seachTitle;
   console.log(seachtitle);
-  const searchpost=(_.lowerCase(seachtitle)).replace(/\s+/g, ''); 
+  const searchpost = (_.lowerCase(seachtitle)).replace(/\s+/g, '');
   // remove space by replace
-  try{ 
-  const result=await Post.findOne({
-    title:{ $regex: new RegExp(searchpost, 'i') },
+
+  const result = await Post.find({
+    title: { $regex: new RegExp(searchpost, 'i') },
     // for caseinsensetive  searching
   })
   if (!result) {
     return res.status(404).send("<h1>Post not found</h1>"); // Handle document not found
-  }else{
-    res.redirect("/post/"+result._id);
+  } else {
+    res.render('blogs/search', {
+      content: result,
+
+    });
 
   }
-} catch (err){
-    console.log(err);
+
+}))
+
+
+
+app.all('*', (req, res, next) => {
+  next(new ExpressError("page not found", 404));
+})
+app.use((err, req, res, next) => {
+  const { statusCode = 500} = err;
+  if(!err.message){
+    err.message="something went wrong!!!" ;
   }
+  res.status(statusCode).render('error',{err});
 })
 
-const port=process.env.PORT || 3000;
+
+const port = process.env.PORT || 3000;
 app.listen(port, function () {
   console.log(`Server started on port ${port}`);
 });

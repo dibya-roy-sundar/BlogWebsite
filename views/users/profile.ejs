@@ -1,0 +1,96 @@
+<% layout('layouts/boilerplate') %>
+
+<h1><%= user.username %></h1>
+<% if (user.profile) { %>
+  <h3><%= user.profile.tagline %></h3>
+<% } %>
+
+<% if (!currentUser._id.equals(user._id)) { %>
+    <% if (condition) { %>
+      <div>
+        <form action="user/<%=user._id%>/follow" method="get">
+          <button>Follow</button>
+        </form>
+      </div>
+    <% } else { %>
+      <div>
+        <form action="user/<%=user._id%>/unfollow" method="get">
+          <button>Unfollow</button>
+        </form>
+      </div>
+    <%}%>
+  
+<% } %>
+
+<p>members since <%= joineddate %></p>
+
+<% if (user.profile) { %>
+  <% if (user.profile.location) { %>
+      <h4><%= user.profile.location %></h4>
+  <% } %>
+  <% if (user.profile.instagramurl) { %>
+    <a href="<%= user.profile.instagramurl %>">Instagram</a>
+  <% } %>
+  <% if (user.profile.linkedinurl) { %>
+    <a href="<%= user.profile.linkedinurl %>">Linkedin</a>
+  <% } %>
+  <% if (user.profile.githuburl) { %>
+    <a href="<%= user.profile.githuburl %>">GitHub</a>
+  <% } %>
+  <% if (user.profile.description) { %>
+    <div>
+      <h2>About me</h2>
+      <p><%= user.profile.description %></p>
+    </div>
+  <% } %>
+<% } %>
+
+
+
+
+
+
+<h2>Posts</h2>
+
+<%- include('../partials/posts') %>
+
+<% if (currentUser && currentUser._id.equals(user._id)) { %>
+  <div>
+    <form action="/post/new" method="get">
+      <button class="btn">✒️ Compose</button>
+    </form>
+  </div>
+
+  <a href="/user/<%=user._id%>/bookmarks">
+    <button>bookmarks</button>
+  </a>
+  <% if (currentUser && !(currentUser.email) ) { %>
+
+      <% if (emailform) {%>
+        <h1>Add Your Email</h1>
+        <form action="/user/<%=user._id%>/addemail" method="post">
+          <label for="email">email</label>
+          <input type="email" id="email" name="email" />
+          <button>add email</button>
+        </form>
+    <% }else{ %>
+      <button>
+        <a href="/user/<%=user._id%>/addemail"><span>add email</span></a>
+      </button>
+    <% } %>
+  <%} %> 
+
+  <button>
+    <a href="/user/<%=user._id%>/changepassword"><span>Change Password</span></a>
+  </button>
+  <button>
+    <a href="/user/<%=user._id%>/edit"><span>Edit</span></a>
+  </button>
+
+  <button>
+    <a href="/user/logout"><span>Sign out</span></a>
+  </button>
+  <form action="/user/<%=user._id%>/deleteaccount?_method=DELETE" method="post">
+    <button><span>delete account</span></button>
+  </form>
+<% } %>

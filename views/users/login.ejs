@@ -1,0 +1,19 @@
+<% layout('layouts/boilerplate') %>
+<h1>sign in</h1>
+<form action="/user/login" method="post">
+  <div>
+  <label for="username">username</label>
+  <input type="text" id="username" name="username" required>
+</div>
+<div>
+  <label for="password">password</label>
+  <input type="password" id="password" name="password" required>
+</div>
+  <button > log in</button>
+</form>
+<a href="/user/forgot">forgot password</a>
+<a href="/user/register">new user</a>
+<br>
+<a href="/auth/google">sign in with google</a>
+<br>
+<a href="/auth/github">sign in with github</a>

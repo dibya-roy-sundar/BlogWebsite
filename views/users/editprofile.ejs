@@ -1,0 +1,78 @@
+<% layout('layouts/boilerplate') %>
+
+<form id="updateprofileform" action="/user/<%=user._id%>/edit" method="post">
+    <div>
+    <label for="tagline">Profile Tagline</label>
+    <input type="text" id="tagline" name="tagline" >
+  </div>
+  <div>
+    <input type="text" name="location"  id="location">
+    <button type="button" onclick="getlocation()">get Location</button>
+  </div>
+  <div>
+    <label for="description">About You</label>
+    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+  </div>
+  <div>
+    <label for="instagramurl">Instagram Profile</label>
+    <input type="text" name="instagramurl" id="instagramurl">
+  </div>
+  <span id="instaMismatch" style="color: red; display: none;">check the Instagram url pls</span>
+  <div>
+    <label for="linkedinurl">Linkedin Profile</label>
+    <input type="text" name="linkedinurl" id="linkedinurl">
+  </div>
+  <span id="linkedinMismatch" style="color: red; display: none;">check the Linkedin url pls</span>
+  <div>
+    <label for="githuburl">Github Profile</label>
+    <input type="text" name="githuburl" id="githuburl">
+  </div>
+  <span id="githubMismatch" style="color: red; display: none;">check the Github url pls</span>
+    <button > Update</button>
+  </form>
+  <script>
+    
+    document.getElementById('updateprofileform').addEventListener('submit',function (event){
+        event.preventDefault();
+        validateinputfields();
+    })
+    function validateinputfields(){
+        const instagramUrl = document.getElementById('instagramurl').value;
+        const linkedinurl = document.getElementById('linkedinurl').value;
+        const githuburl = document.getElementById('githuburl').value;
+        const mismatchinsta = document.getElementById('instaMismatch');
+        const mismatchlinkedin = document.getElementById('linkedinMismatch');
+        const mismatchgithub = document.getElementById('githubMismatch');
+
+if(instagramUrl && !instagramUrl.startsWith('https://instagram.com/')){
+    setTimeout(()=>{
+        mismatchinsta.style.display = 'none'
+        },2500)
+        mismatchinsta.style.display = 'inline';
+}else if(linkedinurl && !linkedinurl.startsWith('https://www.linkedin.com/')){
+    setTimeout(()=>{
+        mismatchlinkedin.style.display = 'none'
+        },2500)
+        mismatchlinkedin.style.display = 'inline';
+}else if(githuburl && !githuburl.startsWith('https://github.com/')){
+    setTimeout(()=>{
+        mismatchgithub.style.display = 'none'
+        },2500)
+        mismatchgithub.style.display = 'inline';
+}else{
+    document.getElementById('updateprofileform').submit();
+}
+
+
+    }
+async function getlocation(){
+        const location = document.getElementById('location')
+        const url='https://ipinfo.io/json?token=ba52d9e4eea234'
+        const response =await fetch(url);
+        const data=await response.json();
+        const showlocation=data.city+','+data.region+','+data.country;
+        location.value=showlocation;
+        }
+
+
+  </script>

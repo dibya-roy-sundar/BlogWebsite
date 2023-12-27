@@ -5,16 +5,21 @@
     <title>Ink Corner Blogs </title>
     <link rel="icon"  href="/images/icons8-blogging-96.png" type="image/x-icon">
     <meta charset="utf-8" />
-    <!-- <a target="_blank" href="https://icons8.com/icon/BTadcEivZbaM/blogging">Blogging</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
+
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     />
+     <!-- Remix icons -->
+     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css" />
     <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
-          <p class="navbar-brand">DIBYA'S JOURNAL</p>
+         
+            <a href="/"><p class="navbar-brand">INK CORNER</p></a>
+          
+          
         </div>
         <ul class="nav navbar-nav navbar-right">
           <!-- 6 -->
@@ -27,20 +32,59 @@
                 <input
                   type="text"
                   class="search-input"
-                  placeholder="Search Blog  Title..."
+                  placeholder="🔍 Search Blog  ..."
                   name="seachTitle"
                 />
                 
-                <button class="btn" type="submit">🔍</button>
+                <!-- <button class="btn" type="submit">🔍</button> -->
               </div>
             </form>
           </li>
+         <% if (!currentUser) { %>
+          
+          <li id="signin" class="list-item"><button><a class="list-link" href="/user/login"><span>Sign in</span></a></button></li>
+         <% } else { %>
+
+          
+
+
+          <li id="userprofile" class="list-item"><button><a class="list-link" href=  "/user/<%=currentUser._id%>"><span><%=  currentUser.username %></span></a></button></li>
+
+           <% } %> 
+           
         </ul>
       </div>
+      
     </nav>
 
     <body>
-      <div class="container"></div>
-    </body>
-  </head>
-</html>
+    <!-- header -->
+    <!-- <header class="header" id="header">
+    <nav class="navbar container">
+      <div class="left">
+      <div class="logo">
+        <a href="/"><h2 class="navbar-brand">INK CORNER</h2></a>
+      </div>
+      <form action="/search" method="post">
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="🔍 Search Blog..."
+            name="seachTitle"
+          />
+        </div>
+      </form>
+    </div>
+      <div class="menu" id="menu">
+        <ul class="list">
+         <li id="home" class="list-item"><a class="list-link" href="/">HOME</a></li>
+         <li id="about" class="list-item"><a class="list-link" href="/about">ABOUT US</a></li>
+         <li id="contact" class="list-item"><a class="list-link" href="/contact">CONTACT US</a></li>
+         <li id="signin" class="list-item"><button><a class="list-link" href="#"><span>Sign in</span></a></button></li>
+        </ul>
+      </div>
+      
+    </nav>
+    </header> -->
+      

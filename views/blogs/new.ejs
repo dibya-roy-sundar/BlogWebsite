@@ -1,0 +1,26 @@
+<% layout('layouts/boilerplate') %>
+<h1>COMPOSE</h1>
+<form action="/post" method="post">
+  
+  <div class="title">
+    <label for="title">title</label>
+    <br />
+    <input type="text" name="blog[title]" id="title" />
+  </div>
+  <div class="post">
+    <label for="post"> post</label>
+    <br />
+    <textarea name="blog[content]" id="post" cols="30" rows="10"></textarea>
+  </div>
+  <!-- <div class="date">
+    <label for="publishdate">date</label>
+    <br>
+    <input type="date" name="blog[date]" id="publishdate">
+  </div> -->
+
+  <button class="btn" type="submit">publish</button>
+
+ 
+</form>
+<a href="/">all posts</a>
+
