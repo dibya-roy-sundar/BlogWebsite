@@ -3,6 +3,7 @@ import passportLocalMongoose from "passport-local-mongoose";
 import { Post } from "./blog.js";
 import { Comment } from "./comments.js";
 import { Profile } from "./profile.js";
+import { Subscription } from "./subscription.js";
 
 
 const Schema=mongoose.Schema;
@@ -48,7 +49,9 @@ const Schema=mongoose.Schema;
             $pull:{likedby:user._id}
         })
 
-        await Profile.findByIdAndDelete({owner:user._id});
+        await Profile.findByIdAndDelete({owner:new mongoose.Types.ObjectId(user._id)});
+
+        await Subscription.deleteMany({ $or: [{ follower: user._id }, { following: user._id }] });
 
     }
 })

@@ -7,77 +7,17 @@ import { catchAsync } from "../utils/CatchAsync.js";
 import { storeJoinedDate } from "../utils/CurrentDate.js";
 
 const userProfile = catchAsync(async (req, res) => {
-  //   const user = await User.findById(req.params.id).populate("profile");
-  //   const posts = await Post.find({ author: user._id }).populate("author");
-  //   const following=await Subscription.find({})
-  //   const followers=await Subscription.find({});
+    
+const {id}=req.params;
+const user = await User.findById(id).populate("profile");
+const posts = await Post.find({ author: user._id }).populate("author");
+const joineddate = storeJoinedDate(user.createdAt);
+const followings=await Subscription.find({follower:user._id})
+const followers=await Subscription.find({following:user._id});
+const isfollower= followers.some(follower => follower.follower === req.user._id)?true:false;
+  
 
-  const user = await User.aggregate([
-    {
-      $match: {
-        _id: new mongoose.Types.ObjectId(req.params.id),
-      },
-    },
-    {
-      $lookup: {
-        from: "posts",
-        localField: "_id",
-        foreignField: "author",
-        as: "publishedposts",
-      },
-    },
-    {
-      $lookup: {
-        from: "subscriptions",
-        localField: "_id",
-        foreignField: "following",
-        as: "followers",
-      },
-    },
-    {
-      $lookup: {
-        from: "subscriptions",
-        localField: "_id",
-        foreignField: "follower",
-        as: "followings",
-      },
-    },
-    {
-      $addFields: {
-        followersCount: {
-          $size: "$followers",
-        },
-        followingsCount: {
-          $size: "$followings",
-        },
-        isFollower: {
-          $cond: {
-            if: { $in: [req.user._id, "$followers.follower"] },
-            then: true,
-            else: false,
-          },
-        },
-      },
-    },
-    {
-      $project: {
-        _id: 1,
-        username: 1,
-        profile: 1,
-        publishedposts: 1,
-        followersCount: 1,
-        followingsCount: 1,
-        isFollower: 1,
-        createdAt: 1,
-      },
-    },
-  ]);
-  const joineddate = storeJoinedDate(user.createdAt);
-//   await user.populate("profile");
-//   await user.publishedposts.populate("author");
-  const posts = user.publishedposts;
-
-  res.render("users/profile", { user, joineddate, posts });
+  res.render("users/profile", { user, joineddate, posts,followings,followers,isfollower });
 });
 
 const deleteAccount = catchAsync(async (req, res) => {

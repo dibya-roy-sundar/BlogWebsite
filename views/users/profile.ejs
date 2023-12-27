@@ -4,17 +4,22 @@
 <% if (user.profile) { %>
   <h3><%= user.profile.tagline %></h3>
 <% } %>
+<div>
+  <h2><%= followers.length %> followers</h2>
+  <h2><%= followings.length %>followings</h2>
+
+</div>
 
 <% if (!currentUser._id.equals(user._id)) { %>
-    <% if (condition) { %>
+    <% if (!isfollower) { %>
       <div>
-        <form action="user/<%=user._id%>/follow" method="get">
+        <form action="/user/<%=user._id%>/follow" method="get">
           <button>Follow</button>
         </form>
       </div>
     <% } else { %>
       <div>
-        <form action="user/<%=user._id%>/unfollow" method="get">
+        <form action="/user/<%=user._id%>/unfollow" method="get">
           <button>Unfollow</button>
         </form>
       </div>
@@ -64,21 +69,7 @@
   <a href="/user/<%=user._id%>/bookmarks">
     <button>bookmarks</button>
   </a>
-  <% if (currentUser && !(currentUser.email) ) { %>
-
-      <% if (emailform) {%>
-        <h1>Add Your Email</h1>
-        <form action="/user/<%=user._id%>/addemail" method="post">
-          <label for="email">email</label>
-          <input type="email" id="email" name="email" />
-          <button>add email</button>
-        </form>
-    <% }else{ %>
-      <button>
-        <a href="/user/<%=user._id%>/addemail"><span>add email</span></a>
-      </button>
-    <% } %>
-  <%} %> 
+  
 
   <button>
     <a href="/user/<%=user._id%>/changepassword"><span>Change Password</span></a>
