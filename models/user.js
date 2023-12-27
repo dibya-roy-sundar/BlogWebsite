@@ -3,6 +3,7 @@ import passportLocalMongoose from "passport-local-mongoose";
 import { Post } from "./blog.js";
 import { Comment } from "./comments.js";
 import { Subscription } from "./subscription.js";
+import { Bookmark } from "./bookmarks.model.js";
 
 
 const Schema=mongoose.Schema;
@@ -49,6 +50,8 @@ const Schema=mongoose.Schema;
 
 
         await Subscription.deleteMany({ $or: [{ follower: user._id }, { following: user._id }] });
+
+        await Bookmark.deleteMany({user:user._id});
 
     }
 })

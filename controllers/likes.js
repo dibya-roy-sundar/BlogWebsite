@@ -1,24 +1,25 @@
 import { catchAsync } from "../utils/CatchAsync.js";
 import { Post } from "../models/blog.js";
+import { Like } from "../models/likes.model.js";
 
-const countLikes= catchAsync(async (req,res)=>{
-    const post=await Post.findById(req.params.id);
-    if(req.user){
-        const isLiked=post.likedby.includes(req.user._id);
-    
-        if(isLiked){
-            await post.updateOne({ $pull: { likedby: req.user._id } }); 
-            
-        }else{
-            post.likedby.push(req.user._id);
-                    
-        }
-        
-    
-    }
-    await post.save();
-    res.redirect(`/post/${post._id}`);
-    
+
+const addLike=catchAsync(async (req,res)=>{
+    const {id}=req.params;
+    const like=new Like({
+        post:id,
+        user:req.user._id
     })
+    await like.save();
+    res.redirect(`/post/${id}`);
+})
+const removeLike=catchAsync(async (req,res)=>{
+    const {id}=req.params;
+    await Like.findOneAndDelete({
+        post:id,
+        user:req.user._id
+    })
+    res.redirect(`/post/${id}`);
+})
 
-    export {countLikes};
+
+    export {addLike,removeLike};

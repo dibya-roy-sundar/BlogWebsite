@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const Schema= mongoose.Schema;
 
-const bookmarkSchema=new Schema({
+const likeSchema=new Schema({
     post:{
         type:Schema.Types.ObjectId,
         ref:'Post',
@@ -13,6 +13,6 @@ const bookmarkSchema=new Schema({
     }
 })
 
-const Bookmark=mongoose.model("Bookmark",bookmarkSchema);
+const Like=mongoose.model("Like",likeSchema);
 
-export {Bookmark};
+export {Like};

@@ -21,17 +21,38 @@
     </div>
 </div>   
 <% } %> 
-<div>
-    <form action="/post/<%=post._id%>/like" method="get">
-        <button>like</button>
-    </form>
-</div>
-<div>
-    <form action="/post/<%=post._id%>/bookmark" method="get">
-        <button>bookmark</button>
-    </form>
-</div>
-<div class="col-6">
+<% if (currentUser && isliked) { %>
+ 
+    <div>
+        <form action="/post/<%=post._id%>/like/remove" method="get">
+            <button>unlike</button>
+        </form>
+    </div>
+<% } else { %>
+    <div>
+        
+        <form action="/post/<%=post._id%>/like/add" method="get">
+            <button>like</button>
+        </form>
+    </div>
+<% } %>
+<% if (currentUser && isbookmarked) { %>
+ 
+    <div>
+        <form action="/post/<%=post._id%>/bookmark/remove" method="get">
+            <button>unbookmark</button>
+        </form>
+    </div>
+<% } else { %>
+    <div>
+        
+        <form action="/post/<%=post._id%>/bookmark/add" method="get">
+            <button>bookmark</button>
+        </form>
+    </div>
+<% } %>
+
+    <div class="col-6">
     <% if (currentUser && !(commentbycuurentuser)) { %>
      
  
