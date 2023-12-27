@@ -16,7 +16,6 @@ const commentSchema=new Schema({
 },{timestamps:true})
 
  
-  
-// });
+
 const Comment=mongoose.model('Comment',commentSchema);
 export {Comment};

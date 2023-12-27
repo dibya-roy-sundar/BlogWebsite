@@ -4,7 +4,7 @@
 <h3><%= post.date %></h3>
 <p ><%=post.content %></p>
 
- <p><%= post.likedby.length %> likes </p>
+ <p><%= likeCount.length %> likes </p>
 
 <% if (currentUser && post.author.equals(currentUser)) { %>
  
@@ -52,41 +52,42 @@
     </div>
 <% } %>
 
-    <div class="col-6">
-    <% if (currentUser && !(commentbycuurentuser)) { %>
-     
- 
-   <h2>Leave a Comment</h2>
-   <form action="/post/<%=post._id%>/Comments" method="POST" class="mb-3 validated-form" >
-       
-       <div class="mb-3">
-           <label class="form-label" for="body">Comment</label>
-           <textarea class="form-control" name="comment[body]" id="body" cols="30" rows="3" required></textarea>
-       </div>
-      
-       <button class="btn btn-success">Submit</button>
-   </form>
+
+
+<div class="col-6">
+    <% if (currentUser && !(iscommented)) { %>
+        <h2>Leave a Comment</h2>
+        <form action="/post/<%=post._id%>/comment" method="POST" class="mb-3 validated-form" >
+            
+            <div class="mb-3">
+                <label class="form-label" for="body">Comment</label>
+                <textarea class="form-control" name="comment" id="body" cols="30" rows="3" required></textarea>
+            </div>
+            
+            <button class="btn btn-success">Submit</button>
+        </form>
    <% } %>
-   <% if (post.comments.length >0) { %>
-    <h2>Comments</h2>
+
+    <% if (comments.length >0) { %>
+        <h2>Comments</h2>
     <% } else if(currentUser) { %>
         <h3>No Comments yet,Be the first one to post a comment</h3>
     <% } %>
     
-   <% for(let comment of post.comments) { %>
-   <div class="card mb-3 ">
-       <div class="card-body">
-          <p class="card-text"> <%= comment.body %></p>
-           <h5 class="card-title"> <%= comment.author.username %></h5>
-           <h6><%= comment.date %></h6>
-           <% if (currentUser && comment.author.equals(currentUser)) { %>           
-           <form action="/post/<%=post._id%>/Comments/<%=comment._id%>?_method=DELETE" method="POST">
-               <button class="btn btn-sm btn-danger">Delete</button>
-           </form>
-           <% } %>
-       </div>
-   </div>
-   <% } %>
+    <% for(let comment of comments) { %>
+        <div class="card mb-3 ">
+            <div class="card-body">
+                <p class="card-text"> <%= comment.body %></p>
+                <h5 class="card-title"> <%= comment.author.username %></h5>
+                <h6><%= comment.date %></h6>
+                <% if (currentUser && comment.author._id.equals(currentUser._id)) { %>           
+                <form action="/post/<%=post._id%>/comment/<%=comment._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+                <% } %>
+            </div>
+        </div>
+    <% } %>
 </div>
 
 

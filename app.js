@@ -115,7 +115,7 @@ app.use("/auth",oauthRoutes);
 app.use("/user",userRoutes);
 app.use("/user/:id",profileRoutes);
 app.use("/post",postRoutes);
-app.use("/post/:id/Comments",commentRoutes);
+app.use("/post/:id/comment",commentRoutes);
 app.use("/post/:id/like",likeRoutes);
 app.use("/post/:id/bookmark",bookmarkRoutes);
 

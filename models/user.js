@@ -4,6 +4,7 @@ import { Post } from "./blog.js";
 import { Comment } from "./comments.js";
 import { Subscription } from "./subscription.js";
 import { Bookmark } from "./bookmarks.model.js";
+import { Like } from "./likes.model.js";
 
 
 const Schema=mongoose.Schema;
@@ -27,31 +28,20 @@ const Schema=mongoose.Schema;
 
  userschema.post('findOneAndDelete',async function(user){
     if(user){
-        // delete post and their comments
+      
         const postsToDelete = await Post.find({ author: user._id });
-        await Post.deleteMany({author:user._id});
-        const commentIdsToDelete = postsToDelete.map(post => post.comments).flat();
-        await Comment.deleteMany({ _id: { $in: commentIdsToDelete } });
+        await Comment.deleteMany({post:{$in:postsToDelete}});
+        await Like.deleteMany({post:{$in:postsToDelete}});
+        await Bookmark.deleteMany({post:{$in:postsToDelete}});
         
-        //delete comments on other posts
-        const commentsToDelete = await Comment.find({ author: user._id });
-        await Comment.deleteMany({
-            author:user._id,
-        })
-        commentsToDelete.map(async (comment)=>{
-            await Post.findByIdAndUpdate(comment.post,{$pull:{comments:comment._id}});
-          })
+        await Post.deleteMany({author:user._id})
 
-
-        // delete like on other posts
-        await Post.updateMany({likedby:{$in:user._id}},{
-            $pull:{likedby:user._id}
-        })
-
+        await Comment.deleteMany({author:user._id});
+        await Like.deleteMany({user:user._id})
+        await Bookmark.deleteMany({user:user._id});
 
         await Subscription.deleteMany({ $or: [{ follower: user._id }, { following: user._id }] });
-
-        await Bookmark.deleteMany({user:user._id});
+        
 
     }
 })

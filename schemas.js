@@ -5,15 +5,20 @@ const postschema=joi.object({
         title:joi.string().required(),
         content:joi.string().required(),
         // image:joi.string().required(),
-    })
-      .required()
+    }).required()
 })
 const commentschema=joi.object({
     comment:joi.object({
         body:joi.string().required(),
-    }).required()
+    }) .required()
 })
 export {postschema,commentschema};
+
+
+
+
+
+
 
 
 
