@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { Comment } from "./comments.js";
 import { Like } from "./likes.model.js";
 import { Bookmark } from "./bookmarks.model.js";
+import { Read } from "./reads.model.js";
 
 const Schema=mongoose.Schema;
 const postSchema = new Schema({
@@ -12,6 +13,7 @@ const postSchema = new Schema({
     type:Schema.Types.ObjectId,
     ref:'User'
   },
+ 
   // image:String,
   },{timestamps:true})
   postSchema.post('findOneAndDelete',async function(doc){
@@ -23,6 +25,9 @@ const postSchema = new Schema({
           post:doc._id,
         })
         await Bookmark.deleteMany({
+          post:doc._id,
+        })
+        await Read.deleteMany({
           post:doc._id,
         })
         

@@ -5,6 +5,7 @@ import { Comment } from "./comments.js";
 import { Subscription } from "./subscription.js";
 import { Bookmark } from "./bookmarks.model.js";
 import { Like } from "./likes.model.js";
+import { Read } from "./reads.model.js";
 
 
 const Schema=mongoose.Schema;
@@ -30,15 +31,19 @@ const Schema=mongoose.Schema;
     if(user){
       
         const postsToDelete = await Post.find({ author: user._id });
-        await Comment.deleteMany({post:{$in:postsToDelete}});
-        await Like.deleteMany({post:{$in:postsToDelete}});
-        await Bookmark.deleteMany({post:{$in:postsToDelete}});
+        const deletedpostsids=postsToDelete.flatMap(post => post._id);
+        await Comment.deleteMany({post:{$in:deletedpostsids}});
+        await Like.deleteMany({post:{$in:deletedpostsids}});
+        await Bookmark.deleteMany({post:{$in:deletedpostsids}});
+        await Read.deleteMany({post:{$in:deletedpostsids}});
         
         await Post.deleteMany({author:user._id})
 
-        await Comment.deleteMany({author:user._id});
+        
+        await Comment.deleteMany({author:user._id},);
         await Like.deleteMany({user:user._id})
         await Bookmark.deleteMany({user:user._id});
+        await Read.deleteMany({user:user._id});
 
         await Subscription.deleteMany({ $or: [{ follower: user._id }, { following: user._id }] });
         

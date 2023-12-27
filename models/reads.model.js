@@ -3,7 +3,7 @@ import { Post } from "./blog";
 
 const Schema= mongoose.Schema;
 
-const likeSchema=new Schema({
+const readSchema=new Schema({
     post:{
         type:Schema.Types.ObjectId,
         ref:'Post',
@@ -14,7 +14,9 @@ const likeSchema=new Schema({
     }
 })
 
+ 
 
-const Like=mongoose.model("Like",likeSchema);
 
-export {Like};
+const Read=mongoose.model("Read",readSchema);
+
+export {Read};

@@ -6,6 +6,7 @@ import { ExpressError } from "../utils/ExpressError.js";
 import { Bookmark } from "../models/bookmarks.model.js";
 import { Like } from "../models/likes.model.js";
 import { Comment } from "../models/comments.js";
+import { Read } from "../models/reads.model.js";
 
 
 const newForm=(req, res) => {
@@ -29,7 +30,11 @@ const showPost=catchAsync(async (req, res) => {
     let {id} = req.params.id.trim();
     
     if(req.user){
-
+      const foundRead=await Read.findOne({post:id,user:req.user._id});
+      if(!foundRead){
+        const read=new Read({post:id,user:req.user._id});
+        await read.save();
+      }  
       res.locals.isbookmarked=await Bookmark.findOne({post:id,user:req.user._id});
       res.locals.isliked=await Like.findOne({post:id,user:req.user._id});
       res.locals.iscommented=await Comment.findOne({post:id,user:req.user._id});
