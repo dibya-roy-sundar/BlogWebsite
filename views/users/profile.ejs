@@ -1,8 +1,8 @@
 <% layout('layouts/boilerplate') %>
 
 <h1><%= user.username %></h1>
-<% if (user.profile) { %>
-  <h3><%= user.profile.tagline %></h3>
+<% if (user.tagline) { %>
+  <h3><%= user.tagline %></h3>
 <% } %>
 <div>
   <h2><%= followers.length %> followers</h2>
@@ -29,26 +29,26 @@
 
 <p>members since <%= joineddate %></p>
 
-<% if (user.profile) { %>
-  <% if (user.profile.location) { %>
-      <h4><%= user.profile.location %></h4>
+
+  <% if (user.location) { %>
+      <h4><%= user.location %></h4>
   <% } %>
-  <% if (user.profile.instagramurl) { %>
-    <a href="<%= user.profile.instagramurl %>">Instagram</a>
+  <% if (user.instagramurl) { %>
+    <a href="<%= user.instagramurl %>">Instagram</a>
   <% } %>
-  <% if (user.profile.linkedinurl) { %>
-    <a href="<%= user.profile.linkedinurl %>">Linkedin</a>
+  <% if (user.linkedinurl) { %>
+    <a href="<%= user.linkedinurl %>">Linkedin</a>
   <% } %>
-  <% if (user.profile.githuburl) { %>
-    <a href="<%= user.profile.githuburl %>">GitHub</a>
+  <% if (user.githuburl) { %>
+    <a href="<%= user.githuburl %>">GitHub</a>
   <% } %>
-  <% if (user.profile.description) { %>
+  <% if (user.description) { %>
     <div>
       <h2>About me</h2>
-      <p><%= user.profile.description %></p>
+      <p><%= user.description %></p>
     </div>
   <% } %>
-<% } %>
+
 
 
 

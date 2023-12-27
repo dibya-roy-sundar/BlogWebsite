@@ -7,7 +7,7 @@ const router=express.Router({mergeParams:true});
 
 
   router.post("/",isLoggedIn, validatecomment,postComment)
-//  
+
   router.delete("/:Commentid",isLoggedIn,isCommentAuthor, deleteComment)
 
   export default router;

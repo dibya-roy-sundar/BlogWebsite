@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate') %>
 <h2>Bookmarks</h2>
-<% user.bookmarks.forEach((post) => { %>
+<% bookmarks.forEach((post) => { %>
 <h1><%= post.title %></h1>
 <h3><%= post.author.username %>,<%= post.date %></h3>
 <% if (post.likedby.length>0) { %>

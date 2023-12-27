@@ -1,23 +1,32 @@
 import mongoose from "mongoose";
 import { Post } from "../models/blog.js";
-import { Profile } from "../models/profile.js";
 import { Subscription } from "../models/subscription.js";
 import { User } from "../models/user.js";
 import { catchAsync } from "../utils/CatchAsync.js";
 import { storeJoinedDate } from "../utils/CurrentDate.js";
+import { Bookmark } from "../models/bookmarks.model.js";
 
 const userProfile = catchAsync(async (req, res) => {
-    
-const {id}=req.params;
-const user = await User.findById(id).populate("profile");
-const posts = await Post.find({ author: user._id }).populate("author");
-const joineddate = storeJoinedDate(user.createdAt);
-const followings=await Subscription.find({follower:user._id})
-const followers=await Subscription.find({following:user._id});
-const isfollower= followers.some(follower => follower.follower === req.user._id)?true:false;
-  
+  const { id } = req.params;
+  const user = await User.findById(id);
+  const posts = await Post.find({ author: user._id }).populate("author");
+  const joineddate = storeJoinedDate(user.createdAt);
+  const followings = await Subscription.find({ follower: user._id });
+  const followers = await Subscription.find({ following: user._id });
+  const isfollower = followers.some(
+    (follower) => follower.follower === req.user._id
+  )
+    ? true
+    : false;
 
-  res.render("users/profile", { user, joineddate, posts,followings,followers,isfollower });
+  res.render("users/profile", {
+    user,
+    joineddate,
+    posts,
+    followings,
+    followers,
+    isfollower,
+  });
 });
 
 const deleteAccount = catchAsync(async (req, res) => {
@@ -100,39 +109,26 @@ const updateProfile = catchAsync(async (req, res) => {
     linkedinurl,
     githuburl,
   } = req.body;
-  const user = await User.findById(id);
-  const profile = await Profile.findById(user.profile);
-  if (profile) {
-    await Profile.findByIdAndUpdate(user.profile, {
-      tagline,
-      description,
-      location,
-      instagramurl,
-      linkedinurl,
-      githuburl,
-    });
-  } else {
-    const newprofile = new Profile({
-      tagline,
-      description,
-      location,
-      instagramurl,
-      linkedinurl,
-      githuburl,
-    });
-    newprofile.owner=user._id;
-    user.profile = newprofile;
-    await newprofile.save();
-    await user.save();
-  }
+
+  await User.findByIdAndUpdate(id, {
+    tagline,
+    description,
+    location,
+    instagramurl,
+    linkedinurl,
+    githuburl,
+  });
+
   res.redirect(`/user/${id}`);
 });
 
 const showBookmarks = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const user = await User.findById(id).populate("bookmarks");
+  const bookmarks = await Bookmark.find({
+    user:id,
+  })
 
-  res.render("users/bookmarks", { user });
+  res.render("users/bookmarks", { bookmarks });
 });
 
 const follow = catchAsync(async (req, res) => {

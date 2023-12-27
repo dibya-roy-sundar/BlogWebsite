@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 import passportLocalMongoose from "passport-local-mongoose";
 import { Post } from "./blog.js";
 import { Comment } from "./comments.js";
-import { Profile } from "./profile.js";
 import { Subscription } from "./subscription.js";
 
 
@@ -14,15 +13,14 @@ const Schema=mongoose.Schema;
     },
     googleid:String,
     githubid:String,
-    // thumbnail:String,
-    bookmarks:[{
-        type: Schema.Types.ObjectId,
-        ref:'Post',
-    }],
-    profile:{
-        type: Schema.Types.ObjectId,
-        ref:'Profile',
-    },
+    iamge:String,
+    tagline:String,
+    description:String,
+    location:String,
+    instagramurl:String,
+    linkedinurl:String,
+    githuburl:String,
+    
  },{timestamps:true})
  userschema.plugin(passportLocalMongoose);
 
@@ -49,7 +47,6 @@ const Schema=mongoose.Schema;
             $pull:{likedby:user._id}
         })
 
-        await Profile.findByIdAndDelete({owner:new mongoose.Types.ObjectId(user._id)});
 
         await Subscription.deleteMany({ $or: [{ follower: user._id }, { following: user._id }] });
 
