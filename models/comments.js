@@ -15,6 +15,18 @@ const commentSchema=new Schema({
     }
 },{timestamps:true})
 
- 
+
+commentSchema.post('save',async (comment)=>{
+  const post=await Post.findById(comment.post);
+  post.commentCount += 1;
+  await post.save();
+})
+commentSchema.post('findOneAndDelete',async (comment)=>{
+  const post=await Post.findById(comment.post);
+  post.commentCount -= 1;
+  await post.save();
+})
+
+
 const Comment=mongoose.model('Comment',commentSchema);
 export {Comment};

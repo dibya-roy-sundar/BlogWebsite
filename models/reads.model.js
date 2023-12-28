@@ -15,6 +15,11 @@ const readSchema=new Schema({
 })
 
  
+readSchema.post('save',async (read)=>{
+    const post=await Post.findById(read.post);
+    post.readCount += 1;
+    await post.save();
+  })
 
 
 const Read=mongoose.model("Read",readSchema);

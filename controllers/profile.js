@@ -10,7 +10,6 @@ const userProfile = catchAsync(async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
   const posts = await Post.find({ author: user._id }).populate("author");
-  const joineddate = storeJoinedDate(user.createdAt);
   const followings = await Subscription.find({ follower: user._id });
   const followers = await Subscription.find({ following: user._id });
   const isfollower = followers.some(

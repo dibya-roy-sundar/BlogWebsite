@@ -85,8 +85,59 @@ app.use((req,res,next)=>{
 
 app.get("/", async (req, res) => {
   try {
-    const posts = await Post.find({}).populate('author'); 
-   
+    // const posts = await Post.find({}).populate('author'); 
+   const posts=await Post.aggregate([
+    {
+      $lookup:{
+        from:"likes",
+        localField:"_id",
+        foreignField:"post",
+        as:"liked"
+      }
+
+    },
+    {
+      $addFields:{
+        likeCount:{
+          $size:"$liked"
+        }
+      }
+    },
+    {
+      $lookup:{
+        from:"comments",
+        localField:"_id",
+        foreignField:"post",
+        as:"commented"
+      }
+
+    },
+    {
+      $addFields:{
+        commentCount:{
+          $size:"$commented"
+        }
+      }
+    },
+    {
+      $lookup:{
+        from:"reads",
+        localField:"_id",
+        foreignField:"post",
+        as:"read"
+      }
+
+    },
+    {
+      $addFields:{
+        readCount:{
+          $size:"$read"
+        }
+      }
+    },
+   ])
+
+   Users.populate(posts,{path:"author"});
 
     res.render("home", {
       home_content,

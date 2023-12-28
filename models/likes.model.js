@@ -15,6 +15,19 @@ const likeSchema=new Schema({
 })
 
 
+
+likeSchema.post('save',async (like)=>{
+    const post=await Post.findById(like.post);
+    post.likeCount += 1;
+    await post.save();
+  })
+  likeSchema.post('findOneAndDelete',async (like)=>{
+    const post=await Post.findById(like.post);
+    post.likeCount -= 1;
+    await post.save();
+  })
+  
+
 const Like=mongoose.model("Like",likeSchema);
 
 export {Like};

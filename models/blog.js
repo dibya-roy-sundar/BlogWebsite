@@ -13,6 +13,18 @@ const postSchema = new Schema({
     type:Schema.Types.ObjectId,
     ref:'User'
   },
+  likeCount:{
+    type:String,
+    default:0
+  },
+  commentCount:{
+    type:String,
+    default:0
+  },
+  readCount:{
+    type:String,
+    default:0
+  },
  
   // image:String,
   },{timestamps:true})

@@ -4,7 +4,7 @@
 <h3><%= post.date %></h3>
 <p ><%=post.content %></p>
 
- <p><%= likeCount.length %> likes </p>
+ <p><%= post.likeCount %> likes </p>
 
 <% if (currentUser && post.author.equals(currentUser)) { %>
  
@@ -68,8 +68,8 @@
         </form>
    <% } %>
 
-    <% if (comments.length >0) { %>
-        <h2>Comments</h2>
+    <% if (post.commentCount) { %>
+        <h2>Comments(<%= post.commentCount %>)</h2>
     <% } else if(currentUser) { %>
         <h3>No Comments yet,Be the first one to post a comment</h3>
     <% } %>

@@ -39,7 +39,7 @@ const showPost=catchAsync(async (req, res) => {
       res.locals.isliked=await Like.findOne({post:id,user:req.user._id});
       res.locals.iscommented=await Comment.findOne({post:id,user:req.user._id});
     }
-    const likeCount=await Like.find({post:id});
+   
     const comments=await Comment.find({post:id}).populate('author');
     
     const post = await Post.findById(id).populate('author');
@@ -47,7 +47,7 @@ const showPost=catchAsync(async (req, res) => {
   
 
     res.render('blogs/post', {
-      post,likeCount,comments
+      post,comments
     })
   
   })  
