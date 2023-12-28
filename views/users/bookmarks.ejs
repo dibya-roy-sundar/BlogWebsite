@@ -1,19 +1,10 @@
 <% layout('layouts/boilerplate') %>
-<h2>Bookmarks</h2>
-<% bookmarks.forEach((post) => { %>
-<h1><%= post.title %></h1>
-<h3><%= post.author.username %>,<%= post.date %></h3>
-<% if (post.likedby.length>0) { %>
-
-<h6><%=post.likedby.length %> likes</h6>
-<% } %> <% if (post.comments.length>0) { %>
-
-<h6><%= post.comments.length %> comments</h6>
-<% } %>
-
-<p>
-<%= post.content.substring(0, 100)+"..." %><a href="/post/<%= post._id %>"
-  ><button>Read more</button></a
-  >
-</p>
-<% }) %>
+<%bookmarks.forEach((bookmark)=>{%>
+  <h1><%= bookmark.post.title %></h1>
+  <h3><%= bookmark.post.author.username %>,<%= bookmark.post.date %></h3>  
+  <h4><%= bookmark.post.likeCount %> likes</h4>
+  <h4><%= bookmark.post.readCount %> reads</h4>
+  <h4><%= bookmark.post.commentCount %> comments</h4>
+  <p><%= bookmark.post.content.substring(0, 100)+"..." %><a href="/post/<%= bookmark.post._id %>"><button>Read more</button></a></p>
+  <!-- truncate upto 100 characters -->
+<%})%>

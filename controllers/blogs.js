@@ -27,7 +27,7 @@ const composePost=catchAsync(async (req, res) => {
   })
  
 const showPost=catchAsync(async (req, res) => {
-    let {id} = req.params.id.trim();
+    const {id} = req.params;
     
     if(req.user){
       const foundRead=await Read.findOne({post:id,user:req.user._id});
@@ -37,7 +37,6 @@ const showPost=catchAsync(async (req, res) => {
       }  
       res.locals.isbookmarked=await Bookmark.findOne({post:id,user:req.user._id});
       res.locals.isliked=await Like.findOne({post:id,user:req.user._id});
-      res.locals.iscommented=await Comment.findOne({post:id,user:req.user._id});
     }
    
     const comments=await Comment.find({post:id}).populate('author');

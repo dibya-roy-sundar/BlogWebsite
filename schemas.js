@@ -9,8 +9,9 @@ const postschema=joi.object({
 })
 const commentschema=joi.object({
     comment:joi.object({
-        body:joi.string().required(),
-    }) .required()
+        content:joi.string().required(),
+    }) 
+    .required()
 })
 export {postschema,commentschema};
 

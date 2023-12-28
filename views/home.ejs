@@ -8,7 +8,15 @@
 } -->
 <!-- element is equivalrnt to added_content[i]/posts[i]/post obj -->
 <h2> Blogs </h2>
-<%- include('./partials/posts') %>
+<%posts.forEach((post)=>{%>
+    <h1><%= post.title %></h1>
+    <h3><%= post.owner[0].username %>,<%= post.date %></h3>  
+    <h4><%= post.likeCount %> likes</h4>
+    <h4><%= post.readCount %> reads</h4>
+    <h4><%= post.commentCount %> comments</h4>
+    <p><%= post.content.substring(0, 100)+"..." %><a href="/post/<%= post._id %>"><button>Read more</button></a></p>
+    <!-- truncate upto 100 characters -->
+<%})%>
 <div>
     <form action="/post/new" method="get">
         <button class="btn" >✒️ Compose </button>

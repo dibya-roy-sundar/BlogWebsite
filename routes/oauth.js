@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { User } from "../models/user.js";
 import { oauthController } from "../controllers/oauth.js";
 import GitHubStrategy from "passport-github2";
+import { storeJoinedDate } from "../utils/CurrentDate.js";
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ passport.use(
             googleid: profile.id,
             username: profile.name.givenName,
             email: profile.emails[0].value,
+            joineddate:storeJoinedDate(new Date())
           });
           // user avatar :: profile.photos.value
           await newuser.save();
@@ -68,6 +70,7 @@ passport.use(
           const newuser = new User({
             githubid: profile.id,
             username: profile.username,
+            joineddate:storeJoinedDate(new Date())
           });
           await newuser.save();
           done(null, newuser);

@@ -20,12 +20,12 @@ const userProfile = catchAsync(async (req, res) => {
 
   res.render("users/profile", {
     user,
-    joineddate,
     posts,
     followings,
     followers,
     isfollower,
   });
+
 });
 
 const deleteAccount = catchAsync(async (req, res) => {
@@ -123,9 +123,14 @@ const updateProfile = catchAsync(async (req, res) => {
 
 const showBookmarks = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const bookmarks = await Bookmark.find({
-    user:id,
+  
+  const bookmarks=await Bookmark.find({user:id}).populate({
+    path:"post",populate:{path:"author"}
   })
+  // console.log(bookmarks);
+
+ 
+  
 
   res.render("users/bookmarks", { bookmarks });
 });

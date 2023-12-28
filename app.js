@@ -21,6 +21,7 @@ import oauthRoutes from "./routes/oauth.js";
 import profileRoutes from "./routes/profile.js";
 import bookmarkRoutes from "./routes/bookmark.js";
 import { Like } from "./models/likes.model.js";
+import { User } from "./models/user.js";
 
 
 dotenv.config();
@@ -89,6 +90,15 @@ app.get("/", async (req, res) => {
    const posts=await Post.aggregate([
     {
       $lookup:{
+        from:"users",
+        localField:"author",
+        foreignField:"_id",
+        as:"owner"
+      }
+
+    },
+    {
+      $lookup:{
         from:"likes",
         localField:"_id",
         foreignField:"post",
@@ -137,7 +147,7 @@ app.get("/", async (req, res) => {
     },
    ])
 
-   Users.populate(posts,{path:"author"});
+  
 
     res.render("home", {
       home_content,

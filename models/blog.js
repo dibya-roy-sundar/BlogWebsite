@@ -14,15 +14,15 @@ const postSchema = new Schema({
     ref:'User'
   },
   likeCount:{
-    type:String,
+    type: Number,
     default:0
   },
   commentCount:{
-    type:String,
+    type:Number,
     default:0
   },
   readCount:{
-    type:String,
+    type:Number,
     default:0
   },
  

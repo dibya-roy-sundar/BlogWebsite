@@ -1,5 +1,6 @@
 import { User } from "../models/user.js";
 import { catchAsync } from "../utils/CatchAsync.js";
+import { storeJoinedDate } from "../utils/CurrentDate.js";
 
 const registerForm = (req, res) => {
   res.render("users/register");
@@ -10,7 +11,8 @@ const loginForm = (req, res) => {
 const register = catchAsync(async (req, res) => {
   try {
     const { email, username, password } = req.body;
-    const user = new User({ email, username });
+    date=storeJoinedDate(new  Date())
+    const user = new User({ email, username,joineddate });
     const registeredUser = await User.register(user, password);
     req.login(registeredUser, (e) => {
       if (e) {

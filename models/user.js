@@ -23,6 +23,7 @@ const Schema=mongoose.Schema;
     instagramurl:String,
     linkedinurl:String,
     githuburl:String,
+    joineddate:String
     
  },{timestamps:true})
  userschema.plugin(passportLocalMongoose);
