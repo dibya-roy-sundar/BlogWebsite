@@ -1,0 +1,27 @@
+<% layout('layouts/boilerplate') %>
+
+<h1><%= tag %></h1>
+
+<ul>
+    <% for(let tag of alltags) {%>
+    <div>
+        <li style="list-style-type: none;">
+            <form action="/tag/<%=tag%>" method="get">
+                <button><%= tag%></button>
+            </form>
+        </li>
+    </div>
+    <% } %>
+    
+    </ul>
+
+<% tags.forEach(tag => { %>
+        <h2><%= tag.post.title %></h1>
+        <h3><%= tag.post.author.username %>,<%= tag.post.date %></h3>  
+        <h4><%= tag.post.likeCount %> likes</h4>
+        <h4><%= tag.post.readCount %> reads</h4>
+        <h4><%= tag.post.commentCount %> comments</h4>
+        <p><%= tag.post.content.substring(0, 100)+"..." %><a href="/post/<%= tag.post._id %>"><button>Read more</button></a></p>
+        <!-- truncate upto 100 characters -->
+  
+<% }) %>

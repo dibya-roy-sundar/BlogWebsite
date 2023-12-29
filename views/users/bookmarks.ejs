@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate') %>
+<h2>bookmarks</h2>
 <%bookmarks.forEach((bookmark)=>{%>
   <h1><%= bookmark.post.title %></h1>
   <h3><%= bookmark.post.author.username %>,<%= bookmark.post.date %></h3>  

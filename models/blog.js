@@ -10,10 +10,6 @@ const postSchema = new Schema({
   title:String,
   content:String,
   date:String,
-  author:{
-    type:Schema.Types.ObjectId,
-    ref:'User'
-  },
   likeCount:{
     type: Number,
     default:0
@@ -25,6 +21,10 @@ const postSchema = new Schema({
   readCount:{
     type:Number,
     default:0
+  },
+  author:{
+    type:Schema.Types.ObjectId,
+    ref:'User'
   },
   tags:[
     {

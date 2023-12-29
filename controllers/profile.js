@@ -5,6 +5,7 @@ import { User } from "../models/user.js";
 import { catchAsync } from "../utils/CatchAsync.js";
 import { storeJoinedDate } from "../utils/CurrentDate.js";
 import { Bookmark } from "../models/bookmarks.model.js";
+import { Tag } from "../models/tags.model.js";
 
 const userProfile = catchAsync(async (req, res) => {
   const { id } = req.params;
@@ -17,13 +18,15 @@ const userProfile = catchAsync(async (req, res) => {
   )
     ? true
     : false;
-
+    const tags = await Tag.distinct('tag',{ user: user._id });
+   
   res.render("users/profile", {
     user,
     posts,
     followings,
     followers,
     isfollower,
+    tags
   });
 
 });

@@ -2,6 +2,20 @@
 <h1 ><%= post.title %></h1>
 <h2><%= post.author.username %></h2>
 <h3><%= post.date %></h3>
+
+<ul>
+<% for(let tag of post.tags) {%>
+<div>
+    <li style="list-style-type: none;">
+        <form action="/tag/<%=tag.tag%>" method="get">
+            <button><%= tag.tag %></button>
+        </form>
+    </li>
+</div>
+<% } %>
+
+</ul>
+
 <p ><%=post.content %></p>
 
  <p><%= post.likeCount %> likes </p>

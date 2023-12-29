@@ -15,7 +15,7 @@ const newForm=(req, res) => {
   }
 
 const composePost=catchAsync(async (req, res) => {
-  console.log(req.body.tags);
+  // console.log(req.body.tags);
   const post = new Post({
     ...req.body.blog,
     date:storeJoinedDate(new Date()),
@@ -59,7 +59,7 @@ const showPost=catchAsync(async (req, res) => {
    
     const comments=await Comment.find({post:id}).populate('author');
     
-    const post = await Post.findById(id).populate('author');
+    const post = await Post.findById(id).populate('author').populate('tags');
     // .populate({path:'comments',populate:{path:'author'}})
   
 

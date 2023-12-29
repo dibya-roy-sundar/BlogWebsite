@@ -22,6 +22,7 @@ import profileRoutes from "./routes/profile.js";
 import bookmarkRoutes from "./routes/bookmark.js";
 import { Like } from "./models/likes.model.js";
 import { User } from "./models/user.js";
+import tagRoutes from "./routes/tags.route.js";
 
 
 dotenv.config();
@@ -182,6 +183,7 @@ app.use("/post",postRoutes);
 app.use("/post/:id/comment",commentRoutes);
 app.use("/post/:id/like",likeRoutes);
 app.use("/post/:id/bookmark",bookmarkRoutes);
+app.use("/tag/:tag",tagRoutes);
 
 /////////////////////////////// read / search ////////////////////////////////
 app.post("/search", catchAsync(async (req, res) => {

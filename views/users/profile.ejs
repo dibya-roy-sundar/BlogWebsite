@@ -9,23 +9,33 @@
   <h2><%= followings.length %>followings</h2>
 
 </div>
+<% if (currentUser) { %>
+ 
 
 <% if (!currentUser._id.equals(user._id)) { %>
     <% if (!isfollower) { %>
-      <div>
-        <form action="/user/<%=user._id%>/follow" method="get">
-          <button>Follow</button>
-        </form>
-      </div>
-    <% } else { %>
       <div>
         <form action="/user/<%=user._id%>/unfollow" method="get">
           <button>Unfollow</button>
         </form>
       </div>
+    <% } else { %>
+      <div>
+        <form action="/user/<%=user._id%>/follow" method="get">
+          <button>Follow</button>
+        </form>
+      </div>
+      
     <%}%>
   
 <% } %>
+<% } else { %>
+  <div>
+    <form action="/user/<%=user._id%>/follow" method="get">
+      <button>Follow</button>
+    </form>
+  </div>
+  <% } %>
 
 <p>members since <%= user.joineddate %></p>
 
@@ -58,7 +68,21 @@
 <h2>Posts</h2>
 
 <%- include('../partials/posts') %>
-
+<h2>tags</h2>
+<div>
+<ul>
+  <% for(let tag of tags) {%>
+  <div>
+      <li style="list-style-type: none;">
+          <form action="/tag/<%=tag%>" method="get">
+              <button><%= tag %></button>
+          </form>
+      </li>
+  </div>
+  <% } %>
+  
+  </ul>
+</div>
 <% if (currentUser && currentUser._id.equals(user._id)) { %>
   <div>
     <form action="/post/new" method="get">
