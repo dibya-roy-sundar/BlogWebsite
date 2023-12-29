@@ -47,6 +47,8 @@ const Schema=mongoose.Schema;
         await Like.deleteMany({user:user._id})
         await Bookmark.deleteMany({user:user._id});
         await Read.deleteMany({user:user._id});
+        await Tag.deleteMany({user:user._id});
+        
 
         await Subscription.deleteMany({ $or: [{ follower: user._id }, { following: user._id }] });
         

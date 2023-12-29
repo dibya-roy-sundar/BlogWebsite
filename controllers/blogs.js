@@ -27,7 +27,8 @@ const composePost=catchAsync(async (req, res) => {
    
     const newtag=await new Tag({
       tag:tag,
-      post:post._id
+      post:post._id,
+      user:req.user._id,
     })
       await newtag.save();
       post.tags.push(newtag);
