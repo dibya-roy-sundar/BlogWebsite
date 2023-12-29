@@ -6,6 +6,7 @@ import { Subscription } from "./subscription.js";
 import { Bookmark } from "./bookmarks.model.js";
 import { Like } from "./likes.model.js";
 import { Read } from "./reads.model.js";
+import { Tag } from "./tags.model.js";
 
 
 const Schema=mongoose.Schema;
@@ -37,6 +38,7 @@ const Schema=mongoose.Schema;
         await Like.deleteMany({post:{$in:deletedpostsids}});
         await Bookmark.deleteMany({post:{$in:deletedpostsids}});
         await Read.deleteMany({post:{$in:deletedpostsids}});
+        await Tag.deleteMany({post:{$in:deletedpostsids}});
         
         await Post.deleteMany({author:user._id})
 

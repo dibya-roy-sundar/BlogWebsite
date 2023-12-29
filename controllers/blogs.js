@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
 import { Post } from "../models/blog.js";
 import { catchAsync } from "../utils/CatchAsync.js";
-import { CurrentDate, storeJoinedDate } from "../utils/CurrentDate.js";
+import { storeJoinedDate } from "../utils/CurrentDate.js";
 import { ExpressError } from "../utils/ExpressError.js";
 import { Bookmark } from "../models/bookmarks.model.js";
 import { Like } from "../models/likes.model.js";
 import { Comment } from "../models/comments.js";
 import { Read } from "../models/reads.model.js";
+import { Tag } from "../models/tags.model.js";
 
 
 const newForm=(req, res) => {
@@ -14,13 +15,29 @@ const newForm=(req, res) => {
   }
 
 const composePost=catchAsync(async (req, res) => {
+  console.log(req.body.tags);
   const post = new Post({
-  ...req.body.blog,
-  date:storeJoinedDate(new Date()),
-  author:req.user._id,
+    ...req.body.blog,
+    date:storeJoinedDate(new Date()),
+    author:req.user._id,
   });
+  await post.save();
+  const tagarray=req.body.tags.split(",");
+  for(const tag of tagarray){
+   
+    const newtag=await new Tag({
+      tag:tag,
+      post:post._id
+    })
+      await newtag.save();
+      post.tags.push(newtag);
+      await post.save();
+    
+   
+  }
+  
+  
 
-    await post.save();
   
     // console.log("New blog post successfully saved");
     res.redirect(`/post/${post._id}`);

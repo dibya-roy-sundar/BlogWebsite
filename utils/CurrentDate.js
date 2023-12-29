@@ -1,7 +1,5 @@
 const today=new Date();
 const options = {  year: 'numeric', month: 'short', day: 'numeric' };
-const CurrentDate = today.toLocaleDateString('en-US',options);
-const CurrentTime= today.toLocaleString('en-US');
 
 
 const storeJoinedDate=(timestamp)=>{
@@ -11,4 +9,4 @@ const storeJoinedDate=(timestamp)=>{
 }
 
 
-export {CurrentDate,CurrentTime,storeJoinedDate};
+export {storeJoinedDate};

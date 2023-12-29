@@ -3,6 +3,7 @@ import { Comment } from "./comments.js";
 import { Like } from "./likes.model.js";
 import { Bookmark } from "./bookmarks.model.js";
 import { Read } from "./reads.model.js";
+import { Tag } from "./tags.model.js";
 
 const Schema=mongoose.Schema;
 const postSchema = new Schema({
@@ -25,6 +26,12 @@ const postSchema = new Schema({
     type:Number,
     default:0
   },
+  tags:[
+    {
+      type:Schema.Types.ObjectId,
+      ref:"Tag"
+    }
+  ],
  
   // image:String,
   },{timestamps:true})
@@ -42,7 +49,9 @@ const postSchema = new Schema({
         await Read.deleteMany({
           post:doc._id,
         })
-        
+        await Tag.deleteMany({
+          post:doc._id,
+        })
     }
 })
 

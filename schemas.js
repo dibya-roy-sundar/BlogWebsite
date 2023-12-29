@@ -5,7 +5,8 @@ const postschema=joi.object({
         title:joi.string().required(),
         content:joi.string().required(),
         // image:joi.string().required(),
-    }).required()
+    }).required(),
+    tags:joi.string()
 })
 const commentschema=joi.object({
     comment:joi.object({
