@@ -8,6 +8,7 @@ import { Like } from "../models/likes.model.js";
 import { Comment } from "../models/comments.model.js";
 import { Read } from "../models/reads.model.js";
 import { Tag } from "../models/tags.model.js";
+import { cloudinary } from "../cloudinary/index.cloudinary.js";
 
 const newForm = (req, res) => {
   res.render("blogs/new");
@@ -15,15 +16,20 @@ const newForm = (req, res) => {
 
 const composePost = catchAsync(async (req, res) => {
   // console.log(req.body.tags);
+  const image={
+    url:req.file.path,
+    filename:req.file.filename,
+  }
   const post = new Post({
     ...req.body.blog,
     date: storeJoinedDate(new Date()),
     author: req.user._id,
+    image:image
   });
   await post.save();
   const tagarray = req.body.tags.split(",");
   for (const tag of tagarray) {
-    const newtag = await new Tag({
+    const newtag = new Tag({
       tag: tag,
       post: post._id,
       user: req.user._id,
@@ -70,31 +76,55 @@ const deletePost = catchAsync(async (req, res) => {
 });
 
 const editForm = catchAsync(async (req, res) => {
-  const post = await Post.findById(req.params.id.trim());
+  const post = await Post.findById(req.params.id.trim()).populate('tags');
+  const tags=post.tags.map(tag => tag.tag);
   res.render("blogs/edit", {
-    post,
+    post,tags
   });
 });
 
 const updateCampground = catchAsync(async (req, res) => {
   const idofupdate = req.params.id.trim();
+  const post=await Post.findById(idofupdate).populate('tags');
 
-  if (!mongoose.Types.ObjectId.isValid(idofupdate)) {
-    throw new ExpressError("Invalid Id", 400);
+  // const oldTag=post.tags.map(tag => tag.tag)
+  // const newTag = req.body.tags.split(",");
+
+  // const addedTags=newTag.filter(tag =>!oldTag.includes(tag))
+  // const removeTags=oldTag.filter(tag =>!newTag.includes(tag))
+  // //adding in tags array
+  // for (const tag of addedTags) {
+  //   const newtag = new Tag({
+  //     tag: tag,
+  //     post: post._id,
+  //     user: req.user._id,
+  //   });
+  //   await newtag.save();
+  //   post.tags.push(newtag);
+  //   await post.save();
+  // }
+  // // remove 
+  // await Tag.deleteMany({post:post._id,tag:{$in:removeTags}});
+  // post.tags=post.tags.filter(tag => !removeTags.includes(tag.tag));
+  
+
+  post.title=req.body.blog.title;
+  post.content=req.body.blog.content;
+  post.date=storeJoinedDate(new Date());
+
+  if(req.file){
+    await cloudinary.uploader.destroy(post.image.filename);
+    post.image={
+      url:req.file.path,
+    filename:req.file.filename,
+    }
+
   }
-  const blog = req.body.blog;
-  blog.date = storeJoinedDate(new Date());
+  
+  await post.save(); 
 
-  const result = await Post.findByIdAndUpdate(idofupdate, blog, {
-    new: true, // Return the updated document
-    runValidators: true,
-  });
 
-  if (!result) {
-    throw new ExpressError("Document not found", 400);
-  }
-
-  res.redirect("/post/" + result._id);
+  res.redirect(`/post/${post._id}`);
 });
 
 export {

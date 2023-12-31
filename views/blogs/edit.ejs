@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate') %>
-<h1>COMPOSE</h1>
-<form action="/post/<%=post._id %>?_method=PUT" method="post">
+<h1>Edit </h1>
+<form action="/post/<%=post._id %>?_method=PUT" method="post" enctype="multipart/form-data">
 <div class="title">
     <label for="title">title</label>
     <br />
@@ -11,9 +11,98 @@
     <br />
     <textarea name="blog[content]" id="post"  cols="30" rows="10"><%= post.content %></textarea>
 </div>
+<!-- <div class="tagwrapper">
+    <div class="title">
+      <i class="ri-price-tag-3-fill"></i>
+      
+      <h2>Tags</h2>
+    </div>
+    <div class="content">
+      
+      <ul id="tagarray"  >
+        <% post.tags.forEach(tag => { %>
+            <li><%=tag.tag  %><i onclick="remove(this, '${tag}')" class="ri-close-line"></i> </li>
+        <% }) %>
+        <input id="taginput" name="tags"  type="text" spellcheck="false">
+    </ul>
+    </div>
+    <div class="details">
+      <button type="button">Remove All</button>
+    </div>
+  </div> -->
+<div>
+    <label for="image">update image(new will replace old one)</label>
+    <input type="file" name="image" required>
+  </div>
 
 
 <button class="btn" type="submit">Update</button>
 </form>
 <a href="/post/<%= post._id %>">back to post</a>
+
+<script>
+    const ul = document.getElementById("tagarray");
+    const input = document.getElementById("taginput");
+  
+  
+    
+    
+    
+    
+    let tags =[];
+    
+  
+    document.getElementById("newform").addEventListener("submit",(event)=>{
+      event.preventDefault();
+      input.value=tags;
+      document.getElementById("newform").submit();
+  
+    })
+  
+  
+  
+  
+  function createTag(){
+      ul.querySelectorAll("li").forEach(li => li.remove());
+      tags.slice().reverse().forEach(tag =>{
+          let liTag = `<li name="list[${tags.indexOf(tag)}]" value="${tag}" ">${tag}<i onclick="remove(this, '${tag}')" class="ri-close-line"></i> </li>`;
+          ul.insertAdjacentHTML("afterbegin", liTag);
+      });
+      
+  }
+  
+  function remove(element, tag){
+      let index  = tags.indexOf(tag);
+      tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
+      element.parentElement.remove();
+      countTags();
+  }
+  
+  function addTag(event){
+      if(event.key == "Enter"){
+        event.preventDefault();
+          let tag = event.target.value;
+          if(tag.length > 0 && !tags.includes(tag)){
+              if(tags.length <=5){
+                  tag.split(',').forEach(tag => {
+                      tags.push(tag);
+                      createTag();
+                  });
+              }
+          }
+          event.target.value = "";
+      }
+  }
+  
+  
+  
+  input.addEventListener("keydown", addTag);
+  
+  const removeBtn = document.querySelector(".details button");
+  removeBtn.addEventListener("click", () =>{
+      tags.length = 0;
+      ul.querySelectorAll("li").forEach(li => li.remove());
+      
+  });
+  </script>
 

@@ -91,14 +91,6 @@ function addTag(event){
     }
 }
 
-document.getElementById("newform").addEventListener("submit",function (e){
-  e.preventDefault();
-  
-    document.getElementById("tagarray").value=tags;
-    document.getElementById("newform").submit();
- 
-
-})
 
 input.addEventListener("keydown", addTag);
 

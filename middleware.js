@@ -5,7 +5,7 @@ import { catchAsync } from "./utils/CatchAsync.js";
 import { ExpressError } from "./utils/ExpressError.js";
 
 const validatepost=(req,res,next)=>{
-    const {error}=postschema.validate(req.body);
+    const {error}=postschema.validate(req.body.blog);
     if(error){
         const msg=error.details.map(el =>el.message).join(',');
         throw new ExpressError(msg,400);

@@ -3,6 +3,9 @@
 <h2><%= post.author.username %></h2>
 <h3><%= post.date %></h3>
 
+
+
+<% if (post.tags && post.tags.length) { %>
 <ul>
 <% for(let tag of post.tags) {%>
 <div>
@@ -13,8 +16,14 @@
     </li>
 </div>
 <% } %>
-
 </ul>
+<% } %>
+
+
+
+<% if (post.image) { %>
+<div><img src="<%=post.image.url%>" alt="cover image"></div>
+<% } %>
 
 <p ><%=post.content %></p>
 
@@ -25,13 +34,13 @@
 
 <div class="form">
     <div class="first" >
-    <form action="/post/<%=post._id%>?_method=DELETE" method="post">
-    <button class="btn delete">Delete post  🗑️</button>
-    </form>
+        <form action="/post/<%=post._id%>?_method=DELETE" method="post">
+        <button class="btn delete">Delete post  🗑️</button>
+        </form>
     </div>
     <div class="second" >
     
-    <button onclick="window.location.href='/post/<%=post._id%>/edit'" class="btn Update">Edit post ✍️</button> 
+       <button onclick="window.location.href='/post/<%=post._id%>/edit'" class="btn Update">Edit post ✍️</button> 
     </div>
 </div>   
 <% } %> 

@@ -13,15 +13,12 @@ const upload=multer({storage})
 
 router.get("/new",isLoggedIn, newForm);
 
-// router.post("/",isLoggedIn,validatepost, composePost);
-router.post("/",upload.single('image'),(req,res)=>{
-  console.log(req.file);
-  console.log(req.body);
-})
+router.post("/",isLoggedIn,upload.single('image'),validatepost, composePost);
+
 
 router.route("/:id")
     .get( showPost)
-    .put(isLoggedIn,isAuthor,validatepost, updateCampground)
+    .put(isLoggedIn,isAuthor,upload.single('image'),validatepost, updateCampground)
     .delete(isLoggedIn,isAuthor,deletePost)
     // 
 
