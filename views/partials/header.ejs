@@ -32,14 +32,18 @@
           <li id="home"><a href="/">HOME</a></li>
           <li id="about"><a href="/about">ABOUT US</a></li>
           <li id="contact"><a href="/contact">CONTACT US</a></li>
+          <li>  <form action="/post/new" method="get">
+                  <button class="btn" >✒️ Compose </button>
+                </form>
+          </li>
           <li>
-            <form action="/search" method="post">
+            <form action="/search/all" method="post">
               <div class="search-container">
                 <input
                   type="text"
                   class="search-input"
                   placeholder="🔍 Search Blog  ..."
-                  name="seachTitle"
+                  name="search"
                 />
                 
                 <!-- <button class="btn" type="submit">🔍</button> -->

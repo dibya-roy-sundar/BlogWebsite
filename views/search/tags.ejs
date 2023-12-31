@@ -1,0 +1,20 @@
+<% layout('layouts/boilerplate') %>
+<div>
+    <div id="all"><a href="/search/all/?search=<%= whattosearch %>">All</a></div>
+    <div id="posts"><a href="/search/posts?search=<%= whattosearch %>">posts</a></div>
+    <div id="tags"><a href="/search/tags?search=<%= whattosearch %>">tags</a></div>
+    <div id="accounts"><a href="/search/accounts?search=<%= whattosearch %>">accounts</a></div>
+</div>
+<% if (searchtags.length) { %>
+ 
+
+<% searchtags.forEach(tags => { %>
+    <div id="<%=tags%>">
+        <h2><a href="/tag/<%=tags%>">#<%=tags%></a></h2>
+    </div>
+
+<% }) %>
+<% } else { %>
+    <h2>no Tags found</h2>
+
+<% } %>

@@ -1,0 +1,41 @@
+<% layout('layouts/boilerplate') %>
+<div>
+    <div id="all"><a href="/search/all/?search=<%= whattosearch %>">All</a></div>
+    <div id="posts"><a href="/search/posts?search=<%= whattosearch %>">posts</a></div>
+    <div id="tags"><a href="/search/tags?search=<%= whattosearch %>">tags</a></div>
+    <div id="accounts"><a href="/search/accounts?search=<%= whattosearch %>">accounts</a></div>
+</div>
+
+
+<% if (searchresults.length) { %>
+ 
+
+<%searchresults.forEach((element)=>{%>
+    <% if (element.title) { %>
+        
+            <div id="<%= element.title %>">
+                <h2><a href="/post/<%= element._id %>"><%= element.title %></a></h2>
+                <h4><a href="/user/<%= element.author._id %>"><%= element.author.username %></a>,<%= element.date %></h4>
+                <p><%= element.content.substring(0, 100)+"..." %><a href="/post/<%= element._id %>">Read more</a></p>
+                <!-- truncate upto 100 characters -->
+            </div>
+
+    <% }else if (element.username) { %>
+        <div  id="<%= element._id %>" >
+            <h2><a href="/user/<%= element._id %>"> <%= element.username %></a></h2>
+            <% if (element.tagline) { %>
+                <h3><%= element.tagline %></h3>
+                
+                <% } %>
+        </div>
+    <% } else { %>
+        <div id="<%=  element%>">
+            <h2><a href="/tag/<%= element%>">#<%= element%></a></h2>
+        </div>
+    <% } %>
+   
+    
+<%})%>
+<% }  else {%>
+<h2>no results found</h2>
+<% } %>

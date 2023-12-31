@@ -1,0 +1,21 @@
+<% layout('layouts/boilerplate') %>
+<div>
+    <div id="all"><a href="/search/all/?search=<%= whattosearch %>">All</a></div>
+    <div id="posts"><a href="/search/posts?search=<%= whattosearch %>">posts</a></div>
+    <div id="tags"><a href="/search/tags?search=<%= whattosearch %>">tags</a></div>
+    <div id="accounts"><a href="/search/accounts?search=<%= whattosearch %>">accounts</a></div>
+</div>
+<% if (searchposts.length) { %>
+ 
+
+<% searchposts.forEach(element => { %>
+    <div id="<%= element.title %>">
+        <h2><a href="/post/<%= element._id %>"><%= element.title %></a></h2>
+        <h4><a href="/user/<%= element.author._id %>"><%= element.author.username %></a>,<%= element.date %></h4>
+        <p><%= element.content.substring(0, 100)+"..." %><a href="/post/<%= element._id %>">Read more</a></p>
+        <!-- truncate upto 100 characters -->
+    </div>
+<% }) %>
+<% } else {%>
+    <h2>no posts found</h2>
+<% } %>

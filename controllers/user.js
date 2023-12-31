@@ -11,7 +11,7 @@ const loginForm = (req, res) => {
 const register = catchAsync(async (req, res) => {
   try {
     const { email, username, password } = req.body;
-    date=storeJoinedDate(new  Date())
+    const joineddate=storeJoinedDate(new  Date())
     const user = new User({ email, username,joineddate });
     const registeredUser = await User.register(user, password);
     req.login(registeredUser, (e) => {
