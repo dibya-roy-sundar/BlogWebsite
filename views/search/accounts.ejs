@@ -5,7 +5,7 @@
     <div id="tags"><a href="/search/tags?search=<%= whattosearch %>">tags</a></div>
     <div id="accounts"><a href="/search/accounts?search=<%= whattosearch %>">accounts</a></div>
 </div>
-<% if (searchaccounts.length) { %>
+<% if (searchaccounts && searchaccounts.length) { %>
  
 
 <% searchaccounts.forEach(account => { %>

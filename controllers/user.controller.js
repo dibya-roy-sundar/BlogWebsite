@@ -62,7 +62,8 @@ const forgotPassword = catchAsync(async (req, res) => {
 
 
 const setuserpassword =catchAsync( async (req, res) => {
-const {newPassword,userid}=req.body;
+const {newPassword}=req.body;
+const userid=req.query.userid;
 const user=await User.findById(userid);
 
 

@@ -4,9 +4,9 @@ import { catchAsync } from "../utils/CatchAsync.js";
 
 const showTagRelatedPosts=catchAsync(async (req,res)=>{
 const {tag}=req.params;
-console.log(tag);
+// console.log(tag);
 
-const tags=await Tag.find({tag}).populate({path:'post',populate:{path:'author'},populate:{path:'tags'}})
+const tags=await Tag.find({tag}).populate({path:'post',populate:{path:'author'}})
 // .populate({path:'comments',populate:{path:'author'}})
 
 const alltags = await Tag.distinct('tag');
