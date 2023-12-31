@@ -2,19 +2,27 @@
 <% layout('layouts/boilerplate') %>
 <h1>HOME</h1>
 <p><%= home_content %></p>
-<!-- for(let i=0;i<added_content.length;i++){%>
-<h3> added_content[i].title %></h3>
-<p> added_content[i].text </p>
-} -->
-<!-- element is equivalrnt to added_content[i]/posts[i]/post obj -->
+
 <h2> Blogs </h2>
 <%posts.forEach((post)=>{%>
-    <h1><%= post.title %></h1>
-    <h3><%= post.owner[0].username %>,<%= post.date %></h3>  
-    <h4><%= post.likeCount %> likes</h4>
-    <h4><%= post.readCount %> reads</h4>
-    <h4><%= post.commentCount %> comments</h4>
-    <p><%= post.content.substring(0, 100)+"..." %><a href="/post/<%= post._id %>"><button>Read more</button></a></p>
+    <div>
+        <div>
+            <h1><%= post.title %></h1>
+            <h3><%= post.author.username %>,<%= post.date %></h3>  
+        </div>
+        <div>
+           
+            <img src="<%= post.image.thumbnail %>" alt="preview of cover image" title="<%= post.image.home %>">
+        </div>
+        <div>
+            <h4><%= post.likeCount %> likes</h4>
+            <h4><%= post.readCount %> reads</h4>
+            <h4><%= post.commentCount %> comments</h4>
+        </div>
+        <div>
+            <p><%= post.content.substring(0, 100)+"..." %><a href="/post/<%= post._id %>"><button>Read more</button></a></p>
+        </div>
+    </div>
     <!-- truncate upto 100 characters -->
 <%})%>
 <div>

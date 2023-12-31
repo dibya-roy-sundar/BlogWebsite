@@ -6,6 +6,17 @@ import { Read } from "./reads.model.js";
 import { Tag } from "./tags.model.js";
 
 const Schema=mongoose.Schema;
+
+const imageSchema=new Schema({
+  url:String,
+  filename:String
+})
+imageSchema.virtual('individual').get(function (){
+  return this.url.replace('/upload','/upload/w_600,h_400')
+})
+imageSchema.virtual('thumbnail').get(function (){
+  return this.url.replace('/upload','/upload/w_250,h_150')
+})
 const postSchema = new Schema({
   title:String,
   content:String,
@@ -33,10 +44,7 @@ const postSchema = new Schema({
     }
   ],
  
-  image:{
-    url:String,
-    filename:String
-  }
+  image:imageSchema,
   },{timestamps:true})
   postSchema.post('findOneAndDelete',async function(doc){
     if(doc){

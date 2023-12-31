@@ -13,68 +13,72 @@ const contactContent =
 
 
 const home=catchAsync(async (req, res) => {
-      const posts = await Post.aggregate([
-        {
-          $lookup: {
-            from: "users",
-            localField: "author",
-            foreignField: "_id",
-            as: "owner",
-          },
-        },
-        {
-          $lookup: {
-            from: "likes",
-            localField: "_id",
-            foreignField: "post",
-            as: "liked",
-          },
-        },
-        {
-          $addFields: {
-            likeCount: {
-              $size: "$liked",
-            },
-          },
-        },
-        {
-          $lookup: {
-            from: "comments",
-            localField: "_id",
-            foreignField: "post",
-            as: "commented",
-          },
-        },
-        {
-          $addFields: {
-            commentCount: {
-              $size: "$commented",
-            },
-          },
-        },
-        {
-          $lookup: {
-            from: "reads",
-            localField: "_id",
-            foreignField: "post",
-            as: "read",
-          },
-        },
-        {
-          $addFields: {
-            readCount: {
-              $size: "$read",
-            },
-          },
-        },
-        {
-          $sort: {
-            readCount: -1,
-            likeCount: -1,
-            commentCount: -1,
-          },
-        }
-      ]);
+      // const posts = await Post.aggregate([
+      //   {
+      //     $lookup: {
+      //       from: "users",
+      //       localField: "author",
+      //       foreignField: "_id",
+      //       as: "owner",
+      //     },
+      //   },
+      //   {
+      //     $lookup: {
+      //       from: "likes",
+      //       localField: "_id",
+      //       foreignField: "post",
+      //       as: "liked",
+      //     },
+      //   },
+      //   {
+      //     $addFields: {
+      //       likeCount: {
+      //         $size: "$liked",
+      //       },
+      //     },
+      //   },
+      //   {
+      //     $lookup: {
+      //       from: "comments",
+      //       localField: "_id",
+      //       foreignField: "post",
+      //       as: "commented",
+      //     },
+      //   },
+      //   {
+      //     $addFields: {
+      //       commentCount: {
+      //         $size: "$commented",
+      //       },
+      //     },
+      //   },
+      //   {
+      //     $lookup: {
+      //       from: "reads",
+      //       localField: "_id",
+      //       foreignField: "post",
+      //       as: "read",
+      //     },
+      //   },
+      //   {
+      //     $addFields: {
+      //       readCount: {
+      //         $size: "$read",
+      //       },
+      //     },
+      //   },
+      //   {
+      //     $sort: {
+      //       readCount: -1,
+      //       likeCount: -1,
+      //       commentCount: -1,
+      //     },
+      //   }
+      // ]);
+      const posts=await Post.find({}).populate('author');
+      
+
+
     
       res.render("home", {
         home_content,
