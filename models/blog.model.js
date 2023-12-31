@@ -33,7 +33,10 @@ const postSchema = new Schema({
     }
   ],
  
-  // image:String,
+  image:{
+    url:String,
+    filename:String
+  }
   },{timestamps:true})
   postSchema.post('findOneAndDelete',async function(doc){
     if(doc){

@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate') %>
 <h1>COMPOSE</h1>
-<form id="newform" action="/post" method="post">
+<form id="newform" action="/post" method="post" enctype="multipart/form-data">
   
   <div class="title">
     <label for="title">title</label>
@@ -25,6 +25,10 @@
     <div class="details">
       <button type="button">Remove All</button>
     </div>
+  </div>
+  <div>
+    <label for="image">image</label>
+    <input type="file" name="image" required>
   </div>
 
   <button class="btn" type="submit">publish</button>
