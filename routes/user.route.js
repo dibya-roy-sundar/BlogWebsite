@@ -1,8 +1,8 @@
 import express from "express";
-import { forgotForm, forgotPassword, login, loginForm, logout, register, registerForm, setuserpassword } from "../controllers/user.js";
+import { forgotForm, forgotPassword, login, loginForm, logout, register, registerForm, setuserpassword } from "../controllers/user.controller.js";
 import passport from "passport";
 import { isAuthor, isLoggedIn, storeReturnTo } from "../middleware.js";
-import { User } from "../models/user.js";
+import { User } from "../models/user.model.js";
 import LocalStrategy from "passport-local";
 
 

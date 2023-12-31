@@ -1,5 +1,5 @@
 import { Bookmark } from "../models/bookmarks.model.js";
-import { User } from "../models/user.js";
+import { User } from "../models/user.model.js";
 import { catchAsync } from "../utils/CatchAsync.js";
 
 const addBookmark = catchAsync(async (req, res) => {

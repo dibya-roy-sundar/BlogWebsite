@@ -11,7 +11,7 @@ import {
   unFollow,
   updateProfile,
   userProfile,
-} from "../controllers/profile.js";
+} from "../controllers/profile.controller.js";
 import { isLoggedIn, isNotUser, isUser } from "../middleware.js";
 
 const router = express.Router({ mergeParams: true });

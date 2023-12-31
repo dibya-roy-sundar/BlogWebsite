@@ -1,6 +1,6 @@
 import express from "express";
 import { isLoggedIn } from "../middleware.js";
-import { addLike,  removeLike } from "../controllers/likes.js";
+import { addLike,  removeLike } from "../controllers/likes.controller.js";
 
 
 const router=express.Router({mergeParams:true});

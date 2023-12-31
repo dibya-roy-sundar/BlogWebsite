@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Post } from "./blog.js";
+import { Post } from "./blog.model.js";
 
 const Schema= mongoose.Schema;
 

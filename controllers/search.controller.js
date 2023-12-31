@@ -1,6 +1,6 @@
-import { Post } from "../models/blog.js";
+import { Post } from "../models/blog.model.js";
 import { Tag } from "../models/tags.model.js";
-import { User } from "../models/user.js";
+import { User } from "../models/user.model.js";
 import { catchAsync } from "../utils/CatchAsync.js";
 
 const peformAllSearch = catchAsync(async (whattosearch) => {

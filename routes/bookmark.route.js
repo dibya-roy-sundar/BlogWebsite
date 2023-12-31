@@ -1,6 +1,6 @@
 import express from "express";
 import { isLoggedIn } from "../middleware.js";
-import { addBookmark, removeBookmark } from "../controllers/bookmark.js";
+import { addBookmark, removeBookmark } from "../controllers/bookmark.contoller.js";
 
 const router=express.Router({mergeParams:true});
 

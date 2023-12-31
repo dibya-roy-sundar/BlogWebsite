@@ -1,5 +1,5 @@
-import { Post } from "./models/blog.js";
-import { Comment } from "./models/comments.js";
+import { Post } from "./models/blog.model.js";
+import { Comment } from "./models/comments.model.js";
 import { commentschema, postschema } from "./schemas.js";
 import { catchAsync } from "./utils/CatchAsync.js";
 import { ExpressError } from "./utils/ExpressError.js";

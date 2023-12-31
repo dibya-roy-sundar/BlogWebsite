@@ -2,8 +2,8 @@ import express from "express";
 import passport from "passport";
 import GoogleStrategy from "passport-google-oauth20";
 import dotenv from "dotenv";
-import { User } from "../models/user.js";
-import { oauthController } from "../controllers/oauth.js";
+import { User } from "../models/user.model.js";
+import { oauthController } from "../controllers/oauth.controller.js";
 import GitHubStrategy from "passport-github2";
 import { storeJoinedDate } from "../utils/CurrentDate.js";
 

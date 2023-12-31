@@ -1,5 +1,5 @@
 import express from "express";
-import { composePost, deletePost, editForm, newForm, showPost, updateCampground } from "../controllers/blogs.js";
+import { composePost, deletePost, editForm, newForm, showPost, updateCampground } from "../controllers/blogs.controller.js";
 import { isAuthor, isLoggedIn, validatepost } from "../middleware.js";
 
 const router=express.Router();

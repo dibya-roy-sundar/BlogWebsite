@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import passportLocalMongoose from "passport-local-mongoose";
-import { Post } from "./blog.js";
-import { Comment } from "./comments.js";
-import { Subscription } from "./subscription.js";
+import { Post } from "./blog.model.js";
+import { Comment } from "./comments.model.js";
+import { Subscription } from "./subscription.model.js";
 import { Bookmark } from "./bookmarks.model.js";
 import { Like } from "./likes.model.js";
 import { Read } from "./reads.model.js";

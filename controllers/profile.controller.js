@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import { Post } from "../models/blog.js";
-import { Subscription } from "../models/subscription.js";
-import { User } from "../models/user.js";
+import { Post } from "../models/blog.model.js";
+import { Subscription } from "../models/subscription.model.js";
+import { User } from "../models/user.model.js";
 import { catchAsync } from "../utils/CatchAsync.js";
 import { storeJoinedDate } from "../utils/CurrentDate.js";
 import { Bookmark } from "../models/bookmarks.model.js";

@@ -1,5 +1,5 @@
 import express from "express";
-import { deleteComment, postComment } from "../controllers/comments.js";
+import { deleteComment, postComment } from "../controllers/comments.controller.js";
 import { isCommentAuthor, isLoggedIn, validatecomment } from "../middleware.js";
 
 const router=express.Router({mergeParams:true});

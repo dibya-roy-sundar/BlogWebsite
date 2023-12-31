@@ -1,5 +1,5 @@
-import { Post } from "../models/blog.js";
-import { Comment } from "../models/comments.js";
+import { Post } from "../models/blog.model.js";
+import { Comment } from "../models/comments.model.js";
 import { catchAsync } from "../utils/CatchAsync.js";
 import {  storeJoinedDate } from "../utils/CurrentDate.js";
 

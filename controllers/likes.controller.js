@@ -1,5 +1,5 @@
 import { catchAsync } from "../utils/CatchAsync.js";
-import { Post } from "../models/blog.js";
+import { Post } from "../models/blog.model.js";
 import { Like } from "../models/likes.model.js";
 
 

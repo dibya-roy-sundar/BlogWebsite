@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-import { Post } from "../models/blog.js";
+import { Post } from "../models/blog.model.js";
 import { catchAsync } from "../utils/CatchAsync.js";
 import { storeJoinedDate } from "../utils/CurrentDate.js";
 import { ExpressError } from "../utils/ExpressError.js";
 import { Bookmark } from "../models/bookmarks.model.js";
 import { Like } from "../models/likes.model.js";
-import { Comment } from "../models/comments.js";
+import { Comment } from "../models/comments.model.js";
 import { Read } from "../models/reads.model.js";
 import { Tag } from "../models/tags.model.js";
 

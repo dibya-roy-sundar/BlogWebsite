@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Comment } from "./comments.js";
+import { Comment } from "./comments.model.js";
 import { Like } from "./likes.model.js";
 import { Bookmark } from "./bookmarks.model.js";
 import { Read } from "./reads.model.js";
