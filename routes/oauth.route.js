@@ -6,6 +6,7 @@ import { User } from "../models/user.model.js";
 import { oauthController } from "../controllers/oauth.controller.js";
 import GitHubStrategy from "passport-github2";
 import { storeJoinedDate } from "../utils/CurrentDate.js";
+import { cloudinary } from "../cloudinary/index.cloudinary.js";
 
 dotenv.config();
 
@@ -28,18 +29,28 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       // passport callback functiom
+      // console.log(profile);
       try {
         // console.log("passport callback function fired");
         const user = await User.findOne({ googleid: profile.id });
 
         if (!user) {
+          const response=await cloudinary.uploader.upload(profile.photos[0].value,{folder:'INKCORNER'})
+          // console.log(response);
+          const avatar={
+            url:response.url,
+            filename:response.public_id,
+          }
+          
           const newuser = new User({
             googleid: profile.id,
             username: profile.name.givenName,
             email: profile.emails[0].value,
-            joineddate:storeJoinedDate(new Date())
+            joineddate:storeJoinedDate(new Date()),
+            avatar:avatar,
+            edited:true,
           });
-          // user avatar :: profile.photos.value
+          // user avatar :: 
           await newuser.save();
           done(null, newuser);
         } else {
@@ -62,15 +73,25 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       // console.log("passport callback function fired");
-      // console.log(profile);
+      console.log(profile);
       try {
         const user = await User.findOne({ githubid: profile.id });
 
+
         if (!user) {
+          const response=await cloudinary.uploader.upload(profile.photos[0].value,{folder:'INKCORNER'})
+          // console.log(response);
+          const avatar={
+            url:response.url,
+            filename:response.public_id,
+          }
+          
           const newuser = new User({
             githubid: profile.id,
             username: profile.username,
-            joineddate:storeJoinedDate(new Date())
+            joineddate:storeJoinedDate(new Date()),
+            avatar:avatar,
+            edited:true,
           });
           await newuser.save();
           done(null, newuser);

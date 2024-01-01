@@ -7,9 +7,20 @@ import { Bookmark } from "./bookmarks.model.js";
 import { Like } from "./likes.model.js";
 import { Read } from "./reads.model.js";
 import { Tag } from "./tags.model.js";
+import { cloudinary } from "../cloudinary/index.cloudinary.js";
 
 
 const Schema=mongoose.Schema;
+const avatarSchema=new Schema({
+    url:String,
+    filename:String,
+})
+avatarSchema.virtual('profile').get(function (){
+    return this.url.replace('/upload','/upload/w_150,h_150/r_max/f_auto')
+  })
+avatarSchema.virtual('thumbnail').get(function (){
+return this.url.replace('/upload','/upload/w_45,h_45/r_max/f_auto')
+})
  const userschema=new Schema({
     email:{
         type:String,
@@ -17,14 +28,15 @@ const Schema=mongoose.Schema;
     },
     googleid:String,
     githubid:String,
-    iamge:String,
+    avatar:avatarSchema,
     tagline:String,
     description:String,
     location:String,
     instagramurl:String,
     linkedinurl:String,
     githuburl:String,
-    joineddate:String
+    joineddate:String,
+    edited:Boolean,
     
  },{timestamps:true})
  userschema.plugin(passportLocalMongoose);
@@ -39,6 +51,9 @@ const Schema=mongoose.Schema;
         await Bookmark.deleteMany({post:{$in:deletedpostsids}});
         await Read.deleteMany({post:{$in:deletedpostsids}});
         await Tag.deleteMany({post:{$in:deletedpostsids}});
+        postsToDelete.forEach(async (post)=>{
+            await cloudinary.uploader.destroy(post.image.filename);
+        })
         
         await Post.deleteMany({author:user._id})
 
@@ -51,6 +66,10 @@ const Schema=mongoose.Schema;
         
 
         await Subscription.deleteMany({ $or: [{ follower: user._id }, { following: user._id }] });
+        if(user.edited){
+            await cloudinary.uploader.destroy(user.avatar.filename);
+        }
+
         
 
     }

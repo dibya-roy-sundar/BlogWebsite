@@ -4,6 +4,7 @@ import { Like } from "./likes.model.js";
 import { Bookmark } from "./bookmarks.model.js";
 import { Read } from "./reads.model.js";
 import { Tag } from "./tags.model.js";
+import { cloudinary } from "../cloudinary/index.cloudinary.js";
 
 const Schema=mongoose.Schema;
 
@@ -63,6 +64,7 @@ const postSchema = new Schema({
         await Tag.deleteMany({
           post:doc._id,
         })
+        await cloudinary.uploader.destroy(doc.image.filename)
     }
 })
 

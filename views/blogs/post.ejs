@@ -1,6 +1,8 @@
 <% layout('layouts/boilerplate') %>
 <h1 ><%= post.title %></h1>
-<h2><%= post.author.username %></h2>
+<div><a href="/user/<%= post.author._id  %>"><img src="<%=post.author.avatar.thumbnail %>" alt="author thumbnail"></a></div>
+
+<h2> <a href="/user/<%= post.author._id %>"><%=  post.author.username %></a></h2>
 <h3><%= post.date %></h3>
 
 

@@ -6,6 +6,7 @@ import { catchAsync } from "../utils/CatchAsync.js";
 import { storeJoinedDate } from "../utils/CurrentDate.js";
 import { Bookmark } from "../models/bookmarks.model.js";
 import { Tag } from "../models/tags.model.js";
+import { cloudinary } from "../cloudinary/index.cloudinary.js";
 
 const userProfile = catchAsync(async (req, res) => {
   const { id } = req.params;
@@ -111,7 +112,17 @@ const updateProfile = catchAsync(async (req, res) => {
     linkedinurl,
     githuburl,
   } = req.body;
+  const user=await User.findById(id);
+  if(user.edited){
+    await cloudinary.uploader.destroy(user.avatar.filename)
+  }
+  // console.log(req.file);
+  const avatar={
+    url:req.file.path,
+    filename:req.file.filename
+  }
 
+  
   await User.findByIdAndUpdate(id, {
     tagline,
     description,
@@ -119,6 +130,8 @@ const updateProfile = catchAsync(async (req, res) => {
     instagramurl,
     linkedinurl,
     githuburl,
+    avatar,
+    edited:true,
   });
 
   res.redirect(`/user/${id}`);

@@ -1,7 +1,10 @@
 <% layout('layouts/boilerplate') %>
 
-<form id="updateprofileform" action="/user/<%=user._id%>/edit" method="post">
-    <div>
+<form id="updateprofileform" action="/user/<%=user._id%>/edit" method="post" enctype="multipart/form-data">
+  <div>
+    <input type="file" name="avatar" id="avatar">
+  </div>
+  <div>
     <label for="tagline">Profile Tagline</label>
     <input type="text" id="tagline" name="tagline" >
   </div>

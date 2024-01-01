@@ -11,6 +11,8 @@
 <% searchposts.forEach(element => { %>
     <div id="<%= element.title %>">
         <h2><a href="/post/<%= element._id %>"><%= element.title %></a></h2>
+        <div><a href="/user/<%= element.author._id  %>"><img src="<%=element.author.avatar.thumbnail %>" alt="author thumbnail"></a></div>
+
         <h4><a href="/user/<%= element.author._id %>"><%= element.author.username %></a>,<%= element.date %></h4>
         <p><%= element.content.substring(0, 100)+"..." %><a href="/post/<%= element._id %>">Read more</a></p>
         <!-- truncate upto 100 characters -->

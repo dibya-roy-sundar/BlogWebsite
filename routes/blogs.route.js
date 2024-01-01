@@ -1,5 +1,5 @@
 import express from "express";
-import { composePost, deletePost, editForm, newForm, showPost, updateCampground } from "../controllers/blogs.controller.js";
+import { composePost, deletePost, editForm, newForm, showPost, updatePost } from "../controllers/blogs.controller.js";
 import { isAuthor, isLoggedIn, validatepost } from "../middleware.js";
 import multer from "multer";
 import { storage } from "../cloudinary/index.cloudinary.js";
@@ -18,7 +18,7 @@ router.post("/",isLoggedIn,upload.single('image'),validatepost, composePost);
 
 router.route("/:id")
     .get( showPost)
-    .put(isLoggedIn,isAuthor,upload.single('image'),validatepost, updateCampground)
+    .put(isLoggedIn,isAuthor,upload.single('image'),validatepost, updatePost)
     .delete(isLoggedIn,isAuthor,deletePost)
     // 
 

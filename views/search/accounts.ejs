@@ -10,6 +10,7 @@
 
 <% searchaccounts.forEach(account => { %>
     <div  id="<%= account._id %>" >
+        <div><a href="/user/<%= account._id %>"><img src="<%=account.avatar.thumbnail %>" alt="author thumbnail"></a></div>
         <h2><a href="/user/<%= account._id %>"> <%= account.username %></a></h2>
         <% if (account.tagline) { %>
             <h3><%= account.tagline %></h3>

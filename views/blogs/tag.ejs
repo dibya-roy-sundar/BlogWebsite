@@ -17,7 +17,9 @@
 
 <% tags.forEach(tag => { %>
         <h2><%= tag.post.title %></h1>
-        <h3><%= tag.post.author.username %>,<%= tag.post.date %></h3>  
+            <div><a href="/user/<%= tag.post.author._id  %>"><img src="<%=tag.post.author.avatar.thumbnail %>" alt="author thumbnail"></a></div>
+
+        <h3><a href="/user/<%=tag.post.author._id%>"><%= tag.post.author.username %></a>,<%= tag.post.date %></h3>  
         <h4><%= tag.post.likeCount %> likes</h4>
         <h4><%= tag.post.readCount %> reads</h4>
         <h4><%= tag.post.commentCount %> comments</h4>

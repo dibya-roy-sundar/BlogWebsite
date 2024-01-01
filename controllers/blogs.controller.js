@@ -20,6 +20,7 @@ const composePost = catchAsync(async (req, res) => {
     url:req.file.path,
     filename:req.file.filename,
   }
+  // console.log(req.file);
   const post = new Post({
     ...req.body.blog,
     date: storeJoinedDate(new Date()),
@@ -83,7 +84,7 @@ const editForm = catchAsync(async (req, res) => {
   });
 });
 
-const updateCampground = catchAsync(async (req, res) => {
+const updatePost = catchAsync(async (req, res) => {
   const idofupdate = req.params.id.trim();
   const post=await Post.findById(idofupdate).populate('tags');
 
@@ -133,5 +134,5 @@ export {
   showPost,
   deletePost,
   editForm,
-  updateCampground,
+  updatePost,
 };

@@ -1,5 +1,7 @@
 <%posts.forEach((post)=>{%>
     <h1><%= post.title %></h1>
+    <div><a href="/user/<%= post.author._id  %>"><img src="<%=post.author.avatar.thumbnail %>" alt="author thumbnail"></a></div>
+
     <h3><%= post.author.username %>,<%= post.date %></h3>  
     <h4><%= post.likeCount %> likes</h4>
     <h4><%= post.readCount %> reads</h4>

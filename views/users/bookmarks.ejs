@@ -2,6 +2,8 @@
 <h2>bookmarks</h2>
 <%bookmarks.forEach((bookmark)=>{%>
   <h1><%= bookmark.post.title %></h1>
+  <div><a href="/user/<%= bookmark.post.author._id %>"><img src="<%=bookmark.post.author.avatar.thumbnail %>" alt="author thumbnail"></a></div>
+
   <h3><%= bookmark.post.author.username %>,<%= bookmark.post.date %></h3>  
   <h4><%= bookmark.post.likeCount %> likes</h4>
   <h4><%= bookmark.post.readCount %> reads</h4>

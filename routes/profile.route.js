@@ -13,8 +13,12 @@ import {
   userProfile,
 } from "../controllers/profile.controller.js";
 import { isLoggedIn, isNotUser, isUser } from "../middleware.js";
+import multer from "multer";
+import { storage } from "../cloudinary/index.cloudinary.js";
 
 const router = express.Router({ mergeParams: true });
+const upload=multer({storage})
+
 
 router.get("/", userProfile);
 router.delete("/deleteaccount", isLoggedIn, isUser, deleteAccount);
@@ -31,7 +35,7 @@ router
 router
   .route("/edit")
   .get(isLoggedIn, isUser, profileUPdateForm)
-  .post(isLoggedIn, isUser, updateProfile);
+  .post(isLoggedIn, isUser,upload.single('avatar'), updateProfile);
 
 router.get("/bookmarks", isLoggedIn, isUser, showBookmarks);
 

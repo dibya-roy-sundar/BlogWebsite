@@ -12,7 +12,14 @@ const register = catchAsync(async (req, res) => {
   try {
     const { email, username, password } = req.body;
     const joineddate=storeJoinedDate(new  Date())
-    const user = new User({ email, username,joineddate });
+   
+    const avatar={
+      url:'https://res.cloudinary.com/divzblxkc/image/upload/v1704094975/INKCORNER/axkgcfuwxxvrzujlmboj.png',
+      filename: 'INKCORNER/axkgcfuwxxvrzujlmboj'
+    }
+
+
+    const user = new User({ email, username,joineddate,avatar,edited:false });
     const registeredUser = await User.register(user, password);
     req.login(registeredUser, (e) => {
       if (e) {

@@ -1,5 +1,9 @@
 <% layout('layouts/boilerplate') %>
-
+<div>
+  <a href="/user/<%= user._id %>">
+    <img src="<%=user.avatar.profile%>" alt="user avatar">
+  </a>
+</div>
 <h1><%= user.username %></h1>
 <% if (user.tagline) { %>
   <h3><%= user.tagline %></h3>
