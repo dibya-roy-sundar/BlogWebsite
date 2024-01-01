@@ -1,5 +1,6 @@
 import { Post } from "./models/blog.model.js";
 import { Comment } from "./models/comments.model.js";
+import { Subscription } from "./models/subscription.model.js";
 import { commentschema, postschema } from "./schemas.js";
 import { catchAsync } from "./utils/CatchAsync.js";
 import { ExpressError } from "./utils/ExpressError.js";
@@ -91,6 +92,15 @@ const isNotUser=async (req,res,next)=>{
     
 
 }    
+const isNotFollower=async (req,res,next)=>{
+    const {id}=req.params;
+    const isfollower=await Subscription.find({follower:req.user._id,following:id});
+    if(isfollower){
+        req.flash('error',"you already  folllowed this person");
+        return res.redirect(`/user/${req.user._id}`);
+    }
+    next();
+}
 
 // const storeCurrentTime=async (req,res,next)=>{
 //     const post = await Post.findById(req.params.id).populate({path:'comments',populate:{path:'author'}}).populate('author');
@@ -115,4 +125,4 @@ const isNotUser=async (req,res,next)=>{
 // }    
 
 
-export {validatepost,validatecomment,isLoggedIn,storeReturnTo,isAuthor,isCommentAuthor,isUser,isNotUser};
+export {validatepost,validatecomment,isLoggedIn,storeReturnTo,isAuthor,isCommentAuthor,isUser,isNotUser,isNotFollower};

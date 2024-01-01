@@ -4,6 +4,12 @@
 <p><%= home_content %></p>
 
 <h2> Blogs </h2>
+<% if (currentUser) { %>
+ <div>
+    <form action="/" method="get"><button>All</button></form>
+    <form action="/following" method="get"><button>Following</button></form>
+ </div>
+<% } %>
 <%posts.forEach((post)=>{%>
     <div>
         <div>

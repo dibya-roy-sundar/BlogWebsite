@@ -12,7 +12,7 @@ import {
   updateProfile,
   userProfile,
 } from "../controllers/profile.controller.js";
-import { isLoggedIn, isNotUser, isUser } from "../middleware.js";
+import { isLoggedIn, isNotFollower, isNotUser, isUser } from "../middleware.js";
 import multer from "multer";
 import { storage } from "../cloudinary/index.cloudinary.js";
 
@@ -40,6 +40,7 @@ router
 router.get("/bookmarks", isLoggedIn, isUser, showBookmarks);
 
 router.get("/follow", isLoggedIn, isNotUser, follow);
+// isNotFollower,
 router.get("/unfollow", isLoggedIn, isNotUser, unFollow);
 
 export default router;

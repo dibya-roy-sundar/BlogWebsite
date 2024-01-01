@@ -73,7 +73,7 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       // console.log("passport callback function fired");
-      console.log(profile);
+      // console.log(profile);
       try {
         const user = await User.findOne({ githubid: profile.id });
 

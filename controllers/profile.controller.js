@@ -11,14 +11,17 @@ import { cloudinary } from "../cloudinary/index.cloudinary.js";
 const userProfile = catchAsync(async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
-  const posts = await Post.find({ author: user._id }).populate("author");
+  const posts = await Post.find({ author: user._id })
   const followings = await Subscription.find({ follower: user._id });
   const followers = await Subscription.find({ following: user._id });
-  const isfollower = followers.some(
-    (follower) => follower.follower === req.user._id
-  )
-    ? true
-    : false;
+  const result=await Subscription.find({
+    follower: req.user?._id,
+    following: user._id,
+  })
+  // console.log(result);
+  const isfollower = result.length? true: false;
+    // console.log(isfollower);
+    
     const tags = await Tag.distinct('tag',{ user: user._id });
    
   res.render("users/profile", {

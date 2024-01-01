@@ -1,4 +1,5 @@
 import { Post } from "../models/blog.model.js";
+import { Subscription } from "../models/subscription.model.js";
 import { catchAsync } from "../utils/CatchAsync.js";
 
 
@@ -9,7 +10,22 @@ const aboutContent =
   "Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Mauris in aliquam sem fringilla. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Amet massa vitae tortor condimentum lacinia quis vel eros. Enim ut tellus elementum sagittis vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui.";
 const contactContent =
   "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
-
+  const nestedSort = (a, b) => {
+      
+    if (a.readCount < b.readCount) return 1;
+    if (a.readCount > b.readCount) return -1;
+  
+   
+    if (a.likeCount < b.likeCount) return 1;
+    if (a.likeCount > b.likeCount) return -1;
+  
+  
+    if (a.commentCount < b.commentCount) return 1;
+    if (a.commentCount > b.commentCount) return -1;
+  
+   
+    return 0;
+  };
 
 
 const home=catchAsync(async (req, res) => {
@@ -75,7 +91,14 @@ const home=catchAsync(async (req, res) => {
       //     },
       //   }
       // ]);
+      // virtual property not applicable in mongodb aggregation pippeline
       const posts=await Post.find({}).populate('author');
+      
+
+      
+      
+     
+      posts.sort(nestedSort);
       
 
 
@@ -85,6 +108,27 @@ const home=catchAsync(async (req, res) => {
         posts,
       });
     });
+
+const following=catchAsync(async (req,res)=>{
+  const userFollowing=await Subscription.find({follower: req.user._id});
+  console.log(userFollowing);
+  const followingUserIds = userFollowing.map(subscription => subscription.following);
+  const posts=await Post.find({author:{$in:followingUserIds}}).populate('author');
+      
+
+      
+      
+     
+      posts.sort(nestedSort);
+      
+
+
+    
+      res.render("home", {
+        home_content,
+        posts,
+      });
+})
   
 
   const about= (req, res) => {
@@ -99,6 +143,6 @@ const home=catchAsync(async (req, res) => {
     });
   }
 
-  export {home,about,contact};
+  export {home,about,contact,following};
   
   
