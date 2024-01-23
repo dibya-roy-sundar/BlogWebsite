@@ -19,6 +19,9 @@ import bookmarkRoutes from "./routes/bookmark.route.js";
 import tagRoutes from "./routes/tags.route.js";
 import searchRoutes from "./routes/search.route.js";
 import basicRoutes from "./routes/basic.route.js";
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 
 
 dotenv.config();
@@ -37,8 +40,7 @@ mongoose
     process.exit(1);
   });
 
-
-  const app = express();
+const app = express();
 
 // app.use(cors({
 //   origin:process.env.CORS_ORIGIN,
@@ -49,7 +51,9 @@ app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 app.engine("ejs", ejsMate);
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname,"public")));
 const sessionconfig = {
   secret: "thisismyblog",
   resave: false,
@@ -72,8 +76,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
 app.use("/auth", oauthRoutes);
 app.use("/user", userRoutes);
 app.use("/user/:id", profileRoutes);
@@ -82,10 +84,8 @@ app.use("/post/:id/comment", commentRoutes);
 app.use("/post/:id/like", likeRoutes);
 app.use("/post/:id/bookmark", bookmarkRoutes);
 app.use("/tag/:tag", tagRoutes);
-app.use("/search",searchRoutes);
-app.use("/",basicRoutes);
-
-
+app.use("/search", searchRoutes);
+app.use("/", basicRoutes);
 
 app.all("*", (req, res, next) => {
   next(new ExpressError("page not found", 404));

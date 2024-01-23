@@ -10,12 +10,13 @@ const addLike=catchAsync(async (req,res)=>{
         user:req.user._id
     })
     if(!foundlike){
-
+        
         const like=new Like({
             post:id,
             user:req.user._id
         })
         await like.save();
+
     }else{
         req.flash('error',"you already liked this");
     }

@@ -9,9 +9,9 @@ const {tag}=req.params;
 const tags=await Tag.find({tag}).populate({path:'post',populate:{path:'author'}})
 // .populate({path:'comments',populate:{path:'author'}})
 
-const alltags = await Tag.distinct('tag');
+// const alltags = await Tag.distinct('tag');
 
-res.render('blogs/tag',{tags,tag,alltags});  
+res.render('blogs/tag',{tags,tag});  
 
 })
 

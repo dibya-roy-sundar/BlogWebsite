@@ -74,12 +74,13 @@ const userid=req.query.userid;
 const user=await User.findById(userid);
 
 
-  user.setPassword(newPassword, function(err,user){
+  user.setPassword(newPassword,async  function(err,user){
       if (err) {
                req.flash('success',"Password could not be saved.Please try again!")
                res.redirect('/user/forgot')
           
       } else {
+        await user.save();
     req.flash('success',"Your new password has been saved successfully")
                res.redirect('/user/login')
           

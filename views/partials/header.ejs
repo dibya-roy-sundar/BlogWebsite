@@ -1,100 +1,60 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <title>Ink Corner Blogs </title>
-    <link rel="icon"  href="/images/icons8-blogging-96.png" type="image/x-icon">
-    <meta charset="utf-8" />
 
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    />
-     <!-- Remix icons -->
-     <!--  close button -->
-     <!-- <i class="ri-heart-3-fill"></i>  red heart -->
-     <!-- <i class="ri-heart-line"></i>   empty heart-->
-     <!-- <i class="ri-eye-line"></i> view eye -->
-     <!-- <i class="ri-bookmark-line"></i> unbookmark -->
-     <!-- <i class="ri-bookmark-fill"></i> bookmark -->
-     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles.css" />
-    <nav class="navbar navbar-default">
-      <div class="container">
-        <div class="navbar-header">
-         
-            <a href="/"><p class="navbar-brand">INK CORNER</p></a>
+<header id="header">
+        <nav class="container1 flex">
           
-          
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-          <!-- 6 -->
-          <li id="home"><a href="/">HOME</a></li>
-          <li id="about"><a href="/about">ABOUT US</a></li>
-          <li id="contact"><a href="/contact">CONTACT US</a></li>
-          <li>  <form action="/post/new" method="get">
-                  <button class="btn" >✒️ Compose </button>
-                </form>
-          </li>
-          <li>
-            <form action="/search/all" method="post">
-              <div class="search-container">
-                <input
-                  type="text"
-                  class="search-input"
-                  placeholder="🔍 Search Blog  ..."
-                  name="search"
-                />
+            <div class="logo flex">
+              <a href="/"><h1 >INK CORNER</h1></a>
+
+            </div>
+            <div class="navlist flex">
+              <ul class="flex">
+               <li><a href="/">Home</a></li>
+               <li><a href="/about">About Us</a></li>
+               <li><a href="/contact">Contact Us</a></li>
+               <li><a href="/post/new"><button>✒️  Write</button></a></li>
+              </ul>
+            </div>
+            
+            <div class="searchuser">
+            <div class="searchbar">
+              <button type="button" class="searchbtn">
+                <i class="ri-search-eye-fill"></i>
+            </button>
+              <div class="searchclick">
+                <form action="/search/all" method="post">
+                  <input type="text"  placeholder="🔍 search  for tags,people,articles"
+                  name="search" class="form-control">
                 
-                <!-- <button class="btn" type="submit">🔍</button> -->
+                  
+                </form>
+                
               </div>
-            </form>
-          </li>
-         <% if (!currentUser) { %>
+              
+              <% if (!currentUser) { %>
+             <button><a href="/user/login">Sign in</a></button>
+             <% } else{ %>
+              
+              <a  href=  "/user/<%=currentUser._id%>"><img src="<%= currentUser.avatar.thumbnail %>" alt="user avatar thumbnail"></a>
+              <% } %>
+              
+            </div>
+            
+          </nav>
+        </header >
           
-          <li id="signin" class="list-item"><button><a class="list-link" href="/user/login"><span>Sign in</span></a></button></li>
-         <% } else { %>
+    
+        <script>
+          const searchtoggle=document.querySelector('.searchclick');
+const searchicon=document.querySelector('.searchbtn');
 
-          
-
-
-          <li id="userprofile" class="list-item"><a class="list-link" href=  "/user/<%=currentUser._id%>"><img src="<%= currentUser.avatar.thumbnail %>" alt="user avatar thumbnail"></a></li>
-
-           <% } %> 
-           
-        </ul>
-      </div>
-      
-    </nav>
-
-    <body>
-    <!-- header -->
-    <!-- <header class="header" id="header">
-    <nav class="navbar container">
-      <div class="left">
-      <div class="logo">
-        <a href="/"><h2 class="navbar-brand">INK CORNER</h2></a>
-      </div>
-      <form action="/search" method="post">
-        <div class="search-container">
-          <input
-            type="text"
-            class="search-input"
-            placeholder="🔍 Search Blog..."
-            name="seachTitle"
-          />
-        </div>
-      </form>
-    </div>
-      <div class="menu" id="menu">
-        <ul class="list">
-         <li id="home" class="list-item"><a class="list-link" href="/">HOME</a></li>
-         <li id="about" class="list-item"><a class="list-link" href="/about">ABOUT US</a></li>
-         <li id="contact" class="list-item"><a class="list-link" href="/contact">CONTACT US</a></li>
-         <li id="signin" class="list-item"><button><a class="list-link" href="#"><span>Sign in</span></a></button></li>
-        </ul>
-      </div>
-      
-    </nav>
-    </header> -->
-      
+searchicon.addEventListener('click',()=>{
+   console.log('hello');
+   if(searchtoggle.style.display==='none'){
+      searchtoggle.style.display='block';
+   }else{
+      searchtoggle.style.display='none';
+   }
+})
+        </script>
+        
+        

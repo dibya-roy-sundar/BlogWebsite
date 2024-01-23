@@ -22,7 +22,7 @@ const userProfile = catchAsync(async (req, res) => {
   const isfollower = result.length? true: false;
     // console.log(isfollower);
     
-    const tags = await Tag.distinct('tag',{ user: user._id });
+    // const tags = await Tag.distinct('tag',{ user: user._id });//to find distinct tags
    
   res.render("users/profile", {
     user,
@@ -30,7 +30,7 @@ const userProfile = catchAsync(async (req, res) => {
     followings,
     followers,
     isfollower,
-    tags
+   
   });
 
 });

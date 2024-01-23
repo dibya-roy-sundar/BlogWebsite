@@ -2,18 +2,6 @@
 
 <h1><%= tag %></h1>
 
-<ul>
-    <% for(let tag of alltags) {%>
-    <div>
-        <li style="list-style-type: none;">
-            <form action="/tag/<%=tag%>" method="get">
-                <button><%= tag%></button>
-            </form>
-        </li>
-    </div>
-    <% } %>
-    
-    </ul>
 
 <% tags.forEach(tag => { %>
         <h2><%= tag.post.title %></h1>

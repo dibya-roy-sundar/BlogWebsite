@@ -85,21 +85,7 @@
   <h3><%= post.date %></h3>  
   <%})%>
 
-<h2>tags</h2>
-<div>
-<ul>
-  <% for(let tag of tags) {%>
-  <div>
-      <li style="list-style-type: none;">
-          <form action="/tag/<%=tag%>" method="get">
-              <button><%= tag %></button>
-          </form>
-      </li>
-  </div>
-  <% } %>
-  
-  </ul>
-</div>
+
 <% if (currentUser && currentUser._id.equals(user._id)) { %>
   <div>
     <form action="/post/new" method="get">
