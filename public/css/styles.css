@@ -13,6 +13,9 @@ main{
 }
 header{ min-height:50px; background-color: rgb(247, 248, 248); padding: 30px;}
 
+a{
+  text-decoration: none;
+}
 
 /* Trick: */
 body {
@@ -409,108 +412,7 @@ display: none;
 
 
 /*        new form     */
-.compose {
-  margin-top: 15px;
-  text-align: center;
-  color: #333;
-}
-#newform{
-  
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
-    margin-bottom: 50px;
-  
-}
-.newfrmlbl {
-  font-weight: bold;
-  color: #555;
-  font-size: x-large;
-  margin-bottom: 8px;
-}
 
-.newfrmcontainer{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 5px;
-  margin: auto;
-}
-.newfrmtitle,.newfrmpost,#taginput{
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    font-size: 16px;
-    font-weight: 500;
-  
-}
-.tagtitle{
-  margin-bottom: 8px;
-}
-
-
-.tagwrapper i {
-    
-  cursor: pointer;
-  color: #e74c3c;
-  font-size: 20px;
-  margin-right: 8px;
-}
-#tagarray{
-  list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-   
-}
-
-#tagarray i{
-border-radius: 50%;
-background-color: #CAEDFF;
-color: black;
-margin-left: 3px;
-}
-
-.taglist {
-  background-color: #3498db;
-  color: #fff;
-  padding: 8px 3px;
-  border-radius: 4px;
-  margin: 0 5px 5px 0;
-  display: flex;
-  align-items: center;
-  font-size: 19px;
-}
-.rmvbtn{
-  text-align: end;
-}
-.rmvbtn button{
-  padding: 8px;
-  margin: 3px;
-  font-size: medium;
-  background: #40b9f1;
-  border: none;
-  font-weight: 500;
-  border-radius: 15px;
-  cursor: pointer;
-}
-.rmvbtn button:hover{
-box-shadow: 1px 1px  rgb(233, 231, 231);
-background: #0fa2e6;
-}
-
-
-*{
-  padding: 0;
-  margin: 0;
-  }
   .compose{
       text-align: center;
       padding: 30px;
