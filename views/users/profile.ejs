@@ -1,114 +1,152 @@
 <% layout('layouts/boilerplate') %>
-<div>
-  <a href="/user/<%= user._id %>">
-    <img src="<%=user.avatar.profile%>" alt="user avatar">
-  </a>
-</div>
-<h1><%= user.username %></h1>
-<% if (user.tagline) { %>
-  <h3><%= user.tagline %></h3>
-<% } %>
-<div>
-  <h2><%= followers.length %> followers</h2>
-  <h2><%= followings.length %>followings</h2>
 
-</div>
 
+<div class="profile">
+  <div class="profilecard">
+      <div class="profiledesc">
+          <div class="avatar">
+            <a href="/user/<%= user._id %>">
+              <img src="<%=user.avatar.profile%>" alt="user avatar">
+            </a>
+          </div>
+          <div class="authordesc">
+              <div class="authordetails">
+                  <div class="nameandtagline">
+                      <p class="username"><%= user.username %></p>
+                    <p class="tagline"><%= user.tagline %></p>
+                  </div>
+                  <% if (currentUser && currentUser._id.equals(user._id)) { %>
+                      <div class="editprofilebtn">
+                      <a href="/user/<%=user._id%>/edit"><button><i class="ri-pencil-fill"></i>  Edit</button></a>
+
+                      </div>
+                  <% } %>    
+              </div>
+              <div class="subscription">
+                <div class="subscnt">
+                  <div class="followercnt">
+                    <h4> <%= followers.length %> </h4> <p>followers</p>
+                  </div>
+                  <div class="followingscnt">
+                    <h4> <%= followings.length %> </h4> <p>followings</p>
+                  </div>
+                </div>
+                <div class="followbtn">
+                  <% if (currentUser && !currentUser._id.equals(user._id)) { %>
+                    
+                      <% if (!isfollower) { %>
+                        <form action="/user/<%=user._id%>/follow" method="get"> <button><i class="ri-add-fill"></i>  Follow</button></form>
+
+                      <% } else { %>
+                      <form class="unfollow" action="/user/<%=user._id%>/unfollow" method="get"> <button><i class="ri-check-fill"></i> Following</button></form>
+
+                      <%}%>
+                   
+                  <% } else if (!currentUser) { %>
+                    
+                      <form action="/user/<%=user._id%>/follow" method="get"> <button><i class="ri-add-fill"></i>  Follow</button></form>
+
+                    
+                  <% } %>
+
+                </div>
+              </div>
+          </div>
+      </div>
+      <div class="profiledetails">
+          <div class="social">
+            <div class="insta">
+              <a href="<%= user.instagramurl %>"><i class="ri-instagram-line"></i></a>
+            </div>
+            <div class="linkedin">
+              <a href="<%= user.linkedinurl %>"><i class="ri-linkedin-box-fill"></i></a>
+             
+            </div>
+            <div class="github">
+              <a href="<%= user.githuburl %>"><i class="ri-github-fill"></i></a>
+            </div>
+          </div>
+          <div class="location">
+            <i class="ri-map-pin-line"></i> <p><%= user.location %></p>
+          </div>
+          <div class="joiningdate">
+            <i class="ri-calendar-2-fill"></i> <p>Member Since <%= user.joineddate %></p> 
+          </div>
+      </div>
+  </div>
  
-
-  <% if ( currentUser && !currentUser._id.equals(user._id)) { %>
-      <% if (!isfollower) { %>
-        <div>
-          <form action="/user/<%=user._id%>/follow" method="get">
-            <button>Follow</button>
-          </form>
+    <div class="aboutjoint">
+      <div class="about">
+        <div class="abtauthor">
+          <h3>About Me</h3>
+          <% if (user.description) { %>
+            
+            <p><%= user.description %></p>
+            
+          <% } else {  %>
+            <p id="notupdate">Update Your Profile</p>
+          <% } %>
+          
         </div>
-      
-      <% } else { %>
-        <div>
-          <form action="/user/<%=user._id%>/unfollow" method="get">
-            <button>Unfollow</button>
-          </form>
-        </div>
+        <% if (currentUser && currentUser._id.equals(user._id)) { %>
+            <div class="cmpbtn">
+              <form action="/post/new" method="get">
+                <button class="profilecomposebtn">
+                  ✒️ Compose
+                </button>
+              </form>
+            </div>
+        <% } %>    
+      </div>
+      <div class="posts">
+        <h3 class="posttitle">Published Posts(<%= posts.length %>)</h3>
+        <% if (posts.length) { %>
+          <div class="postcontainer">
+            <% posts.forEach((post) => { %>
+              <div  id="<%= post._id %>" class="eachpost">
+                <p><%= post.date %></p>
+                <h3><a href="/post/<%= post._id %>"><%= post.title %></a></h3>
+              </div>
+            <% }) %>
+          </div>
+          
+        <% } else { %>
+          <p class="nopost"> No posts yet</p>
+        <% } %>
+       
         
-      <%}%>
-    
- 
-<% }  %>
-<% if (!currentUser) { %>
- 
+        
 
-  <div>
-    <form action="/user/<%=user._id%>/follow" method="get">
-      <button>Follow</button>
-    </form>
-  </div>
-<% } %>
-
-
-<p>members since <%= user.joineddate %></p>
-
-
-  <% if (user.location) { %>
-      <h4><%= user.location %></h4>
-  <% } %>
-  <% if (user.instagramurl) { %>
-    <a href="<%= user.instagramurl %>">Instagram</a>
-  <% } %>
-  <% if (user.linkedinurl) { %>
-    <a href="<%= user.linkedinurl %>">Linkedin</a>
-  <% } %>
-  <% if (user.githuburl) { %>
-    <a href="<%= user.githuburl %>">GitHub</a>
-  <% } %>
-  <% if (user.description) { %>
-    <div>
-      <h2>About me</h2>
-      <p><%= user.description %></p>
+      </div>
     </div>
-  <% } %>
+    <% if (currentUser && currentUser._id.equals(user._id)) { %>
+      <div class="profileoptions">
+        
+        <a href="/user/<%=user._id%>/bookmarks">
+          <div class="hello">
+            <i class="ri-bookmark-3-line"></i> Bookmarks        
+          </div>
+        </a>
+        <a href="/user/<%=user._id%>/changepassword">
+          <div class="hello">
+            <span> <i class="ri-lock-unlock-line"></i> Change Password</span>
+          </div>
+        </a>
+        
+        <a href="/user/logout">
+          <div class="hello  profilelogout">
+            <span> <i class="ri-logout-box-line"></i> Sign out</span>
+          </div>
+        </a>
+        <form class="deleteacnt" action="/user/<%=user._id%>/deleteaccount?_method=DELETE" method="post">
+          <button ><span> <i class="ri-delete-bin-4-line"></i> Delete Account</span></button>
+        </form>
+
+
+      </div>
+    <% } %>
+</div>
 
 
 
 
-
-
-
-<h2>Posts</h2>
-
-<%posts.forEach((post)=>{%>
-  <h1><a href="/post/<%= post._id %>">
-      <%= post.title %>
-  </a>
-  </h1>
-  
-  <h3><%= post.date %></h3>  
-  <%})%>
-
-
-<% if (currentUser && currentUser._id.equals(user._id)) { %>
-  <div>
-    <form action="/post/new" method="get">
-      <button class="btn">✒️ Compose</button>
-    </form>
-  </div>
-
-  <a href="/user/<%=user._id%>/bookmarks">
-    <button>bookmarks</button>
-  </a>
-  
-
-  <button>
-    <a href="/user/<%=user._id%>/changepassword"><span>Change Password</span></a>
-  </button>
-  <button>
-    <a href="/user/<%=user._id%>/edit"><span>Edit</span></a>
-  </button>
-
-  <button>
-    <a href="/user/logout"><span>Sign out</span></a>
-  </button>
-  <form action="/user/<%=user._id%>/deleteaccount?_method=DELETE" method="post">
-    <button><span>delete account</span></button>
-  </form>
-<% } %>

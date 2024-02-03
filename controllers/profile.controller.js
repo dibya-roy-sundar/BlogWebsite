@@ -116,14 +116,18 @@ const updateProfile = catchAsync(async (req, res) => {
     githuburl,
   } = req.body;
   const user=await User.findById(id);
-  if(user.edited){
-    await cloudinary.uploader.destroy(user.avatar.filename)
-  }
+
+  
   // console.log(req.file);
-  const avatar={
-    url:req.file.path,
-    filename:req.file.filename
-  }
+  
+    if(req.file){
+      await cloudinary.uploader.destroy(user.avatar.filename)
+      const avatar={
+        url:req.file.path,
+        filename:req.file.filename
+      }
+      await User.findByIdAndUpdate(id,{avatar});
+    }
 
   
   await User.findByIdAndUpdate(id, {
@@ -133,8 +137,7 @@ const updateProfile = catchAsync(async (req, res) => {
     instagramurl,
     linkedinurl,
     githuburl,
-    avatar,
-    edited:true,
+   
   });
 
   res.redirect(`/user/${id}`);

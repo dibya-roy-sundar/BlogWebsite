@@ -15,7 +15,7 @@
               </ul>
             </div>
             
-            <div class="searchuser">
+
             <div class="searchbar">
               <button type="button" class="searchbtn">
                 <i class="ri-search-eye-fill"></i>
@@ -33,22 +33,26 @@
               <% if (!currentUser) { %>
              <button><a href="/user/login">Sign in</a></button>
              <% } else{ %>
+             
+              <a  href=  "/user/<%=currentUser._id%>"> <img  id="avatar" src="<%= currentUser.avatar.thumbnail %>" alt="user avatar thumbnail"></a>
               
-              <a  href=  "/user/<%=currentUser._id%>"><img src="<%= currentUser.avatar.thumbnail %>" alt="user avatar thumbnail"></a>
               <% } %>
               
             </div>
             
           </nav>
+         
         </header >
+      
           
     
         <script>
           const searchtoggle=document.querySelector('.searchclick');
 const searchicon=document.querySelector('.searchbtn');
 
+
 searchicon.addEventListener('click',()=>{
-   console.log('hello');
+  //  console.log('hello');
    if(searchtoggle.style.display==='none'){
       searchtoggle.style.display='block';
    }else{

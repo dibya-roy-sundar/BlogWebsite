@@ -33,10 +33,10 @@ return this.url.replace('/upload','/upload/w_45,h_45/r_max/f_auto')
     description:String,
     location:String,
     instagramurl:String,
-    linkedinurl:String,
     githuburl:String,
+    linkedinurl:String,
     joineddate:String,
-    edited:Boolean,
+   
     
  },{timestamps:true})
  userschema.plugin(passportLocalMongoose);

@@ -13,9 +13,7 @@ main{
 }
 header{ min-height:50px; background-color: rgb(247, 248, 248); padding: 30px;}
 
-a{
-  text-decoration: none;
-}
+
 
 /* Trick: */
 body {
@@ -43,7 +41,7 @@ footer {
 
 a{
   text-decoration: none;
-  color: #1a5ff4;
+  /* color: #1a5ff4; */
 }
 li{
   list-style: none;
@@ -58,6 +56,9 @@ header nav {
   position: relative;
   justify-content: space-between;
 
+}
+.logo a{
+  text-decoration: none;
 }
 .logo a h1{
   font-family: sans-serif;
@@ -76,6 +77,7 @@ header nav {
   cursor: pointer;
   display: flex;
   font-size: larger;
+  text-decoration: none;
 }
 .navlist button {
   background-color: #0ea5ea;
@@ -188,8 +190,12 @@ display: none;
   padding: auto;
   
 }
+.footercontainer .list-item a{
+  text-decoration: none;
+}
 .company-data a,p,span,ul,h2{
   margin: 5px;
+  
 }
 .copyright{
   margin:5px;
@@ -204,6 +210,7 @@ display: none;
 }
 .links h6,a{
   font-size: 20px;
+  text-decoration: none;
 }
 
 /* *{
@@ -580,6 +587,472 @@ display: none;
   }
   
   
+
+  /* Add your existing CSS styles and then include the following */
+
+.profile-container {
+  display: flex;
+}
+
+.profile-avatar img {
+  max-width: 100px;
+  border-radius: 50%;
+}
+
+.profile-info {
+  margin-left: 20px;
+}
+
+.follower-info {
+  display: flex;
+  margin-top: 10px;
+}
+
+.follow-button {
+  margin-top: 10px;
+}
+
+.about-me {
+  margin-top: 20px;
+}
+
+.posts-section {
+  margin-top: 20px;
+}
+
+.posts-section .post {
+  margin-bottom: 10px;
+}
+
+.user-actions {
+  margin-top: 20px;
+}
+
+.user-actions button {
+  display: block;
+  margin-bottom: 10px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.user-actions a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.editprofileformcontainer{
+  display: flex;
+  justify-content: center;
+  /* height: 100vh;
+  align-items: center; */
+  
+}
+#updateprofileform {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 40%;
+  margin: 20px;
+}
+
+#updateprofileform label {
+ 
+  margin-bottom: 8px;
+}
+
+#updateprofileform input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#updateprofileform button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#updateprofileform span {
+  color: red;
+  display: none;
+  margin-top: 8px;
+}
+
+
+
+
+
+/* profile page */
+
+.avatar img{
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+}
+.profile{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  align-items: center;
+  border: solid black 0.2px;
+  border-radius: 8px;
+  padding: 30px;
+  position: relative;
+  left: 10%;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.profilecard{
+display: flex;
+flex-direction: column;
+justify-content: center;
+gap: 15px;
+width: 100%;
+}
+.profiledesc{
+  display: flex;
+ 
+  gap: 12px;
+}
+.avatar{
+
+  padding-right: 0;
+}
+
+.authordesc{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.authordetails{
+  display: flex;
+  justify-content:space-between   ;
+  gap: 60px;
+}
+.editprofilebtn{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  right: 250px;
+}
+.username{
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.tagline{
+  font-size: 18px;
+  font-weight: 400;
+  color: rgb(71, 74, 71);
+
+}
+.editprofilebtn button{
+  padding: 10px;
+  font-size: 22px;
+  font-weight: 400;
+  border: none;
+  outline: none;
+  background-color: rgb(36, 215, 155);
+  border-radius: 30px;
+  padding:5px 15px;
+  color: rgb(69, 70, 69);
+ 
+}
+.editprofilebtn button i{
+ position: relative;
+ top: 3px;
+ margin-right: 4px;
+
+}
+.subscription{
+  display: flex;
+  justify-content: space-between;
+}
+.subscnt{
+  display: flex;
+  gap: 40px;
+}
+.followbtn{
+  position: relative;
+ right: 500px;
+}
+.followercnt h4,.followingscnt h4{
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 24px;
+}
+.followercnt p,.followingscnt p{
+  margin-bottom: 0;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgb(85, 88, 85);
+}
+.followbtn button{
+  font-size: 26px;
+  padding: 0px 15px;
+  padding-bottom: 4px;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  background-color: rgb(47, 123, 229);
+  color: rgb(248, 250, 251);
+  margin-bottom: 5px;
+}
+.followbtn button i{
+  position: relative;
+  top: 3px;
+  margin-right: 4px;
+
+}
+.unfollow button{
+  background-color: rgb(204, 207, 210);
+  border: 2px solid  rgb(47, 123, 229);
+  color:  rgb(47, 123, 229);
+}
+.profiledetails{
+  display: flex;
+  justify-content: space-around;
+  border:1pt solid black;
+  padding:5px 10px;
+  border-radius: 12px;
+}
+.social {
+  display: flex;
+  gap: 12px;
+}
+.social a{
+  text-decoration: none;
+  
+}
+.social a i{
+  
+  font-size: 32px;
+  color: rgb(86, 85, 85);
+}
+.location,.joiningdate{
+  display: flex;
+  padding-top: 4px;
+}
+.location i,.joiningdate i    {
+  font-size: 25px;
+  color: rgb(85, 88, 85);
+  margin-right: 5px;
+ 
+}
+.location p ,.joiningdate p{
+  font-size: 20px;
+  font-weight: 400px;
+  position: relative;
+  top: 4px;
+  color: rgb(122, 124, 122);
+}
+
+.authorsposts{
+  margin-top: 12px;
+}
+.aboutjoint{
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+.aboutjoint .about{
+  flex: 1;
+ 
+}
+.abtauthor{
+  border: 0.3px solid black;
+  padding: 6px 14px;
+  margin: 10px;
+  border-radius: 8px;
+  margin-bottom: 0;
+  
+}
+.abtauthor h3{
+  text-align: center;
+}
+.abtauthor p{
+  text-align: justify;
+  text-align: center;
+}
+#notupdate{
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgb(98, 98, 98);
+
+}
+.aboutjoint .posts{
+  flex:2;
+  border: 0.3px solid black;
+  margin: 10px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 0;
+}
+.aboutjoint .posts .posttitle{
+  text-align: center;
+ 
+}
+.nopost{
+  text-align: center;
+  font-size: 54px;
+  font-weight: 200;
+  color: rgb(117, 117, 115);
+}
+.postconatiner{
+ display: flex;
+ flex-direction: column;
+ 
+}
+.eachpost{
+ display: flex;
+ justify-content: space-evenly;
+ /* border: 0.3px solid black; */
+ padding: 4px 8px;
+ border-radius: 8px;
+ margin: 8px;
+}
+.eachpost h3{
+ margin: 0;
+} 
+.eachpost p{
+ font-size: 20px;
+ font-weight: 400;
+ position: relative;
+ top: 3px;
+}
+.eachpost a{
+ text-decoration: none;
+ color: rgb(15, 137, 231);
+}
+.aboutjoint .about{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+}
+.profilecomposebtn{
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: rgb(9, 245, 194);
+  font-size: 22px;
+  font-weight: 500;
+  color: rgb(78, 80, 80);
+}
+.profileoptions{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 80px;
+ 
+}
+.profileoptions a{
+  text-decoration: none;
+  color: rgb(91, 92, 93);
+  font-size: 25px;
+  font-weight: 400;
+}
+.hello{
+  width: 100%;    
+}
+.profileoptions .hello{
+ background: linear-gradient(to bottom right,rgb(175, 219, 146),rgb(99, 240, 224),rgb(104, 206, 177));
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+  
+}
+.profilelogout{
+  color: rgb(245, 92, 92);
+}
+.profilelogout i{
+  position: relative;
+  top: 4px;
+}
+.deleteacnt{
+  width: 100%;
+}
+.deleteacnt button{
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 22px;
+  font-weight: 400;
+  color: rgb(255, 4, 4);
+  background-color: rgb(223, 248, 248);
+  
+}
+.deleteacnt button i{
+  position: relative;
+  top: 2px;
+  margin-right: 4px;
+}
+
+
+
+/* change password form */
+
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 100px;
+}
+
+.form-container  label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.form-container  input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.form-container span.error-message {
+  color: red;
+  display: none;
+}
+
+.form-container button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background-color: #45a049;
+}
+
 
 
 

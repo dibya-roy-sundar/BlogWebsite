@@ -1,38 +1,44 @@
 <% layout('layouts/boilerplate') %>
 
-<form id="updateprofileform" action="/user/<%=user._id%>/edit" method="post" enctype="multipart/form-data">
-  <div>
-    <input type="file" name="avatar" id="avatar">
-  </div>
-  <div>
-    <label for="tagline">Profile Tagline</label>
-    <input type="text" id="tagline" name="tagline" >
-  </div>
-  <div>
-    <input type="text" name="location"  id="location">
-    <button type="button" onclick="getlocation()">get Location</button>
-  </div>
-  <div>
-    <label for="description">About You</label>
-    <textarea name="description" id="description" cols="30" rows="10"></textarea>
-  </div>
-  <div>
-    <label for="instagramurl">Instagram Profile</label>
-    <input type="text" name="instagramurl" id="instagramurl">
-  </div>
-  <span id="instaMismatch" style="color: red; display: none;">check the Instagram url pls</span>
-  <div>
-    <label for="linkedinurl">Linkedin Profile</label>
-    <input type="text" name="linkedinurl" id="linkedinurl">
-  </div>
-  <span id="linkedinMismatch" style="color: red; display: none;">check the Linkedin url pls</span>
-  <div>
-    <label for="githuburl">Github Profile</label>
-    <input type="text" name="githuburl" id="githuburl">
-  </div>
-  <span id="githubMismatch" style="color: red; display: none;">check the Github url pls</span>
-    <button > Update</button>
+<div class="editprofileformcontainer">
+    
+  <form  id="updateprofileform" action="/user/<%=user._id%>/edit" method="post" enctype="multipart/form-data">
+    <div>
+      <label for="avatar">Profile Picture</label>
+      <input type="file" name="avatar" id="avatar">
+    </div>
+    <div>
+      <label for="tagline">Profile Tagline</label>
+      <input type="text" id="tagline" name="tagline">
+    </div>
+    <div>
+      <label for="location">Location</label>
+      <input type="text" name="location" id="location" readonly>
+      <button type="button" onclick="getlocation()">Get Location</button>
+    </div>
+    <div>
+      <label for="description">About You</label>
+      <textarea name="description" id="description" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+      <label for="instagramurl">Instagram Profile</label>
+      <input type="text" name="instagramurl" id="instagramurl">
+      <span id="instaMismatch">Check the Instagram URL, please.</span>
+    </div>
+    <div>
+      <label for="linkedinurl">LinkedIn Profile</label>
+      <input type="text" name="linkedinurl" id="linkedinurl">
+      <span id="linkedinMismatch">Check the LinkedIn URL, please.</span>
+    </div>
+    <div>
+      <label for="githuburl">GitHub Profile</label>
+      <input type="text" name="githuburl" id="githuburl">
+      <span id="githubMismatch">Check the GitHub URL, please.</span>
+    </div>
+    <button class="update-button">Update</button>
   </form>
+</div>
+
   <script>
     
     document.getElementById('updateprofileform').addEventListener('submit',function (event){
