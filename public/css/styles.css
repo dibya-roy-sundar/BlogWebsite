@@ -1197,6 +1197,8 @@ border-radius: 12px;
 
 .bookmarkpagetitle,.nopostsearchpage,.tagsearchpage,.userprofilesearchpage,.allsearchpage{
   text-align: center;
+  margin: 8px;
+  color: #43f58d;
 }
 
 
