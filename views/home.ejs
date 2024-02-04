@@ -24,7 +24,7 @@
                 <p class="date"><%= post.date %></p>
               </div>  
             </div>
-            <a href="">
+            <a href="/post/<%= post._id %>">
               <div class="postdetails">
       
                 <div class="titledetailsjoint">
@@ -43,15 +43,7 @@
                 <p> <i class="ri-eye-line"></i> <%= post.readCount %> </p>
               </div>
               <div class="cardbkmrk">
-                <% if (currentUser && isbookmarked) { %>
-                    <form action="/post/<%=post._id%>/bookmark/remove" method="get">
-                        <button><i class="ri-bookmark-3-fill"></i></button>
-                    </form>
-                <% } else { %>  
-                    <form action="/post/<%=post._id%>/bookmark/add" method="get">
-                        <button><i class="ri-bookmark-3-line"></i></button>
-                    </form>
-                <% } %>  
+                 
               </div>
             </div>
           </div>

@@ -1059,7 +1059,7 @@ width: 100%;
 .homepostcontainer{
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  
   align-items: center;
   gap: 25px;
   padding: 20px  250px;
@@ -1070,10 +1070,15 @@ width: 100%;
 display: flex;
 flex-direction: column;
 gap: 5px;
-border: 0.4px solid black;
+border: 0.4px solid rgb(199, 198, 198);
 border-radius: 12px;
 padding: 8px 22px;
 padding-bottom: 4px;
+background:linear-gradient(to bottom right,rgb(198, 245, 237),rgb(196, 254, 218),rgb(245, 234, 209),rgb(253, 251, 214),rgb(236, 207, 252)) ;
+
+}
+.postcard:hover{
+  box-shadow:  5px  5px rgb(206, 204, 204);
 }
 .postauthor{
   display: flex;
@@ -1195,7 +1200,7 @@ border-radius: 12px;
   font-size: 25px;
 }
 
-.bookmarkpagetitle,.nopostsearchpage,.tagsearchpage,.userprofilesearchpage,.allsearchpage{
+.bookmarkpagetitle,.nopostsearchpage,.tagsearchpage,.userprofilesearchpage,.allsearchpage,.bytagsearch{
   text-align: center;
   margin: 8px;
   color: #43f58d;

@@ -88,25 +88,25 @@ const updatePost = catchAsync(async (req, res) => {
   const idofupdate = req.params.id.trim();
   const post=await Post.findById(idofupdate).populate('tags');
 
-  // const oldTag=post.tags.map(tag => tag.tag)
-  // const newTag = req.body.tags.split(",");
+  
+  const removedTags = req.body.removedtags.split(",");
+  const addedTags= req.body.addedtags.split(",");
 
-  // const addedTags=newTag.filter(tag =>!oldTag.includes(tag))
-  // const removeTags=oldTag.filter(tag =>!newTag.includes(tag))
-  // //adding in tags array
-  // for (const tag of addedTags) {
-  //   const newtag = new Tag({
-  //     tag: tag,
-  //     post: post._id,
-  //     user: req.user._id,
-  //   });
-  //   await newtag.save();
-  //   post.tags.push(newtag);
-  //   await post.save();
-  // }
-  // // remove 
-  // await Tag.deleteMany({post:post._id,tag:{$in:removeTags}});
-  // post.tags=post.tags.filter(tag => !removeTags.includes(tag.tag));
+  
+  //adding in tags array
+  for (const tag of addedTags) {
+    const newtag = new Tag({
+      tag: tag,
+      post: post._id,
+      user: req.user._id,
+    });
+    await newtag.save();
+    post.tags.push(newtag);
+    await post.save();
+  }
+  // remove 
+  await Tag.deleteMany({post:post._id,tag:{$in:removedTags}});
+  post.tags=post.tags.filter(tag => !removedTags.includes(tag.tag));
   
 
   post.title=req.body.blog.title;

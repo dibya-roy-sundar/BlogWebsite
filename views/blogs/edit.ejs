@@ -1,91 +1,120 @@
 <% layout('layouts/boilerplate') %>
-<h1>Edit </h1>
-<form action="/post/<%=post._id %>?_method=PUT" method="post" enctype="multipart/form-data">
-<div class="title">
-    <label for="title">title</label>
-    <br />
-    <input type="text" name="blog[title]" id="title" value="<%= post.title %>" />
+
+<div class="newcontainer">
+  <h1 class="compose">Edit</h1>
+  
+      <form id="newform" action="/post/<%=post._id %>?_method=PUT" method="post" enctype="multipart/form-data">
+          <div class="newfrmcontent">
+              <div class="title">
+              
+                  <input class="newfrmtitle" type="text" name="blog[title]" value="<%= post.title %>"  id="title" placeholder="Title" />
+              </div>
+              <div class="tagwrapper">
+                  <div class="tagtitle">
+                  <i class="ri-price-tag-3-fill"></i>
+                  <label class="newfrmlbl" for="tagarray">Tags</label>
+                  </div>
+                  <div class="details">
+                      <ul id="tagarray"  >
+                         <div id="listcontainer">
+                         
+
+                         </div>
+                          <input id="taginput" placeholder="  Max 5  Tags allowed"  name="removedtags"  type="text" spellcheck="false">
+                          <input  id="addedtaginput" type="hidden" name="addedtags">
+                      </ul>
+                  </div>
+                  <div class="rmvbtn">
+                  <button type="button">Remove All</button>
+                  </div>
+              </div>
+              <div class="post">
+                  
+                  
+                  <textarea class="newfrmpost" placeholder="Post"  name="blog[content]" id="post" cols="30" rows="15"><%= post.content %></textarea>
+              </div>
+              <div class="filepicker">
+                  <div class="newfrmlabel">
+                      <i class="ri-image-add-fill"></i> 
+                      <label class="newfrmimglbl" for="image">cover image</label>
+                  </div>
+                  <div class="mb-3 newfrmiginput">
+                      <input style="font-size: 18px;font-weight: 400;background-color: rgb(238, 241, 181);border-radius: 12px;" class="form-control imageinput" type="file" id="formFile" name="image" ><%= post.image.url %></input>
+                  </div>
+                  
+              </div>
+          </div>   
+          <div class="newfrmbtn">
+              <button class="btn" type="submit">publish</button>
+          </div>
+  
+      </form>
+  
 </div>
-<div class="post">
-    <label for="post"> post</label>
-    <br />
-    <textarea name="blog[content]" id="post"  cols="30" rows="10"><%= post.content %></textarea>
-</div>
-<!-- <div class="tagwrapper">
-    <div class="title">
-      <i class="ri-price-tag-3-fill"></i>
-      
-      <h2>Tags</h2>
-    </div>
-    <div class="content">
-      
-      <ul id="tagarray"  >
-        <% post.tags.forEach(tag => { %>
-            <li><%=tag.tag  %><i onclick="remove(this, '${tag}')" class="ri-close-line"></i> </li>
-        <% }) %>
-        <input id="taginput" name="tags"  type="text" spellcheck="false">
-    </ul>
-    </div>
-    <div class="details">
-      <button type="button">Remove All</button>
-    </div>
-  </div> -->
-<div>
-    <label for="image">update image(new will replace old one)</label>
-    <input type="file" name="image" required>
-  </div>
 
 
-<button class="btn" type="submit">Update</button>
-</form>
-<a href="/post/<%= post._id %>">back to post</a>
 
 <script>
+  
     const ul = document.getElementById("tagarray");
     const input = document.getElementById("taginput");
+    const addedInput = document.getElementById("addedtaginput");
+
+    const listcontainer=document.getElementById('listcontainer');
   
   
     
     
     
     
-    let tags =[];
+    let tags=JSON.parse('<%- JSON.stringify(tags) %>') ;
     
-  
+    let removedtags=[];
+    let addedtags=[];
+
     document.getElementById("newform").addEventListener("submit",(event)=>{
       event.preventDefault();
-      input.value=tags;
+      input.value=removedtags;
+      addedInput.value=addedtags;
       document.getElementById("newform").submit();
   
     })
-  
-  
+
+
+    window.addEventListener("DOMContentLoaded", () => {
+      console.log(tags);
+      console.log("hello");
+   
+    createTag(); // Render existing tags on the page
+  });
   
   
   function createTag(){
       ul.querySelectorAll("li").forEach(li => li.remove());
-      tags.slice().reverse().forEach(tag =>{
-          let liTag = `<li name="list[${tags.indexOf(tag)}]" value="${tag}" ">${tag}<i onclick="remove(this, '${tag}')" class="ri-close-line"></i> </li>`;
-          ul.insertAdjacentHTML("afterbegin", liTag);
+      tags.forEach(tag =>{
+          let liTag = `<li class="taglist" name="list[${tags.indexOf(tag)}]" value="${tag}" ">${tag}<div class="tagicon"><i onclick="remove(this, '${tag}')" class="ri-close-line"></i></div> </li>`;
+          listcontainer.insertAdjacentHTML("afterbegin", liTag);
       });
       
   }
   
   function remove(element, tag){
-      let index  = tags.indexOf(tag);
-      tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
-      element.parentElement.remove();
-      countTags();
-  }
+    let index  = tags.indexOf(tag);
+    removedtags.push(tag);
+    tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
+    element.parentElement.parentElement.remove();
+    
+}
   
   function addTag(event){
       if(event.key == "Enter"){
         event.preventDefault();
           let tag = event.target.value;
           if(tag.length > 0 && !tags.includes(tag)){
-              if(tags.length <=5){
+              if(tags.length <=4){
                   tag.split(',').forEach(tag => {
                       tags.push(tag);
+                      addedtags.push(tag);
                       createTag();
                   });
               }
@@ -98,11 +127,11 @@
   
   input.addEventListener("keydown", addTag);
   
-  const removeBtn = document.querySelector(".details button");
-  removeBtn.addEventListener("click", () =>{
-      tags.length = 0;
-      ul.querySelectorAll("li").forEach(li => li.remove());
-      
-  });
+  const removeBtn = document.querySelector(".rmvbtn button");
+removeBtn.addEventListener("click", () =>{
+    tags.length = 0;
+    listcontainer.querySelectorAll("li").forEach(li => li.remove());
+    
+});
   </script>
 

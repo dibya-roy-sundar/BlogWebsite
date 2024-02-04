@@ -1,17 +1,47 @@
 <% layout('layouts/boilerplate') %>
 
-<h1><%= tag %></h1>
+<h1 class="bytagsearch"># <%= tag %></h1>
 
+<div class="homepostcontainer">
+    <% tags.forEach(tag => { %>
+        <div class="postcard">
+            <div class="postauthor">
+              <div class="postauthorimg">
+                <a href="/user/<%= tag.post.author._id %>"><img src="<%=tag.post.author.avatar.thumbnail %>" alt="author thumbnail"></a>
+              </div>
+              <div class="postauthornamejoint">
+                <a href="/user/<%= tag.post.author._id %>">
+                  <p class="authorname"><%= tag.post.author.username %></p>
+                </a>  
+                <p class="date"><%= tag.post.date %></p>
+              </div>  
+            </div>
+            <a href="/post/<%= tag.post._id %>">
+              <div class="postdetails">
+      
+                <div class="titledetailsjoint">
+                  <h3><%= tag.post.title %></h3>
+                  <p><%= tag.post.content.substring(0, 100)+"..." %></p>
+                </div>
+                <div class="postthumbnail">
+                  <img src="<%= tag.post.image.thumbnail %>"  alt="cover image of post">
+                </div>
+              </div>
+            </a>  
+            <div class="postoptions">
+              <div class="postimpressions">
+                <p> <i class="ri-chat-poll-line"></i> <%= tag.post.commentCount %></p>
+                <p> <i class="ri-heart-2-line"></i> <%= tag.post.likeCount %></p>
+                <p> <i class="ri-eye-line"></i> <%= tag.post.readCount %> </p>
+              </div>
+              <div class="cardbkmrk">
+                 
+              </div>
+            </div>
+          </div>
+       
+        
+    <%})%>
+  </div>  
 
-<% tags.forEach(tag => { %>
-        <h2><%= tag.post.title %></h1>
-            <div><a href="/user/<%= tag.post.author._id  %>"><img src="<%=tag.post.author.avatar.thumbnail %>" alt="author thumbnail"></a></div>
-
-        <h3><a href="/user/<%=tag.post.author._id%>"><%= tag.post.author.username %></a>,<%= tag.post.date %></h3>  
-        <h4><%= tag.post.likeCount %> likes</h4>
-        <h4><%= tag.post.readCount %> reads</h4>
-        <h4><%= tag.post.commentCount %> comments</h4>
-        <p><%= tag.post.content.substring(0, 100)+"..." %><a href="/post/<%= tag.post._id %>"><button>Read more</button></a></p>
-        <!-- truncate upto 100 characters -->
-  
-<% }) %>
+   
