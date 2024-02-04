@@ -10,8 +10,7 @@
 /* body{  margin:0; position:relative; } */
 main{
   min-height:100vh;
-  margin-bottom: 10px;
-  margin-top: 10px;
+ 
 }
 header{ min-height:50px; background-color: rgb(247, 248, 248); padding: 30px;
 padding-right: 8px;}
@@ -165,16 +164,11 @@ header .logo a img{
 .footercontainer{
   display: flex;
   gap: 12px;
-  margin-top: 40px;
   justify-content: space-between;
   padding:10px 24px 10px 10px;
   overflow: hidden;
   position: relative;
  
-  /* background-image: url(../images/vecteezy_purple-minimalist-wallpaper-high-quality-4k-hdr_30698557.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center; */
   
  
 }
