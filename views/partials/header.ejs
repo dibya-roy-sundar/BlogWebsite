@@ -3,7 +3,7 @@
         <nav class="container1 flex">
           
             <div class="logo flex">
-              <a href="/"><h1 >INK CORNER</h1></a>
+              <a href="/"><img src="/images/ink-corner-high-resolution-logo-transparent.png" alt=""></a>
 
             </div>
             <div class="navlist flex">
@@ -16,27 +16,23 @@
             </div>
             
 
-            <div class="searchbar">
-              <button type="button" class="searchbtn">
-                <i class="ri-search-eye-fill"></i>
-            </button>
-              <div class="searchclick">
-                <form action="/search/all" method="post">
+            <div class="searchbarjoint">
+              <div class="searchbar">
+                <form class="searchform" action="/search/all" method="post">
                   <input type="text"  placeholder="🔍 search  for tags,people,articles"
-                  name="search" class="form-control">
-                
-                  
+                  name="search" class="form-control">     
+                  <button><i class="ri-search-eye-line"></i></button>         
                 </form>
-                
               </div>
-              
-              <% if (!currentUser) { %>
-             <button><a href="/user/login">Sign in</a></button>
-             <% } else{ %>
-             
-              <a  href=  "/user/<%=currentUser._id%>"> <img  id="avatar" src="<%= currentUser.avatar.thumbnail %>" alt="user avatar thumbnail"></a>
-              
-              <% } %>
+             <div class="signinusernavbar">         
+                  <% if (!currentUser) { %>
+                <button><a href="/user/login">Sign in <i class="ri-login-box-fill"></i></a></button>
+                <% } else{ %>
+                
+                  <a  href=  "/user/<%=currentUser._id%>"> <img  id="avatar" src="<%= currentUser.avatar.thumbnail %>" alt="user avatar thumbnail"></a>
+                  
+                  <% } %>
+              </div>    
               
             </div>
             
@@ -44,7 +40,18 @@
          
         </header >
       
-          
+        <script>
+          window.addEventListener('scroll', function() {
+            var header = document.querySelector('header');
+            var scrollPosition = window.scrollY;
+      
+            if (scrollPosition > 80) { // Adjust the scroll position threshold as needed
+              header.classList.add('transparent');
+            } else {
+              header.classList.remove('transparent');
+            }
+          });
+        </script>        
     
         <script>
           const searchtoggle=document.querySelector('.searchclick');
