@@ -10,32 +10,52 @@
     <form action="/following" method="get"><button>Following</button></form>
  </div>
 <% } %>
-<%posts.forEach((post)=>{%>
-    <div>
-        <div>
-            <h1><%= post.title %></h1>
-            <div><a href="/user/<%=post.author._id%>"><img src="<%= post.author.avatar.thumbnail %>" alt="author thumbnail"></a></div>
-            <h3><%= post.author.username %>,<%= post.date %></h3>  
-        </div>
-        <div>
-           
-            <img src="<%= post.image.thumbnail %>" alt="preview of cover image" title="<%= post.image.home %>">
-        </div>
-        <div>
-            <h4><%= post.likeCount %> likes</h4>
-            <h4><%= post.readCount %> reads</h4>
-            <h4><%= post.commentCount %> comments</h4>
-        </div>
-        <div>
-            <p><%= post.content.substring(0, 100)+"..." %><a href="/post/<%= post._id %>"><button>Read more</button></a></p>
-        </div>
-    </div>
-    <!-- truncate upto 100 characters -->
-<%})%>
-<div>
-    <form action="/post/new" method="get">
-        <button class="btn" >✒️ Compose </button>
-    </form>
-
-
-</div>
+<div class="homepostcontainer">
+    <%posts.forEach((post)=>{%>
+        <div class="postcard">
+            <div class="postauthor">
+              <div class="postauthorimg">
+                <a href="/user/<%=post.author._id%>"><img src="<%= post.author.avatar.thumbnail %>" alt="author thumbnail"></a>
+              </div>
+              <div class="postauthornamejoint">
+                <a href="/user/<%=post.author._id%>">
+                  <p class="authorname"><%= post.author.username %></p>
+                </a>  
+                <p class="date"><%= post.date %></p>
+              </div>  
+            </div>
+            <a href="">
+              <div class="postdetails">
+      
+                <div class="titledetailsjoint">
+                  <h3><%= post.title %></h3>
+                  <p><%= post.content.substring(0, 100)+"..." %></p>
+                </div>
+                <div class="postthumbnail">
+                  <img src="<%= post.image.thumbnail %>"  alt="cover image of post">
+                </div>
+              </div>
+            </a>  
+            <div class="postoptions">
+              <div class="postimpressions">
+                <p> <i class="ri-chat-poll-line"></i> <%= post.commentCount %></p>
+                <p> <i class="ri-heart-2-line"></i> <%= post.likeCount %></p>
+                <p> <i class="ri-eye-line"></i> <%= post.readCount %> </p>
+              </div>
+              <div class="cardbkmrk">
+                <% if (currentUser && isbookmarked) { %>
+                    <form action="/post/<%=post._id%>/bookmark/remove" method="get">
+                        <button><i class="ri-bookmark-3-fill"></i></button>
+                    </form>
+                <% } else { %>  
+                    <form action="/post/<%=post._id%>/bookmark/add" method="get">
+                        <button><i class="ri-bookmark-3-line"></i></button>
+                    </form>
+                <% } %>  
+              </div>
+            </div>
+          </div>
+       
+        <!-- truncate upto 100 characters -->
+    <%})%>
+</div>  

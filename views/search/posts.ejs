@@ -7,17 +7,47 @@
 </div>
 <% if (searchposts && searchposts.length) { %>
  
-
-<% searchposts.forEach(element => { %>
-    <div id="<%= element.title %>">
-        <h2><a href="/post/<%= element._id %>"><%= element.title %></a></h2>
-        <div><a href="/user/<%= element.author._id  %>"><img src="<%=element.author.avatar.thumbnail %>" alt="author thumbnail"></a></div>
-
-        <h4><a href="/user/<%= element.author._id %>"><%= element.author.username %></a>,<%= element.date %></h4>
-        <p><%= element.content.substring(0, 100)+"..." %><a href="/post/<%= element._id %>">Read more</a></p>
-        <!-- truncate upto 100 characters -->
-    </div>
-<% }) %>
+    <div class="homepostcontainer">
+        <%searchposts.forEach((element)=>{%>
+            <div class="postcard">
+                <div class="postauthor">
+                  <div class="postauthorimg">
+                    <a href="/user/<%= element.author._id %>"><img src="<%=element.author.avatar.thumbnail %>" alt="author thumbnail"></a>
+                  </div>
+                  <div class="postauthornamejoint">
+                    <a href="/user/<%= element.author._id %>">
+                      <p class="authorname"><%= element.author.username %></p>
+                    </a>  
+                    <p class="date"><%= element.date %></p>
+                  </div>  
+                </div>
+                <a href="">
+                  <div class="postdetails">
+          
+                    <div class="titledetailsjoint">
+                      <h3><%= element.title %></h3>
+                      <p><%= element.content.substring(0, 100)+"..." %></p>
+                    </div>
+                    <div class="postthumbnail">
+                      <img src="<%= element.image.thumbnail %>"  alt="cover image of post">
+                    </div>
+                  </div>
+                </a>  
+                <div class="postoptions">
+                  <div class="postimpressions">
+                    <p> <i class="ri-chat-poll-line"></i> <%= element.commentCount %></p>
+                    <p> <i class="ri-heart-2-line"></i> <%= element.likeCount %></p>
+                    <p> <i class="ri-eye-line"></i> <%= element.readCount %> </p>
+                  </div>
+                  <div class="cardbkmrk">
+                     
+                  </div>
+                </div>
+              </div>
+           
+            
+        <%})%>
+      </div>  
 <% } else {%>
-    <h2>no posts found</h2>
+    <h2 class="nopostsearchpage">No posts found</h2>
 <% } %>

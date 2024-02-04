@@ -1054,5 +1054,149 @@ width: 100%;
 }
 
 
+/* post card profile card tag card */
+
+.homepostcontainer{
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
+  gap: 25px;
+  padding: 20px  250px;
+
+}
+
+.postcard{
+display: flex;
+flex-direction: column;
+gap: 5px;
+border: 0.4px solid black;
+border-radius: 12px;
+padding: 8px 22px;
+padding-bottom: 4px;
+}
+.postauthor{
+  display: flex;
+  gap: 10px;
+  padding-left: 6px;
+}
+.postauthorimg img{
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  position: relative;
+  top: 8px;
+}
+.postauthornamejoint a{
+  text-decoration: none;
+}
+
+.postauthornamejoint .authorname{
+  margin: 0;
+  margin-top: 3px;
+  font-size: 18px;
+  color: black;
+  font-weight: 500;
+
+}
+.postauthornamejoint .date{
+  margin: 0;
+  margin-left: 3px;
+  position: relative;
+font-size: 14px;
+font-weight: 400;
+  
+}
+.postdetails{
+  display: flex;
+  gap: 8px;
+  margin: 8px 10px;
+}
+.postthumbnail img{
+  height: 130px;
+  width: 240px;
+  border-radius: 15px;
+
+}
+.postcard a{
+  text-decoration: none;
+}
+.titledetailsjoint h3{
+  font-size: 30px;
+  text-align: justify;
+  color: black;
+}
+
+.titledetailsjoint p{
+  font-size: 18px;
+  line-height: normal;
+  color: rgb(108, 110, 109);
+  font-weight: 400;
+}
+.postoptions{
+  display: flex;
+  justify-content: space-between;
+  padding-left: 6px;
+}
+.postimpressions{
+  display: flex;
+  gap: 14px;
+}
+.postimpressions p{
+  font-size: 18px;
+}
+.postimpressions i{
+  position: relative;
+  top: 3px;
+  font-size: 20px;
+}
+.cardbkmrk button{
+  position: relative;
+  right: 25px;
+  border: none;
+  background: transparent;
+} 
+.cardbkmrk button i{
+  font-size: 28px;
+}
+.profilecardsearch,.tagcardsearch{
+display: flex;
+gap: 10px;
+border: 1px solid black;
+padding: 8px;
+border-radius: 12px;
+
+}
+.profilecardsearch .avatarimg img{
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}
+.profilecardsearch .avatartitle a{
+  text-decoration: none;
+}
+.profilecardsearch .avatartitle h4{
+  position: relative;
+  top: 3px;
+  color: rgb(62, 61, 61);
+}
+.tagcardsearch {
+ padding-top: 5px;
+}
+.tagcardsearch p{
+ margin: 0;
+}
+.tagcardsearch i{
+  position: relative;
+  top: 3px;
+}
+.tagcardsearch a{
+  text-decoration: none;
+  font-size: 25px;
+}
+
+.bookmarkpagetitle,.nopostsearchpage,.tagsearchpage,.userprofilesearchpage,.allsearchpage{
+  text-align: center;
+}
 
 

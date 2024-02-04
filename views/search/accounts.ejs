@@ -7,18 +7,23 @@
 </div>
 <% if (searchaccounts && searchaccounts.length) { %>
  
+    <div class="homepostcontainer">
+        <% searchaccounts.forEach(account => { %>
+            <div id="<%= account._id %>" class="profilecardsearch">
+                <div class="avatarimg">
+                <a href="/user/<%= account._id %>"> <img src="<%=account.avatar.thumbnail %>" alt="author thumbnail">
+                    </a>
+                </div>
+                <div class="avatartitle">
+                    <a href="/user/<%= account._id %>"><h4><%= account.username %></h4></a>
+                </div>
+            </div>
+           
+        <% }) %>
+    </div>  
 
-<% searchaccounts.forEach(account => { %>
-    <div  id="<%= account._id %>" >
-        <div><a href="/user/<%= account._id %>"><img src="<%=account.avatar.thumbnail %>" alt="author thumbnail"></a></div>
-        <h2><a href="/user/<%= account._id %>"> <%= account.username %></a></h2>
-        <% if (account.tagline) { %>
-            <h3><%= account.tagline %></h3>
-            
-            <% } %>
-    </div>
-<% }) %>
+
 <% } else { %>
-<h2>no User found</h2>
+<h2 class="userprofilesearchpage">No User found</h2>
     
 <% } %>

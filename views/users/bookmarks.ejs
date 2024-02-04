@@ -1,13 +1,46 @@
 <% layout('layouts/boilerplate') %>
-<h2>bookmarks</h2>
-<%bookmarks.forEach((bookmark)=>{%>
-  <h1><%= bookmark.post.title %></h1>
-  <div><a href="/user/<%= bookmark.post.author._id %>"><img src="<%=bookmark.post.author.avatar.thumbnail %>" alt="author thumbnail"></a></div>
+<h2 class="bookmarkpagetitle">bookmarks</h2>
 
-  <h3><%= bookmark.post.author.username %>,<%= bookmark.post.date %></h3>  
-  <h4><%= bookmark.post.likeCount %> likes</h4>
-  <h4><%= bookmark.post.readCount %> reads</h4>
-  <h4><%= bookmark.post.commentCount %> comments</h4>
-  <p><%= bookmark.post.content.substring(0, 100)+"..." %><a href="/post/<%= bookmark.post._id %>"><button>Read more</button></a></p>
-  <!-- truncate upto 100 characters -->
-<%})%>
+<div class="homepostcontainer">
+  <%bookmarks.forEach((bookmark)=>{%>
+      <div class="postcard">
+          <div class="postauthor">
+            <div class="postauthorimg">
+              <a href="/user/<%= bookmark.post.author._id %>"><img src="<%=bookmark.post.author.avatar.thumbnail %>" alt="author thumbnail"></a>
+            </div>
+            <div class="postauthornamejoint">
+              <a href="/user/<%= bookmark.post.author._id %>">
+                <p class="authorname"><%= bookmark.post.author.username %></p>
+              </a>  
+              <p class="date"><%= bookmark.post.date %></p>
+            </div>  
+          </div>
+          <a href="">
+            <div class="postdetails">
+    
+              <div class="titledetailsjoint">
+                <h3><%= bookmark.post.title %></h3>
+                <p><%= bookmark.post.content.substring(0, 100)+"..." %></p>
+              </div>
+              <div class="postthumbnail">
+                <img src="<%= bookmark.post.image.thumbnail %>"  alt="cover image of post">
+              </div>
+            </div>
+          </a>  
+          <div class="postoptions">
+            <div class="postimpressions">
+              <p> <i class="ri-chat-poll-line"></i> <%= bookmark.post.commentCount %></p>
+              <p> <i class="ri-heart-2-line"></i> <%= bookmark.post.likeCount %></p>
+              <p> <i class="ri-eye-line"></i> <%= bookmark.post.readCount %> </p>
+            </div>
+            <div class="cardbkmrk">
+               
+            </div>
+          </div>
+        </div>
+     
+      <!-- truncate upto 100 characters -->
+  <%})%>
+</div>  
+
+

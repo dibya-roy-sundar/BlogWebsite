@@ -7,14 +7,18 @@
 </div>
 <% if (searchtags && searchtags.length) { %>
  
-
-<% searchtags.forEach(tags => { %>
-    <div id="<%=tags%>">
-        <h2><a href="/tag/<%=tags%>">#<%=tags%></a></h2>
+    <div class="homepostcontainer">
+        <% searchtags.forEach(tags => { %>
+            <div  id="<%=tags%>" class="tagcardsearch">
+                <a href="/tag/<%=tags%>"><p><i class="ri-hashtag"></i>  <%=tags%></p></a>
+            </div>
+           
+        
+        <% }) %>
     </div>
 
-<% }) %>
+
 <% } else { %>
-    <h2>no Tags found</h2>
+    <h2 class="tagsearchpage">No Tags found</h2>
 
 <% } %>
