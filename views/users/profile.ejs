@@ -12,16 +12,12 @@
           <div class="authordesc">
               <div class="authordetails">
                   <div class="nameandtagline">
-                      <p class="username"><%= user.username %></p>
+                      <p class="username"><%= user.username  %>  </p>
                     <p class="tagline"><%= user.tagline %></p>
                   </div>
-                  <% if (currentUser && currentUser._id.equals(user._id)) { %>
-                      <div class="editprofilebtn">
-                      <a href="/user/<%=user._id%>/edit"><button><i class="ri-pencil-fill"></i>  Edit</button></a>
-
-                      </div>
-                  <% } %>    
+                   
               </div>
+                
               <div class="subscription">
                 <div class="subscnt">
                   <div class="followercnt">
@@ -31,25 +27,31 @@
                     <h4> <%= followings.length %> </h4> <p>followings</p>
                   </div>
                 </div>
-                <div class="followbtn">
-                  <% if (currentUser && !currentUser._id.equals(user._id)) { %>
-                    
-                      <% if (!isfollower) { %>
-                        <form action="/user/<%=user._id%>/follow" method="get"> <button><i class="ri-add-fill"></i>  Follow</button></form>
-
-                      <% } else { %>
-                      <form class="unfollow" action="/user/<%=user._id%>/unfollow" method="get"> <button><i class="ri-check-fill"></i> Following</button></form>
-
-                      <%}%>
-                   
-                  <% } else if (!currentUser) { %>
-                    
-                      <form action="/user/<%=user._id%>/follow" method="get"> <button><i class="ri-add-fill"></i>  Follow</button></form>
-
-                    
-                  <% } %>
+              </div>
+              <% if (currentUser && currentUser._id.equals(user._id)) { %>
+                <div class="editprofilebtn">
+                <a href="/user/<%=user._id%>/edit"><button><i class="ri-pencil-fill"></i>  Edit</button></a>
 
                 </div>
+              <% } %>
+              <div class="followbtn">
+                <% if (currentUser && !currentUser._id.equals(user._id)) { %>
+                  
+                    <% if (!isfollower) { %>
+                      <form class="follow" action="/user/<%=user._id%>/follow" method="get"> <button><i class="ri-add-fill"></i>  Follow</button></form>
+
+                    <% } else { %>
+                    <form class="unfollow" action="/user/<%=user._id%>/unfollow" method="get"> <button><i class="ri-check-fill"></i> Following</button></form>
+
+                    <%}%>
+                 
+                <% } else if (!currentUser) { %>
+                  
+                    <form class="follow" action="/user/<%=user._id%>/follow" method="get"> <button><i class="ri-add-fill"></i>  Follow</button></form>
+
+                  
+                <% } %>
+
               </div>
           </div>
       </div>
@@ -88,15 +90,7 @@
           <% } %>
           
         </div>
-        <% if (currentUser && currentUser._id.equals(user._id)) { %>
-            <div class="cmpbtn">
-              <form action="/post/new" method="get">
-                <button class="profilecomposebtn">
-                  ✒️ Compose
-                </button>
-              </form>
-            </div>
-        <% } %>    
+         
       </div>
       <div class="posts">
         <h3 class="posttitle">Published Posts(<%= posts.length %>)</h3>
@@ -116,9 +110,11 @@
        
         
         
-
+  
       </div>
+      
     </div>
+    
     <% if (currentUser && currentUser._id.equals(user._id)) { %>
       <div class="profileoptions">
         
@@ -134,7 +130,7 @@
         </a>
         
         <a href="/user/logout">
-          <div class="hello  profilelogout">
+          <div class="profilelogout">
             <span> <i class="ri-logout-box-line"></i> Sign out</span>
           </div>
         </a>

@@ -34,11 +34,12 @@ const allSearch = catchAsync(async (req, res) => {
 
   const searchresults =await peformAllSearch(whattosearch);
 
-
+    const searchtype='all';
  
     res.render("search/all", {
       searchresults,
       whattosearch,
+      searchtype,
     });
 
 });
@@ -46,10 +47,12 @@ const backToAllSearch = catchAsync(async (req, res) => {
   const whattosearch = req.query.search;
 
   const searchresults =await  peformAllSearch(whattosearch);
+  const searchtype='all';
 
   res.render("search/all", {
     searchresults,
     whattosearch,
+    searchtype,
   });
 });
 
@@ -60,9 +63,11 @@ const searchAccounts = catchAsync(async (req, res) => {
     { searchscore: { $meta: "textScore" } }
   );
   searchaccounts.sort((a,b) => b.searchscore-a.searchscore);
+  const searchtype='account';
   res.render("search/accounts", {
     searchaccounts,
     whattosearch,
+    searchtype,
   });
 });
 const searchTags = catchAsync(async (req, res) => {
@@ -73,10 +78,11 @@ const searchTags = catchAsync(async (req, res) => {
     { searchscore: { $meta: "textScore" } }
   );
   searchtags.sort((a,b) => b.searchscore-a.searchscore);
-
+  const searchtype='tag';
   res.render("search/tags", {
     searchtags,
     whattosearch,
+    searchtype,
   });
 });
 const searchPosts = catchAsync(async (req, res) => {
@@ -87,9 +93,11 @@ const searchPosts = catchAsync(async (req, res) => {
   ).populate("author");
   searchposts.sort((a,b) => b.searchscore-a.searchscore);
 
+  const searchtype='post';
   res.render("search/posts", {
     searchposts,
     whattosearch,
+    searchtype,
   });
 });
 

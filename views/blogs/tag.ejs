@@ -1,7 +1,12 @@
 <% layout('layouts/boilerplate') %>
 
-<h1 class="bytagsearch"># <%= tag %></h1>
+<div class="searchoptions">
 
+  <div class="searchactive"  id="tags">
+      <a href="/search/tags?search=<%= tag %>"><button > <i class="ri-hashtag"></i><%= tag %></button></a>
+  </div>
+  
+</div>
 <div class="homepostcontainer">
     <% tags.forEach(tag => { %>
         <div class="postcard">
@@ -30,9 +35,9 @@
             </a>  
             <div class="postoptions">
               <div class="postimpressions">
-                <p> <i class="ri-chat-poll-line"></i> <%= tag.post.commentCount %></p>
-                <p> <i class="ri-heart-2-line"></i> <%= tag.post.likeCount %></p>
-                <p> <i class="ri-eye-line"></i> <%= tag.post.readCount %> </p>
+                <p> <%= tag.post.likeCount %> Like</p>
+                <p><%= tag.post.commentCount %> Comment</p>
+                <p> <%= tag.post.readCount %> View </p>
               </div>
               <div class="cardbkmrk">
                  

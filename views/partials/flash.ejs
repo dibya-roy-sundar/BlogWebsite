@@ -1,6 +1,38 @@
-<% if (success && success.length>0) { %>
- <%= success %>
+<div class="flash-container">
+    <% if(success && success.length) { %>
+<div id="successFlash" class="flash flash-success">
+    <img src="/images/green_tick.png" alt="">
+    <p><%= success %></p>
+</div>
 <% } %>
-<% if (error && error.length>0) { %>
-    <%= error %>
-   <% } %>
+
+<% if(error && error.length) {%>
+    <div id="errorFlash" class="flash flash-error">
+        <img src="/images/red_tick.png" alt="">
+        <p><%= error %></p>
+    </div>
+<% } %>
+
+
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+   
+    var successFlash = document.getElementById('successFlash');
+    var errorFlash = document.getElementById('errorFlash');
+
+    
+    if (successFlash) {
+        setTimeout(function() {
+            successFlash.style.display = 'none';
+        }, 3000);
+    }
+
+    if (errorFlash) {
+        setTimeout(function() {
+            errorFlash.style.display = 'none';
+        }, 3000);
+    }
+});
+
+</script>

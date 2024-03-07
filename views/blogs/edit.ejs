@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 
 <div class="newcontainer">
-  <h1 class="compose">Edit</h1>
+  <h1 class="compose editcontainertitle">Revise...</h1>
   
       <form id="newform" action="/post/<%=post._id %>?_method=PUT" method="post" enctype="multipart/form-data">
           <div class="newfrmcontent">
@@ -45,8 +45,8 @@
               </div>
           </div>   
           <div class="newfrmbtn">
-              <button class="btn" type="submit">publish</button>
-          </div>
+            <button  class="buttonSubmitter newbtnsubmitter" type="submit">Update</button>
+        </div>
   
       </form>
   
@@ -133,5 +133,25 @@ removeBtn.addEventListener("click", () =>{
     listcontainer.querySelectorAll("li").forEach(li => li.remove());
     
 });
+
+var animateButton = function (e) {
+    e.preventDefault;
+    //reset animation
+    e.target.classList.remove("animate");
+    e.target.innerHTML = "";
+
+    e.target.classList.add("animate");
+
+    e.target.classList.add("animate");
+    setTimeout(function () {
+      e.target.classList.remove("animate");
+    }, 200000);
+  };
+
+  var classname = document.getElementsByClassName("buttonSubmitter");
+
+  for (var i = 0; i < classname.length; i++) {
+    classname[i].addEventListener("click", animateButton, false);
+  }
   </script>
 

@@ -94,7 +94,7 @@ const home=catchAsync(async (req, res) => {
       // virtual property not applicable in mongodb aggregation pippeline
       const posts=await Post.find({}).populate('author');
       
-
+      const following_page=false;
       
       
      
@@ -104,17 +104,18 @@ const home=catchAsync(async (req, res) => {
 
     
       res.render("home", {
-        home_content,
+        
         posts,
+        following_page,
       });
     });
 
 const following=catchAsync(async (req,res)=>{
   const userFollowing=await Subscription.find({follower: req.user._id});
-  console.log(userFollowing);
+  // console.log(userFollowing);
   const followingUserIds = userFollowing.map(subscription => subscription.following);
   const posts=await Post.find({author:{$in:followingUserIds}}).populate('author');
-      
+      const following_page=true;
 
       
       
@@ -124,9 +125,10 @@ const following=catchAsync(async (req,res)=>{
 
 
     
-      res.render("home", {
-        home_content,
+      res.render("following", {
+        
         posts,
+        following_page
       });
 })
   

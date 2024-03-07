@@ -1,13 +1,26 @@
 <% layout('layouts/boilerplate') %>
-<div>
-    <div id="all"><a href="/search/all/?search=<%= whattosearch %>">All</a></div>
-    <div id="posts"><a href="/search/posts?search=<%= whattosearch %>">posts</a></div>
-    <div id="tags"><a href="/search/tags?search=<%= whattosearch %>">tags</a></div>
-    <div id="accounts"><a href="/search/accounts?search=<%= whattosearch %>">accounts</a></div>
-</div>
+<div class="searchoptions">
+    <div class="<%= searchtype==='all'?"searchactive":" " %>" id="all">
+        <a href="/search/all/?search=<%= whattosearch %>"><button><i class="ri-drag-move-line"></i> All</button></a>
+    </div>
+    <div class="<%= searchtype==='post'?"searchactive":" " %>" id="posts">
+  
+        <a href="/search/posts?search=<%= whattosearch %>"><button><i class="ri-book-read-line"></i> Articles</button></a>
+    </div>
+    <div class="<%= searchtype==='tag'?"searchactive":" " %>" id="tags">
+        <a href="/search/tags?search=<%= whattosearch %>"><button> <i class="ri-hashtag"></i> Tags</button></a>
+    </div>
+    <div class="<%= searchtype==='account'?"searchactive":" " %>" id="accounts">
+  
+        <a href="/search/accounts?search=<%= whattosearch %>"><button> <i class="ri-account-circle-line"></i> Accounts</button></a>
+    </div>
+  </div>
 <% if (searchtags && searchtags.length) { %>
  
     <div class="homepostcontainer">
+        <div class="searchtitle">
+            <p>Search results for "<%= whattosearch %>"</p>
+        </div>
         <% searchtags.forEach(tags => { %>
             <div  id="<%=tags%>" class="tagcardsearch">
                 <a href="/tag/<%=tags%>"><p><i class="ri-hashtag"></i>  <%=tags%></p></a>
@@ -19,6 +32,6 @@
 
 
 <% } else { %>
-    <h2 class="tagsearchpage">No Tags found</h2>
+    <h2 class="tagsearchpage">No Tags Found</h2>
 
 <% } %>

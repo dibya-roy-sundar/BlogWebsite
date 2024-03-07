@@ -1,119 +1,213 @@
 <% layout('layouts/boilerplate') %>
-<h1 ><%= post.title %></h1>
-<div><a href="/user/<%= post.author._id  %>"><img src="<%=post.author.avatar.thumbnail %>" alt="author thumbnail"></a></div>
 
-<h2> <a href="/user/<%= post.author._id %>"><%=  post.author.username %></a></h2>
-<h3><%= post.date %></h3>
-
-
-
-<% if (post.tags && post.tags.length) { %>
-<ul>
-<% for(let tag of post.tags) {%>
-<div>
-    <li style="list-style-type: none;">
-        <form action="/tag/<%=tag.tag%>" method="get">
-            <button><%= tag.tag %></button>
-        </form>
-    </li>
-</div>
-<% } %>
-</ul>
-<% } %>
-
-
-
-<% if (post.image) { %>
-<div><img src="<%=post.image.individual%>" alt="cover image"></div>
-<% } %>
-
-<p ><%=post.content %></p>
-
- <p><%= post.likeCount %> likes </p>
-
-<% if (currentUser && post.author.equals(currentUser)) { %>
- 
-
-<div class="form">
-    <div class="first" >
-        <form action="/post/<%=post._id%>?_method=DELETE" method="post">
-        <button class="btn delete">Delete post  🗑️</button>
-        </form>
-    </div>
-    <div class="second" >
-    
-       <button onclick="window.location.href='/post/<%=post._id%>/edit'" class="btn Update">Edit post ✍️</button> 
-    </div>
-</div>   
-<% } %> 
-<% if (currentUser && isliked) { %>
- 
-    <div>
-        <form action="/post/<%=post._id%>/like/remove" method="get">
-            <button>unlike</button>
-        </form>
-    </div>
-<% } else { %>
-    <div>
-        
-        <form action="/post/<%=post._id%>/like/add" method="get">
-            <button>like</button>
-        </form>
-    </div>
-<% } %>
-<% if (currentUser && isbookmarked) { %>
- 
-    <div>
-        <form action="/post/<%=post._id%>/bookmark/remove" method="get">
-            <button>unbookmark</button>
-        </form>
-    </div>
-<% } else { %>
-    <div>
-        
-        <form action="/post/<%=post._id%>/bookmark/add" method="get">
-            <button>bookmark</button>
-        </form>
-    </div>
-<% } %>
-
-
-
-<div class="col-6">
-    <% if (currentUser) { %>
-        <h2>Leave a Comment</h2>
-        <form action="/post/<%=post._id%>/comment" method="POST" class="mb-3 validated-form" >
-            
-            <div class="mb-3">
-                <label class="form-label" for="body">Comment</label>
-                <textarea class="form-control" name="comment[content]" id="body" cols="30" rows="3" required></textarea>
-            </div>
-            
-            <button class="btn btn-success">Submit</button>
-        </form>
-   <% } %>
-
-    <% if (post.commentCount) { %>
-        <h2>Comments(<%= post.commentCount %>)</h2>
-    <% } else if(currentUser) { %>
-        <h3>No Comments yet,Be the first one to post a comment</h3>
-    <% } %>
-    
-    <% for(let comment of comments) { %>
-        <div class="card mb-3 ">
-            <div class="card-body">
-                <p class="card-text"> <%= comment.body %></p>
-                <h5 class="card-title"> <%= comment.author.username %></h5>
-                <h6><%= comment.date %></h6>
-                <% if (currentUser && comment.author._id.equals(currentUser._id)) { %>           
-                <form action="/post/<%=post._id%>/comment/<%=comment._id%>?_method=DELETE" method="POST">
-                    <button class="btn btn-sm btn-danger">Delete</button>
-                </form>
-                <% } %>
-            </div>
+<div class="individualpost">
+  <div class="postcontainer">
+    <div class="post">
+      <div class="titleauthorjoint">
+        <div class="posttitle">
+          <h1><%= post.title %></h1>
         </div>
-    <% } %>
+        <div class="autordatejoint">
+          <div class="author">
+            <a href="/user/<%= post.author._id %>">
+              <img
+                crossorigin="anonymous"
+                src="<%=post.author.avatar.thumbnail %>"
+                alt="author thumbnail"
+              />
+            </a>
+            <a href="/user/<%= post.author._id %>">
+              <p><%= post.author.username %></p>
+            </a>
+          </div>
+          <div class="datetagjoint">
+            <div class="date">
+              <i class="ri-calendar-line"></i>
+              <p><%= post.date %></p>
+            </div>
+            <% if (post.tags && post.tags.length) { %>
+            <div class="posttagcontainer">
+              <% for(let tag of post.tags) {%>
+              <div class="tagcard">
+                <form action="/tag/<%=tag.tag%>" method="get">
+                  <button><%=tag.tag%></button>
+                </form>
+              </div>
+              <% } %>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <% if (post.image) { %>
+      <div class="postimg">
+        <img
+          class="postcoverimg"
+          crossorigin="anonymous"
+          src="<%=post.image.individual%>"
+          alt="post cover image"
+        />
+      </div>
+      <% } %>
+      <div class="postdetails"><%=post.content %></div>
+    </div>
+
+    <div
+      class="options sticky_options <%=(currentUser && post.author.equals(currentUser))?'ownerpower': ' ' %>"
+      id="stickyOptions"
+    >
+      <div class="like">
+        <% if (currentUser && isliked) { %>
+        <form action="/post/<%=post._id%>/like/remove" method="get">
+          <button><i class="ri-heart-fill"></i> <%= post.likeCount %></button>
+        </form>
+        <% } else { %>
+        <form action="/post/<%=post._id%>/like/add" method="get">
+          <button><i class="ri-heart-line"></i> <%= post.likeCount %></button>
+        </form>
+        <% } %>
+      </div>
+      <div class="bookmark">
+        <% if (currentUser && isbookmarked) { %>
+        <form action="/post/<%=post._id%>/bookmark/remove" method="get">
+          <button>
+            <i class="ri-bookmark-fill"></i>
+          </button>
+        </form>
+        <% } else { %>
+        <form action="/post/<%=post._id%>/bookmark/add" method="get">
+          <button>
+            <i class="ri-bookmark-line"></i>
+          </button>
+        </form>
+
+        <% } %>
+      </div>
+      <% if (currentUser && post.author.equals(currentUser)) { %>
+      <div class="editpopup">
+        <form action="/post/<%=post._id%>/edit" method="get">
+          <button class="posteditbtn"><i class="ri-edit-2-line"></i></button>
+        </form>
+      </div>
+      <div class="dltpopup">
+        <form action="/post/<%=post._id%>?_method=DELETE" method="post">
+          <button class="postdeletebtn">
+            <i class="ri-delete-bin-7-line"></i>
+          </button>
+        </form>
+      </div>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="postcomments">
+    <h2><i class="ri-message-fill"></i> Comment</h2>
+    <div class="commentbar">
+      <form
+        class="commentform"
+        action="/post/<%=post._id%>/comment"
+        method="POST"
+      >
+        <div class="commentinput">
+          <textarea
+            class="form-control commentinputTextarea"
+            name="comment[content]"
+            id="body"
+            cols="30"
+            rows="5"
+            required
+            onchange="enabledisable()"
+          ></textarea>
+        </div>
+        <div class="cmntsubbtn">
+          <button class="buttonSubmitter">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="commentcontainer">
+      <% if (post.commentCount) { %>
+      <h3>Comments(<%= post.commentCount %>)</h3>
+      <% } else { %>
+      <h3>No Comments yet, be the first one to post a comment</h3>
+      <% } %> <% for(let comment of comments) { %>
+      <div class="commentcard">
+        <div class="commentauthordatejoint">
+          <div class="commentauthor">
+            <a href="/user/<%= comment.author._id  %>">
+              <img
+                crossorigin="anonymous"
+                src="<%=comment.author.avatar.thumbnail %>"
+                alt="author thumbnail"
+                class="authoravatar avtarcmnt"
+                crossorigin="anonymous"
+                alt="author avatar"
+              />
+            </a>
+            <a href="/user/<%= comment.author._id  %>">
+              <h4><%= comment.author.username %></h4>
+            </a>
+          </div>
+          <div class="date">
+            <h4><%= comment.date %></h4>
+          </div>
+        </div>
+        <div class="commentbody">
+          <div class="body">
+            <p><%= comment.body %></p>
+          </div>
+          <% if (currentUser && comment.author._id.equals(currentUser._id)) { %>
+          <form
+            class="cmntdlt"
+            action="/post/<%=post._id%>/comment/<%=comment._id%>?_method=DELETE"
+            method="POST"
+          >
+            <button class="CmntDltbBtn buttonSubmitter cmntdltbtnsubmitter">Delete</button>
+          </form>
+          <% } %>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
 </div>
 
+<script>
+  const optionsDiv = document.getElementById("stickyOptions");
+
+  const offset = 80;
+
+  function updateStickyOptions() {
+    if (window.pageYOffset >= offset) {
+      optionsDiv.classList.add("sticky_options");
+    } else {
+      optionsDiv.classList.remove("sticky_options");
+    }
+  }
+
+  window.addEventListener("scroll", updateStickyOptions);
+
+  updateStickyOptions();
 
 
+//   submit button animation
+  var animateButton = function (e) {
+    e.preventDefault;
+    //reset animation
+    e.target.classList.remove("animate");
+    e.target.innerHTML = "";
+
+    e.target.classList.add("animate");
+
+    e.target.classList.add("animate");
+    setTimeout(function () {
+      e.target.classList.remove("animate");
+    }, 100000);
+  };
+
+  var classname = document.getElementsByClassName("buttonSubmitter");
+
+  for (var i = 0; i < classname.length; i++) {
+    classname[i].addEventListener("click", animateButton, false);
+  }
+</script>

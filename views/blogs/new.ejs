@@ -2,7 +2,7 @@
 
 
 <div class="newcontainer">
-  <h1 class="compose">COMPOSE</h1>
+  <h1  id="newformcompose">Article...</h1>
   
       <form id="newform" action="/post" method="post" enctype="multipart/form-data">
           <div class="newfrmcontent">
@@ -20,7 +20,7 @@
                          <div id="listcontainer">
 
                          </div>
-                          <input id="taginput" placeholder="  Max 5  Tags allowed"  name="tags"  type="text" spellcheck="false">
+                          <input id="taginput" placeholder="  Max 5 Tags allowed"  name="tags"  type="text" spellcheck="false">
                       </ul>
                   </div>
                   <div class="rmvbtn">
@@ -35,16 +35,16 @@
               <div class="filepicker">
                   <div class="newfrmlabel">
                       <i class="ri-image-add-fill"></i> 
-                      <label class="newfrmimglbl" for="image">cover image</label>
+                      <label class="newfrmimglbl" for="image">Cover Image</label>
                   </div>
                   <div class="mb-3 newfrmiginput">
-                      <input style="font-size: 18px;font-weight: 400;background-color: rgb(238, 241, 181);border-radius: 12px;" class="form-control imageinput" type="file" id="formFile" name="image" required>
+                      <input style="font-size: 18px;font-weight: 400;background-color: #edfbf6;border-radius: 12px;" class="form-control imageinput" type="file" id="formFile" name="image" required>
                   </div>
                   
               </div>
           </div>   
           <div class="newfrmbtn">
-              <button class="btn" type="submit">publish</button>
+              <button class="buttonSubmitter "  type="submit">Publish</button>
           </div>
   
       </form>
@@ -120,6 +120,28 @@ removeBtn.addEventListener("click", () =>{
     listcontainer.querySelectorAll("li").forEach(li => li.remove());
     
 });
+
+
+// animation button 
+var animateButton = function (e) {
+    e.preventDefault;
+    //reset animation
+    e.target.classList.remove("animate");
+    e.target.innerHTML = "";
+
+    e.target.classList.add("animate");
+
+    e.target.classList.add("animate");
+    setTimeout(function () {
+      e.target.classList.remove("animate");
+    }, 200000);
+  };
+
+  var classname = document.getElementsByClassName("buttonSubmitter");
+
+  for (var i = 0; i < classname.length; i++) {
+    classname[i].addEventListener("click", animateButton, false);
+  }
 
 
 </script>
