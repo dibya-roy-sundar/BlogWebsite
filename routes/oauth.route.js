@@ -25,7 +25,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "https://dibyas-journal.onrender.com/auth/google/redirect",
+      callbackURL: "https://ink-corner.onrender.com/auth/google/redirect",
     },
     async (accessToken, refreshToken, profile, done) => {
       // passport callback functiom
@@ -69,7 +69,7 @@ passport.use(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: "https://dibyas-journal.onrender.com/auth/github/callback",
+      callbackURL: "https://ink-corner.onrender.com/auth/github/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       // console.log("passport callback function fired");
