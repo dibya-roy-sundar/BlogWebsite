@@ -56,19 +56,26 @@
 * Efficient search for posts, tags, and contributors.
 *Search posts by tags for a more targeted exploration.
 
-## Install 🐙
-Explain to your users how they can install your product :)
+## Getting Started 💡
+1. Clone this repository:
+   
+  git clone https://github.com/dibya-roy-sundar/INK-CORNER
 
-## Usage 💡
-In this section you can write some popular examples about how you can interact with the project. It's advisable to write some code here.
+2. Navigate to the project directory:
+   
+  cd INK-CORNER
 
-## Exemples 🖍
-```
-Show some code
-```
-
-## Documentation 📄
-If your project has some documentation you can link anything here.
+3. Install dependencies:
+   
+   npm install
+   
+4. Configure environment variables: If you do not have mongoDB installed on your system, create a .env file for sensitive information like database credentials of mongoDB Atlas, and ensure it is included in your .gitignore file
+   
+5. Run the server:
+   
+  node app.js
+   
+6. Open your web browser and navigate to http://localhost:3000 to access INKCORNER.
 
 ## API 👩‍💻
 You have a small project or you'll like to share the API of your project ? This is where it's happen.
