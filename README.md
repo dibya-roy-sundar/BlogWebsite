@@ -34,18 +34,24 @@
 **1.Authentication**:
 * Support for Google and GitHub OAuth 2.0 for seamless sign-in.
 * Manual registration and sign-in for flexibility.
+
 **2.Blog Post Management**:
 * Create, edit, and delete blog posts with cover images, titles, tags, and content.
+
 **3.Comment**:
 * Comment on posts and delete own comments.
+  
 **4.Profile Management**:
 * Personalized profiles with the ability to update details.
+  
 **5.Follow System**:
 * Follow or unfollow other contributors.
 * Receive personalized posts from followed contributors.
+  
 **6.Security**:
 * Robust  authorization mechanisms.
 * Limited deletion rights to ensure post and comment integrity.
+  
 **7.Search Functionality**:
 * Efficient search for posts, tags, and contributors.
 *Search posts by tags for a more targeted exploration.
