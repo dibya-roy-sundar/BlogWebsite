@@ -12,13 +12,8 @@
   </p>
   <p>
 
-[![Build Status](https://travis-ci.com/dibya-roy-sundar/Ink.svg?branch=master)](https://travis-ci.com/dibya-roy-sundar/Ink)
-[![NPM version](https://img.shields.io/npm/v/Ink?style=flat-square)](https://img.shields.io/npm/v/Ink?style=flat-square)
-[![Package size](https://img.shields.io/bundlephobia/min/Ink)](https://img.shields.io/bundlephobia/min/Ink)
-[![Dependencies](https://img.shields.io/david/dibya-roy-sundar/Ink.svg?style=popout-square)](https://david-dm.org/dibya-roy-sundar/Ink)
-[![devDependencies Status](https://david-dm.org/dibya-roy-sundar/Ink/dev-status.svg?style=flat-square)](https://david-dm.org/dibya-roy-sundar/Ink?type=dev)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![Twitter](https://img.shields.io/twitter/follow/luctstt.svg?label=Follow&style=social)](https://twitter.com/luctstt)
+[![live link](https://ink-corner.onrender.com/)
+
 
   </p>
 </div>
