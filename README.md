@@ -21,10 +21,10 @@
 
 **Content**
 
-* [Features](##Features)
-* [Live Link](##Reference)
-* [Tech Stack](##TechStack)
-* [Getting Started ](##GettingStarted)
+* [Features]([##Features](https://github.com/dibya-roy-sundar/INK-CORNER?tab=readme-ov-file#features-))
+* [Live Link]([##Reference](https://github.com/dibya-roy-sundar/INK-CORNER?tab=readme-ov-file#reference-))
+* [Tech Stack](https://github.com/dibya-roy-sundar/INK-CORNER?tab=readme-ov-file#tech-stack-)
+* [Getting Started ](https://github.com/dibya-roy-sundar/INK-CORNER?tab=readme-ov-file#getting-started-)
 * [ Contributing ](https://github.com/dibya-roy-sundar/INK-CORNER?tab=readme-ov-file#contributing-)
 
 
