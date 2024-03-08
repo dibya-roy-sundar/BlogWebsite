@@ -12,12 +12,12 @@ const imageSchema=new Schema({
   url:String,
   filename:String
 })
-imageSchema.virtual('individual').get(function (){
-  return this.url.replace('/upload','/upload/w_600,h_400')
-})
-imageSchema.virtual('thumbnail').get(function (){
-  return this.url.replace('/upload','/upload/w_250,h_150')
-})
+// imageSchema.virtual('individual').get(function (){
+//   return this.url.replace('/upload','/upload/w_600,h_400')
+// })
+// imageSchema.virtual('thumbnail').get(function (){
+//   return this.url.replace('/upload','/upload/w_250,h_150')
+// })
 const postSchema = new Schema({
   title:String,
   content:String,
