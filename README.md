@@ -5,7 +5,7 @@
   <br>
   <br>
   <p>
-    <b>Ink</b>
+    <b>Ink Corner</b>
   </p>
   <p>
      <i>Where ideas meet pixels, a modern haven for tech enthusiasts to share their insights, code their narratives, and leave an indelible mark on the digital canvas of innovation. Elevate your tech discourse, embrace the future of blogging with creativity at the forefront</i>
