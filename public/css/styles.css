@@ -1159,9 +1159,10 @@ textarea {
   margin: 8px 10px;
 }
 .postthumbnail img {
-  height: 130px;
-  width: 240px;
-  border-radius: 15px;
+      /* height: 130px; */
+      width: 150px;
+      border-radius: 15px;
+      object-fit: contain;
 }
 .postcard a {
   text-decoration: none;
