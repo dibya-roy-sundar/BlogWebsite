@@ -25,7 +25,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/auth/google/redirect",
+      callbackURL: "https://dibyas-journal.onrender.com/auth/google/redirect",
     },
     async (accessToken, refreshToken, profile, done) => {
       // passport callback functiom
