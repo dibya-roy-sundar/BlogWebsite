@@ -25,7 +25,7 @@
 * [Live Link](##Reference)
 * [Tech Stack](##TechStack)
 * [Getting Started ](##GettingStarted)
-* [ Contributing ](##Contributing)
+* [ Contributing ](https://github.com/dibya-roy-sundar/INK-CORNER?tab=readme-ov-file#contributing-)
 
 
 ## Features ✨
