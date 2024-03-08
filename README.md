@@ -21,14 +21,12 @@
 
 **Content**
 
-* [Features](##features)
-* [Install](##install)
-* [Usage](##usage)
-* [Exemples](##exemples)
-* [Documentation](##documentation)
-* [API](##Api)
-* [Contributing](##contributing)
-* [Maintainers](##maintainers)
+* [Features](##Features)
+* [Live Link](##Reference)
+* [Tech Stack](##TechStack)
+* [Getting Started ](##GettingStarted)
+* [ Contributing ](##Contributing)
+
 
 ## Features ✨
 **1. Authentication**:
@@ -56,6 +54,28 @@
 * Efficient search for posts, tags, and contributors.
 *Search posts by tags for a more targeted exploration.
 
+## Reference 🐙
+**Deployed Live Link**
+
+* ```https://ink-corner.onrender.com/```
+* [Ink Corner](https://ink-corner.onrender.com/)
+
+## Tech Stack 🧑‍💻
+* HTML
+* CSS
+* Javascript
+* EJS
+* Node.js
+* Express.js
+* MongoDB( [MongoDB Indexing](https://dibya-roy.hashnode.dev/boost-database-performance-in-mongodb-by-indexing) , Aggregation Pipeline , Sub-Aggregation pipeline )
+* MongoDB Atlas
+* Cloudinary
+* Passport.js
+* Google Oauth2.0
+* Gihub Oauth2.0
+
+	 
+
 ## Getting Started 💡
 1. Clone this repository:
    
@@ -82,7 +102,6 @@
 	  ```bash
 	  node app.js
 	  ```
-   
 6. Open your web browser and navigate to `http://localhost:3000` to access `INK CORNER`.
 
 
@@ -91,11 +110,7 @@ Contributions to `INK CORNER` are welcome! If you find any bugs or want to add n
 
 
 ## License ⚖️
-Enter what kind of license you're using.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/dibya-roy-sundar/INK-CORNER/blob/master/LICENSE) file for more information.
 
----
-<div align="center">
-	<b>
-		<a href="https://www.npmjs.com/package/get-good-readme">File generated with get-good-readme module</a>
-	</b>
-</div>
+
+
