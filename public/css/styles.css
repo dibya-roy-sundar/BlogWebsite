@@ -1616,7 +1616,9 @@ textarea {
 :root {
   --button-width: 150px;
   --btn-width:85px;
+  --butn-width:100px;
   --spinnercmnt-width:calc(var(--btn-width) / 6);
+  --spinnerupdateprofile-width:calc(var(--butn-width) / 6);
   --spinner-width: calc(var(--button-width) / 6);
   --blue: #0076d3;
   --btn-bg: #8bc34a;
@@ -1647,6 +1649,9 @@ textarea {
 .cmntdltbtnsubmitter{
   min-width: var(--btn-width);
 }
+.profileupdatebtnsubmitter{
+  min-width: var(--butn-width);
+}
 
 .buttonSubmitter:focus {
   outline: 0;
@@ -1662,6 +1667,10 @@ textarea {
 .cmntdltbtnsubmitter.animate {
   width: calc(var(--btn-width) / 2.2);
   height: calc(var(--btn-width) / 2.2);
+}
+.profileupdatebtnsubmitter.animate {
+  width: calc(var(--butn-width) / 2.2);
+  height: calc(var(--butn-width) / 2.2);
 }
 
 .buttonSubmitter.animate:after {
@@ -1684,6 +1693,12 @@ textarea {
  
   width: var(--spinnercmnt-width);
   height: var(--spinnercmnt-width);
+  
+}
+.profileupdatebtnsubmitter.animate:after {
+ 
+  width: var(--spinnerupdateprofile-width);
+  height: var(--spinnerupdateprofile-width);
   
 }
 

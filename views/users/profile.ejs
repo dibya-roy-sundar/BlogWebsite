@@ -38,10 +38,10 @@
                 <% if (currentUser && !currentUser._id.equals(user._id)) { %>
                   
                     <% if (!isfollower) { %>
-                      <form class="follow" action="/user/<%=user._id%>/follow" method="get"> <button><i class="ri-add-fill"></i>  Follow</button></form>
+                      <form class="follow " action="/user/<%=user._id%>/follow" method="get"> <button class="buttonSubmitter profileupdatebtnsubmitter"><i class="ri-add-fill"></i>  Follow</button></form>
 
                     <% } else { %>
-                    <form class="unfollow" action="/user/<%=user._id%>/unfollow" method="get"> <button><i class="ri-check-fill"></i> Following</button></form>
+                    <form class="unfollow" action="/user/<%=user._id%>/unfollow" method="get"> <button class="buttonSubmitter profileupdatebtnsubmitter"><i class="ri-check-fill"></i> Following</button></form>
 
                     <%}%>
                  
@@ -144,5 +144,26 @@
 </div>
 
 
+<script>
+  // animation button 
+var animateButton = function (e) {
+    e.preventDefault;
+    //reset animation
+    e.target.classList.remove("animate");
+    e.target.innerHTML = "";
 
+    e.target.classList.add("animate");
+
+    e.target.classList.add("animate");
+    setTimeout(function () {
+      e.target.classList.remove("animate");
+    }, 200000);
+  };
+
+  var classname = document.getElementsByClassName("buttonSubmitter");
+
+  for (var i = 0; i < classname.length; i++) {
+    classname[i].addEventListener("click", animateButton, false);
+  }
+</script>
 

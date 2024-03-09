@@ -35,7 +35,7 @@
       <input type="text" name="githuburl" id="githuburl">
       <span id="githubMismatch">Check the GitHub URL, please.</span>
     </div>
-    <button class="update-button">Update</button>
+    <button class="update-button buttonSubmitter profileupdatebtnsubmitter">Update</button>
   </form>
 </div>
 
@@ -83,5 +83,26 @@ async function getlocation(){
         location.value=showlocation;
         }
 
+
+        // animation button 
+var animateButton = function (e) {
+    e.preventDefault;
+    //reset animation
+    e.target.classList.remove("animate");
+    e.target.innerHTML = "";
+
+    e.target.classList.add("animate");
+
+    e.target.classList.add("animate");
+    setTimeout(function () {
+      e.target.classList.remove("animate");
+    }, 200000);
+  };
+
+  var classname = document.getElementsByClassName("buttonSubmitter");
+
+  for (var i = 0; i < classname.length; i++) {
+    classname[i].addEventListener("click", animateButton, false);
+  }
 
   </script>
