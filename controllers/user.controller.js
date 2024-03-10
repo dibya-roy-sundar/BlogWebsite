@@ -17,8 +17,8 @@ const register = catchAsync(async (req, res) => {
     const joineddate=storeJoinedDate(new  Date())
    
     const avatar={
-      url:'https://res.cloudinary.com/divzblxkc/image/upload/v1704094975/INKCORNER/axkgcfuwxxvrzujlmboj.png',
-      filename: 'INKCORNER/axkgcfuwxxvrzujlmboj'
+      url:'https://res.cloudinary.com/divzblxkc/image/upload/v1704887876/INKCORNER/jibdlwl1t44vzwf755kv.png',
+      filename: 'INKCORNER/jibdlwl1t44vzwf755kv'
     }
 
 
