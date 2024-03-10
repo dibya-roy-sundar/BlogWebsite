@@ -124,5 +124,11 @@ const isNotFollower=async (req,res,next)=>{
 //     }
 // }    
 
+const usernametolowercase=async (req,res,next)=>{
+    req.body.username=req.body.username.toLowerCase();
+    next();
 
-export {validatepost,validatecomment,isLoggedIn,storeReturnTo,isAuthor,isCommentAuthor,isUser,isNotUser,isNotFollower};
+}
+
+
+export {validatepost,validatecomment,isLoggedIn,storeReturnTo,isAuthor,isCommentAuthor,isUser,isNotUser,isNotFollower,usernametolowercase};

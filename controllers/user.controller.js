@@ -2,6 +2,7 @@ import { User } from "../models/user.model.js";
 import { catchAsync } from "../utils/CatchAsync.js";
 import { storeJoinedDate } from "../utils/CurrentDate.js";
 
+
 const registerForm = (req, res) => {
   res.render("users/register");
 };
@@ -10,7 +11,9 @@ const loginForm = (req, res) => {
 };
 const register = catchAsync(async (req, res) => {
   try {
-    const { email, username, password } = req.body;
+    let { email, username, password } = req.body;
+    username=username.toLowerCase();  
+    email=email.toLowerCase();
     const joineddate=storeJoinedDate(new  Date())
    
     const avatar={

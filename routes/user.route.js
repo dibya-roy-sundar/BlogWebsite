@@ -4,6 +4,7 @@ import passport from "passport";
 import { isAuthor, isLoggedIn, storeReturnTo } from "../middleware.js";
 import { User } from "../models/user.model.js";
 import LocalStrategy from "passport-local";
+import { usernametolowercase } from "../middleware.js";
 
 
 const router=express.Router();
@@ -18,7 +19,7 @@ router.route("/register")
 
 router.route("/login")      
       .get(loginForm)
-      .post(storeReturnTo,passport.authenticate("local",{ failureFlash:true,failureRedirect:"/user/login"}) ,login);
+      .post(storeReturnTo,usernametolowercase,passport.authenticate("local",{ failureFlash:true,failureRedirect:"/user/login"}) ,login);
 
 
 router.route("/forgot")
