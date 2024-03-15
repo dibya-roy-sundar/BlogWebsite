@@ -13,12 +13,13 @@ const register = catchAsync(async (req, res) => {
   try {
     let { email, username, password } = req.body;
     username=username.toLowerCase();  
+    username = username.charAt(0).toUpperCase() + username.slice(1);
     email=email.toLowerCase();
     const joineddate=storeJoinedDate(new  Date())
    
     const avatar={
-      url:'https://res.cloudinary.com/divzblxkc/image/upload/v1704887876/INKCORNER/jibdlwl1t44vzwf755kv.png',
-      filename: 'INKCORNER/jibdlwl1t44vzwf755kv'
+      url:'https://res.cloudinary.com/divzblxkc/image/upload/v1710539584/INKCORNER/edeu9anvwm3cfydiulh8.png',
+      filename: 'INKCORNER/edeu9anvwm3cfydiulh8'
     }
 
 
@@ -28,7 +29,7 @@ const register = catchAsync(async (req, res) => {
       if (e) {
         return next(e);
       } else {
-        req.flash("success", "welcome to Ink Corner Blogs");
+        req.flash("success", "welcome to Ink Corner");
         res.redirect("/");
       }
     });
@@ -44,15 +45,21 @@ const login = catchAsync(async (req, res) => {
   res.redirect(redirectUrl);
 });
 
-const logout = (req, res) => {
-  req.session.destroy((e) => {
-    if (e) {
-      return next(e);
-    } else {
-      //   req.flash("success", "good bye!");
-      res.redirect("/");
-    }
-  });
+const logout = (req, res,next) => {
+  req.logout((e)=> {
+    if (e) { return next(err); }
+    
+    req.flash("success", "Good Bye!");
+    res.redirect('/');
+  })  
+  // req.session.destroy((e) => {
+  //   if (e) {
+  //     return next(e);
+  //   } else {
+  //       req.flash("success", "good bye!");
+  //     res.redirect("/");
+  //   }
+  // });
 };
 
 const forgotForm = (req, res) => {

@@ -125,7 +125,9 @@ const isNotFollower=async (req,res,next)=>{
 // }    
 
 const usernametolowercase=async (req,res,next)=>{
+    
     req.body.username=req.body.username.toLowerCase();
+    req.body.username = req.body.username.charAt(0).toUpperCase() + req.body.username.slice(1);
     next();
 
 }

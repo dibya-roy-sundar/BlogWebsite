@@ -7,16 +7,16 @@
   font-family: "Quicksand", sans-serif;
 }
 
+ul {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
 /* body{  margin:0; position:relative; } */
 main {
   min-height: 100vh;
   /* position: relative; */
-}
-header {
-  min-height: 50px;
-  background-color: rgb(247, 248, 248);
-  padding: 30px;
-  padding-right: 8px;
 }
 
 /* Trick: */
@@ -31,8 +31,10 @@ footer {
 
 .container1 {
   margin: 0;
-  height: 30px;
   width: 100%;
+  transition: all 0.2s ease-in-out;
+  padding: 0.75rem;
+  padding-right: 8px;
 }
 
 a {
@@ -48,11 +50,14 @@ li {
   align-items: center;
 }
 header {
+  min-height: 50px;
+  background-color: rgb(247, 248, 248);
   position: fixed;
   top: 0;
   width: 100%;
   margin-bottom: 50px;
   backdrop-filter: blur(10px);
+  z-index: 1;
 }
 header.transparent {
   background-color: rgba(
@@ -61,8 +66,9 @@ header.transparent {
     255,
     0.5
   ); /* Initial transparent background color */
-  z-index: 1;
 }
+
+/* navbar */
 
 header nav {
   position: sticky;
@@ -164,6 +170,64 @@ header .logo a img {
 .searchbtn i {
   color: #6458d5;
 }
+.menuicon{
+  display: none;
+}
+
+.closeicon{
+  display: none;
+}
+
+.mobileusername{
+  display: none;
+}
+
+.menuicon i,
+.closeicon i{
+  font-size: 2rem;
+}
+
+@media (max-width:900px) {
+  .container1{
+    flex-direction: column;
+    z-index: 200;
+    background-color: white;
+    box-shadow: 0 0 10px 0 gray;
+    position: absolute;
+    top:-400px;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .searchbarjoint{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menuicon{
+    display: block;
+    position: absolute;
+    right: 1rem;
+    cursor: pointer;
+  }
+
+  .closeicon{
+    display: block;
+    position: absolute;
+    right: 1rem;
+    cursor: pointer;
+  }
+
+  .searchform input{
+    background-color: rgb(247, 248, 248);
+  }
+
+  .mobileusername{
+    display: inline;
+    color: #000000;
+    font-size: 1rem;
+  }
+}
 
 /* footer */
 
@@ -261,6 +325,14 @@ header .logo a img {
 }
 .footercontainer ul {
   padding-left: 0;
+}
+
+@media (max-width:900px) {
+  .footercontainer .links{
+    /* flex-direction: column-reverse;
+    gap: 1rem; */
+    display: none;
+  }
 }
 
 /* sign in */
@@ -461,6 +533,20 @@ header .logo a img {
   font-size: 60px;
 }
 
+.mobileswitch{
+  display: none;
+}
+
+@media (max-width:900px) {
+  .existingusercontainer, .newusercontainer{
+    display: none;
+  }
+
+  .mobileswitch{
+    display: block;
+  }
+}
+
 /*        new form     */
 
 .newcontainer #newformcompose {
@@ -631,6 +717,24 @@ textarea {
   font-weight: 700;
 }
 
+@media (max-width: 1000px) {
+  .newfrmcontent {
+    width: 70%;
+  }
+}
+
+@media (max-width: 800px) {
+  .newfrmcontent {
+    width: 80%;
+  }
+}
+
+@media (max-width: 600px) {
+  .newfrmcontent {
+    width: 90%;
+  }
+}
+
 /* Add your existing CSS styles and then include the following */
 
 .profile-container {
@@ -731,7 +835,7 @@ textarea {
   margin-top: 8px;
 }
 
-/* profile page */
+/*              profile page         */
 
 .avatar img {
   height: 180px;
@@ -747,7 +851,6 @@ textarea {
   gap: 1rem;
   border-radius: 2rem;
   padding: 30px;
-  position: relative;
   margin: 20px auto;
   box-shadow: 0 0 20px 0 #dbdbdb;
 }
@@ -827,7 +930,8 @@ textarea {
 .followingscnt h4 {
   margin-bottom: 0;
   text-align: center;
-  font-size: 24px;
+  font-size: 26px;
+  font-weight: 500;
 }
 .followercnt p,
 .followingscnt p {
@@ -959,7 +1063,7 @@ textarea {
 }
 .nopost {
   text-align: center;
-  font-size: 54px;
+  font-size: 2rem;
   font-weight: 200;
   color: rgb(117, 117, 115);
 }
@@ -1062,6 +1166,63 @@ textarea {
   margin-right: 4px;
 }
 
+@media (max-width: 1100px) {
+  .authordesc {
+    align-items: center;
+  }
+
+  .profiledetails {
+    flex-direction: column;
+    align-items: center;
+  }
+  .profiledetails p {
+    margin-bottom: 0;
+  }
+
+  .aboutjoint {
+    flex-direction: column;
+  }
+
+  .avatar img {
+    height: 120px;
+    width: 120px;
+  }
+
+  .profiledesc {
+    flex-direction: column;
+  }
+
+  .editprofilebtn, .followbtn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 800px) {
+  .profile {
+    width: 75%;
+  }
+
+  .eachpost {
+    flex-direction: column;
+  }
+
+  .eachpost p {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile {
+    width: 85%;
+  }
+}
+
+@media (max-width: 450px) {
+  .profile {
+    width: 95%;
+  }
+}
+
 /* change password form */
 
 .form-container {
@@ -1112,7 +1273,9 @@ textarea {
 
   align-items: center;
   gap: 25px;
-  padding: 20px 250px;
+  width: 65%;
+  margin: 0 auto;
+  padding: 20px 0;
 }
 
 .postcard {
@@ -1159,10 +1322,10 @@ textarea {
   margin: 8px 10px;
 }
 .postthumbnail img {
-      /* height: 130px; */
-      width: 150px;
-      border-radius: 15px;
-      object-fit: contain;
+  /* height: 130px; */
+  width: 150px;
+  border-radius: 15px;
+  object-fit: contain;
 }
 .postcard a {
   text-decoration: none;
@@ -1218,9 +1381,8 @@ textarea {
   padding: 7px 14px;
   border-radius: 29px;
 }
-.tagcardsearch:hover{
+.tagcardsearch:hover {
   box-shadow: 0px 1px 2px 0px #989898;
-
 }
 .profilecardsearch .avatarimg img {
   height: 45px;
@@ -1234,7 +1396,8 @@ textarea {
   color: rgb(62, 61, 61);
   margin-bottom: 0;
   margin-top: 7px;
-  font-size: 1.75rem;
+  font-size: 1.6rem;
+  font-weight: 700;
 }
 .tagcardsearch {
   padding-top: 5px;
@@ -1242,7 +1405,7 @@ textarea {
 .tagcardsearch p {
   margin: 0;
   font-size: 2.2rem;
-  color: rgb(62,61,61);
+  color: rgb(62, 61, 61);
 }
 .tagcardsearch i {
   position: relative;
@@ -1268,6 +1431,39 @@ textarea {
   margin: 0;
 
 } */
+
+@media (max-width: 1000px) {
+  .homepostcontainer {
+    width: 75%;
+  }
+}
+
+@media (max-width: 800px) {
+  .homepostcontainer {
+    width: 85%;
+  }
+
+  .postdetails {
+    flex-direction: column;
+  }
+
+  .postthumbnail {
+    display: flex;
+    justify-content: center;
+  }
+
+  .postthumbnail img {
+    height: 140px;
+    width: 300px;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 600px) {
+  .homepostcontainer {
+    width: 95%;
+  }
+}
 
 /* individual post */
 
@@ -1308,7 +1504,7 @@ textarea {
   font-size: 1.25rem;
   font-weight: 400;
   color: #393939;
-      resize: none;
+  resize: none;
 }
 .individualpost .cmntsubbtn {
   display: flex;
@@ -1333,7 +1529,6 @@ textarea {
   flex-direction: column;
   gap: 12px;
 
-  padding: 15px;
   padding-top: 5px;
   margin-left: 0;
   padding-left: 0;
@@ -1469,7 +1664,7 @@ textarea {
 .individualpost .posttagcontainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 10px;
 }
 .individualpost .tagcard button {
@@ -1516,8 +1711,7 @@ textarea {
   position: relative;
 }
 .individualpost .sticky_options {
-  bottom: 10%;
-  z-index: 100;
+  bottom: 3%;
 }
 .individualpost .options {
   display: none;
@@ -1574,6 +1768,24 @@ textarea {
   height: 400px;
   object-fit: contain;
   border-radius: 1rem;
+  max-width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .individualpost {
+    flex-direction: column;
+  }
+
+  .individualpost .datetagjoint {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .individualpost {
+    padding: 2rem 1rem;
+  }
 }
 
 .editcontainertitle {
@@ -1598,13 +1810,11 @@ textarea {
   color: #626060;
 }
 
-
-.homesuggestioncont button:hover,.homeallsuggestion button,
-.followingfollowersuggestion button{
+.homesuggestioncont button:hover,
+.homeallsuggestion button,
+.followingfollowersuggestion button {
   background: #d5f3d9;
 }
-
-
 
 .homesuggestioncont button i {
   font-size: 1.6rem;
@@ -1612,13 +1822,12 @@ textarea {
   top: 3.5px;
 }
 
-
 :root {
   --button-width: 150px;
-  --btn-width:85px;
-  --butn-width:100px;
-  --spinnercmnt-width:calc(var(--btn-width) / 6);
-  --spinnerupdateprofile-width:calc(var(--butn-width) / 6);
+  --btn-width: 85px;
+  --butn-width: 100px;
+  --spinnercmnt-width: calc(var(--btn-width) / 6);
+  --spinnerupdateprofile-width: calc(var(--butn-width) / 6);
   --spinner-width: calc(var(--button-width) / 6);
   --blue: #0076d3;
   --btn-bg: #8bc34a;
@@ -1642,14 +1851,13 @@ textarea {
   border: 0;
   transition: all ease-in-out 0.2s, width ease-in-out 0.2s;
 }
-.newbtnsubmitter{
+.newbtnsubmitter {
   transition: all ease-in-out 0.4s, width ease-in-out 0.4s;
-
 }
-.cmntdltbtnsubmitter{
+.cmntdltbtnsubmitter {
   min-width: var(--btn-width);
 }
-.profileupdatebtnsubmitter{
+.profileupdatebtnsubmitter {
   min-width: var(--butn-width);
 }
 
@@ -1686,20 +1894,16 @@ textarea {
   transform: translate(-50%, -50%);
   animation: spin ease-in 7s forwards;
 }
-.newbtnsubmitter.animate:after{
+.newbtnsubmitter.animate:after {
   animation: spin ease-in 12s forwards;
 }
 .cmntdltbtnsubmitter.animate:after {
- 
   width: var(--spinnercmnt-width);
   height: var(--spinnercmnt-width);
-  
 }
 .profileupdatebtnsubmitter.animate:after {
- 
   width: var(--spinnerupdateprofile-width);
   height: var(--spinnerupdateprofile-width);
-  
 }
 
 /* Keyframe Animations */
@@ -1711,32 +1915,29 @@ textarea {
     transform: translate(-50%, -50%) rotate(3600deg) scale(1);
   }
 }
-.searchoptions{
+.searchoptions {
   display: flex;
   justify-content: center;
   gap: 12px;
   margin-top: 2rem;
 }
-.searchoptions button{
+.searchoptions button {
   background: transparent;
   border: none;
   font-size: 1.5rem;
   border-radius: 2rem;
   padding: 0rem 1.3rem 0.5rem;
   color: #626060;
-
 }
-.searchoptions button i{
- position: relative;
- top: 4px;
+.searchoptions button i {
+  position: relative;
+  top: 4px;
   font-size: 1.75rem;
 }
 .searchoptions button:hover,
-.searchactive
-{
+.searchactive {
   background: #d5f3d9;
   border-radius: 2rem;
-
 }
 .searchtitle p {
   font-size: 2.5rem;
@@ -1745,70 +1946,77 @@ textarea {
   color: #343333;
 }
 
-
-.flash-container{
-    position: fixed;
-    top: 100px;
-    left: 250px;
-     /* transform: rotate(-90deg); */
-    transform-origin: 0 0;
-    box-sizing: border-box;
-    width: 50%;
-    max-width: 250px;
-    margin-left: -250px;
-    padding: 10px;
-    transition:all 0.2s ease-in-out;
-    z-index: 2000;
-}
-.flash{
-    border-radius:  10px ;
-    opacity: 1;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@media (max-width:1000px) {
+  .searchoptions{
+    padding: 0.5rem;
+  }
+  .searchoptions button{
+    padding: 0rem 0.7rem 0.5rem;
+  }
 }
 
-.flash p{
-    margin: 0;
-    padding: 5px;
-    padding-left: 20px;
+.flash-container {
+  position: fixed;
+  top: 100px;
+  left: 250px;
+  /* transform: rotate(-90deg); */
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  width: 50%;
+  max-width: 250px;
+  margin-left: -250px;
+  padding: 10px;
+  transition: all 0.2s ease-in-out;
+  z-index: 2000;
+}
+.flash {
+  border-radius: 10px;
+  opacity: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.flash img{
-    height: 25px;
+.flash p {
+  margin: 0;
+  padding: 5px;
+  padding-left: 20px;
 }
 
-.flash-success{
-    background-color: #a9f5c4;
-    border: 1.5px solid #418a5a;
-    color: #418a5a;
+.flash img {
+  height: 25px;
 }
 
-.flash-error{
-    background-color: #ffc0c0;
-    border: 1.5px solid #c32f08;
-    color: #c32f08;
+.flash-success {
+  background-color: #a9f5c4;
+  border: 1.5px solid #418a5a;
+  color: #418a5a;
 }
 
+.flash-error {
+  background-color: #ffc0c0;
+  border: 1.5px solid #c32f08;
+  color: #c32f08;
+}
 
-.error{
+.error {
   /* background-color: rgb(255, 105, 105); */
   background-color: #ff7f7f;
   width: 60%;
   margin: 5vh 20% 5vh 20%;
   padding: 20px;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   border-radius: 20px;
   /* border: 2px solid rgb(160, 0, 0); */
   border: 2px solid #ab2400;
   box-shadow: 0 0 10px 0 #ab2400;
 }
-.error-heading{
+.error-heading {
   font-size: 2rem;
   font-weight: 600;
 }
-.error-content{
+.error-content {
   color: #ab2400;
   font-size: 1.1rem;
 }
@@ -1824,17 +2032,17 @@ textarea {
   margin-top: 10%;
 }
 
-.forget-password-form  .form-group {
+.forget-password-form .form-group {
   margin-bottom: 20px;
 }
 
-.forget-password-form  .form-group label {
+.forget-password-form .form-group label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-.forget-password-form  .form-group input {
+.forget-password-form .form-group input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -1842,7 +2050,7 @@ textarea {
   box-sizing: border-box;
 }
 
-.forget-password-form  .proceed-button {
+.forget-password-form .proceed-button {
   background-color: #4caf50;
   color: #fff;
   padding: 10px;
@@ -1852,7 +2060,7 @@ textarea {
   font-size: 16px;
 }
 
-.forget-password-form  .proceed-button:hover {
+.forget-password-form .proceed-button:hover {
   background-color: #45a049;
 }
 .set-password-form {
@@ -1884,18 +2092,18 @@ textarea {
   border-radius: 4px;
   box-sizing: border-box;
 }
-.set-password-form .form-group{
-position: relative;
-/* font-size: 1.2rem; */
+.set-password-form .form-group {
+  position: relative;
+  /* font-size: 1.2rem; */
 }
 
-.set-password-form .form-group i{
-position: absolute;
-right: 20px;
-top: 40px;
-font-size: 1rem;
-transform: scale(1.5);
-cursor: pointer;
+.set-password-form .form-group i {
+  position: absolute;
+  right: 20px;
+  top: 40px;
+  font-size: 1rem;
+  transform: scale(1.5);
+  cursor: pointer;
 }
 
 .set-password-form .done-button {
@@ -1911,4 +2119,121 @@ cursor: pointer;
 
 .set-password-form .done-button:hover {
   background-color: #45a049;
+}
+
+
+/* followers and foolowings in profile */
+.followingcontainer,.followercontainer{
+  display: none;
+}
+.followercnt button,.followingscnt button{
+  padding: 3px;
+  background: none;
+  border: none;
+  color: #3a3adb;
+}
+.followercnt,.followingscnt{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.followerconatineractive,.followingconatineractive{
+  display: block;
+    position: fixed;
+    z-index: 5;
+    background: white;
+    margin-top: auto;
+    top: 25vh;
+    padding: 20px 20px 40px;
+    border-radius: 2rem;
+    height: 50vh;
+    width: 300px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    box-shadow: 0 0 0 100vw #00000070;
+}
+
+@media (max-width:1000px) {
+  .followerconatineractive,.followingconatineractive{
+    height:65vh;
+    top: 21vh;
+  }
+}
+
+@media (max-width:700px) {
+  .followerconatineractive,.followingconatineractive{
+    height: 71vh;
+    top: 17vh;
+  }
+}
+.btnprofilepopup{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding: 0 0 0 1rem;
+  position: sticky;
+    top: 0;
+    z-index: 5;
+    backdrop-filter: blur(40px);
+    border-radius: 1.5rem;
+}
+.btnprofilepopup p{
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.crossiconpopup{
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+.crossiconpopup i {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+  background: #c9c9c9;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  /* padding: 0.1rem; */
+}
+.showuserscontainer{
+  padding:0 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.profilesubscard{
+  display: flex;
+  padding: 0.5rem;
+  gap: 2rem;
+  box-shadow: -2px 4px 6px 0px #e4dddd;
+  border-radius: 1rem;
+
+
+}
+.useravatarimg img{
+  height: 3.5rem;
+  width: 3.5rem;
+}
+.useravatartitle p{
+  margin-bottom: 0;
+
+}
+.useravatartitle{
+  display: flex;
+  align-items: center;
+  font-size: 1.75rem;
+  color: #545252;
+}
+
+
+.changepwforminput{
+  position: relative;
+}
+.changepwforminput i{
+  position: absolute;
+  font-size: 1.5rem;
+  right: 0.5rem;
+  top: 2.25rem;
 }

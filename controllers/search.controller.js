@@ -22,7 +22,7 @@ const peformAllSearch = async (whattosearch) => {
     { searchscore: { $meta: "textScore" } }
   );
 
-
+ 
   const searchresults = [...posts, ...tags, ...accounts];
   searchresults.sort((a,b) => b.searchscore-a.searchscore);
   return searchresults;
@@ -91,6 +91,7 @@ const searchPosts = catchAsync(async (req, res) => {
     { $text: { $search: whattosearch } },
     { searchscore: { $meta: "textScore" } }
   ).populate("author");
+  
   searchposts.sort((a,b) => b.searchscore-a.searchscore);
 
   const searchtype='post';

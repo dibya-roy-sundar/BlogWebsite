@@ -66,9 +66,12 @@ return this.url.replace('/upload','/upload/w_45,h_45/r_max/f_auto')
         
 
         await Subscription.deleteMany({ $or: [{ follower: user._id }, { following: user._id }] });
-        if(user.edited){
-            await cloudinary.uploader.destroy(user.avatar.filename);
-        }
+        
+            if(user.avatar.filename!=='INKCORNER/edeu9anvwm3cfydiulh8'){
+                console.log(user.avatar.filename);
+                await cloudinary.uploader.destroy(user.avatar.filename);
+            }
+        
 
         
 

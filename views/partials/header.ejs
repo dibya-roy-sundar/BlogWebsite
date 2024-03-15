@@ -1,71 +1,86 @@
-
 <header id="header">
-        <nav class="container1 flex">
-          
-            <div class="logo flex">
-              <a href="/"><img src="/images/ink-corner-high-resolution-logo-transparent-green.png" alt=""></a>
+  <div class="menuicon"><i class="ri-menu-line"></i></div>
+  <nav class="container1 flex">
+    <div class="closeicon"><i class="ri-close-fill"></i></div>
+    <div class="logo flex">
+      <a href="/"
+        ><img
+          src="/images/ink-corner-high-resolution-logo-transparent-green.png"
+          alt=""
+      /></a>
+    </div>
+    <div class="navlist flex">
+      <a href="/post/new"><button>✒️Compose</button></a>
+    </div>
 
-            </div>
-            <div class="navlist flex">
-              <ul class="flex">
-               <!-- <li><a href="/">Home</a></li> -->
-               <!-- <li><a href="/about">About Us</a></li>
-               <li><a href="/contact">Contact Us</a></li> -->
-               <li><a href="/post/new"><button>✒️</button></a></li>
-              </ul>
-            </div>
-            
+    <div class="searchbarjoint">
+      <div class="searchbar">
+        <form class="searchform" action="/search/all" method="post">
+          <input
+            type="text"
+            placeholder="Search for tags,people,articles"
+            name="search"
+            class="searchInput"
+          />
+          <button class="searchBtn">🔍</button>
+        </form>
+      </div>
+      <div class="signinusernavbar">
+        <% if (!currentUser) { %>
+        <a href="/user/login"><button>Sign In</button></a>
+        <% } else{ %>
 
-            <div class="searchbarjoint">
-              <div class="searchbar">
-                <form class="searchform" action="/search/all" method="post">
-                  <input type="text"  placeholder="Search for tags,people,articles"
-                  name="search" class="searchInput">     
-                  <button class="searchBtn">🔍</button>         
-                </form>
-              </div>
-             <div class="signinusernavbar">         
-                  <% if (!currentUser) { %>
-                <a href="/user/login"><button>Sign In</button></a>
-                <% } else{ %>
-                
-                  <a  href=  "/user/<%=currentUser._id%>"> <img  id="avatar" src="<%= currentUser.avatar.thumbnail %>" alt="user avatar thumbnail"></a>
-                  
-                  <% } %>
-              </div>    
-              
-            </div>
-            
-          </nav>
-         
-        </header >
-      
-        <script>
-          window.addEventListener('scroll', function() {
-            var header = document.querySelector('header');
-            var scrollPosition = window.scrollY;
-      
-            if (scrollPosition > 35) { // Adjust the scroll position threshold as needed
-              header.classList.add('transparent');
-            } else {
-              header.classList.remove('transparent');
-            }
-          });
-        </script>        
-    
-        <script>
-          const searchtoggle=document.querySelector('.searchclick');
-const searchicon=document.querySelector('.searchbtn');
+        <a href="/user/<%=currentUser._id%>">
+          <img
+            id="avatar"
+            src="<%= currentUser.avatar.thumbnail %>"
+            alt="user avatar thumbnail"
+          />
+          <span class="mobileusername"><%= currentUser.username %></span>
+        </a>
+        <% } %>
+      </div>
+    </div>
+  </nav>
+</header>
 
+<script>
+  window.addEventListener("scroll", function () {
+    var header = document.querySelector("header");
+    var scrollPosition = window.scrollY;
 
-searchicon.addEventListener('click',()=>{
-  //  console.log('hello');
-   if(searchtoggle.style.display==='none'){
-      searchtoggle.style.display='block';
-   }else{
-      searchtoggle.style.display='none';
-   }
-})
-        </script>
-        
-        
+    if (scrollPosition > 35) {
+      // Adjust the scroll position threshold as needed
+      header.classList.add("transparent");
+    } else {
+      header.classList.remove("transparent");
+    }
+  });
+</script>
+
+<script>
+  const searchtoggle = document.querySelector(".searchclick");
+  const searchicon = document.querySelector(".searchbtn");
+
+  searchicon.addEventListener("click", () => {
+    //  console.log('hello');
+    if (searchtoggle.style.display === "none") {
+      searchtoggle.style.display = "block";
+    } else {
+      searchtoggle.style.display = "none";
+    }
+  });
+</script>
+
+<script>
+  const menuicon = document.querySelector(".menuicon");
+  const closeicon = document.querySelector(".closeicon");
+  const container1 = document.querySelector(".container1");
+
+  menuicon.addEventListener("click", () => {
+    container1.style.top = "0";
+  });
+  closeicon.addEventListener("click", () => {
+    container1.style.top = "-400px";
+  });
+</script>

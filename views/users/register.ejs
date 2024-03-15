@@ -1,123 +1,134 @@
 <% layout('layouts/boilerplate') %>
 
-
-
 <div class="authcontainer">
   <div class="existingusercontainer">
-      <div class="existinguser">
-          <h1>Welcome Back!</h1 >
-          <div class="desc">
-            <p>To keep connected with us please</p>
-            <p > login with your personal info</p>
-          </div>
-          <div class="existingsigninbtn">
-            <a href="/user/login"><button>Sign In</button></a>
-          </div>
-        </div>
-        
+    <div class="existinguser">
+      <h1>Welcome Back!</h1>
+      <div class="desc">
+        <p>To keep connected with us please</p>
+        <p>login with your personal info</p>
+      </div>
+      <div class="existingsigninbtn">
+        <a href="/user/login"><button>Sign In</button></a>
+      </div>
+    </div>
   </div>
 
   <div class="registercontainer">
-      <div class="register">
-          <h1 class="registertitle">Create Your Account</h1>
-          <form class="registerform" action="/user/register" method="post">
-            <div class="registercontent">
-              <div class="registerbox">
-                  <i class="ri-mail-line"></i>
-                  <div class="registerboxinput">
-                    <input type="email" id="email" class="registerinput emailinput" name="email" placeholder="Email" required>
-                  </div>
-                </div>
-              <div class="registerbox">
-                <i class="ri-user-3-line loginicon"></i>
-                <div class="registerboxinput">
-                  <input type="text" id="username" class="registerinput" name="username" placeholder="Username" required>
-                </div>
-              </div>
-              <div class="registerbox">
-                <i class="ri-lock-2-line loginicon"></i>
-                <div class="registerboxinput">
-                  <input type="password" id="password" class="registerinput" placeholder="Password" name="password" required>
-                  <i class="ri-eye-off-line login_eye" id="logineye"></i>
-                </div>
-              </div>
-            </div>
-            
-            <div class="register_btn">
-              <button class="registerbtn">
-                Sign Up
-              </button>
-            </div> 
-          </form>
-      </div>
-      <div class="oauthcontainer">
-          <p class="connection">Signup using social networks</p>
-          <div class="logo">
-            <div class="googlelogo">
-              <a href="/auth/google">
-                <div class="logowrapper">
-                  <img src="/images/google-logo.png" alt="google logo">
-                </div>
-              </a>
-            </div>
-            <div class="githublogo">
-              <a href="/auth/github">
-                <div class="logowrapper">
-                  <img src="/images/GitHub-logo.png" alt="github logo">
-                </div>
-              </a>
+    <div class="register">
+      <h1 class="registertitle">Create Your Account</h1>
+      <form class="registerform" action="/user/register" method="post">
+        <div class="registercontent">
+          <div class="registerbox">
+            <i class="ri-mail-line"></i>
+            <div class="registerboxinput">
+              <input
+                type="email"
+                id="email"
+                class="registerinput emailinput"
+                name="email"
+                placeholder="Email"
+                required
+              />
             </div>
           </div>
-      </div> 
-  </div>
+          <div class="registerbox">
+            <i class="ri-user-3-line loginicon"></i>
+            <div class="registerboxinput">
+              <input
+                type="text"
+                id="username"
+                class="registerinput"
+                name="username"
+                placeholder="Username"
+                required
+              />
+            </div>
+          </div>
+          <div class="registerbox">
+            <i class="ri-lock-2-line loginicon"></i>
+            <div class="registerboxinput">
+              <input
+                type="password"
+                id="password"
+                class="registerinput"
+                placeholder="Password"
+                name="password"
+                required
+              />
+              <i class="ri-eye-off-line login_eye" id="logineye"></i>
+            </div>
+          </div>
+        </div>
 
+        <div class="register_btn">
+          <button class="registerbtn">Sign Up</button>
+        </div>
+      </form>
+    </div>
+    <div class="oauthcontainer">
+      <p class="connection">Signup using social networks</p>
+      <div class="logo">
+        <div class="googlelogo">
+          <a href="/auth/google">
+            <div class="logowrapper">
+              <img src="/images/google-logo.png" alt="google logo" />
+            </div>
+          </a>
+        </div>
+        <div class="githublogo">
+          <a href="/auth/github">
+            <div class="logowrapper">
+              <img src="/images/GitHub-logo.png" alt="github logo" />
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <p class="mobileswitch">Already have an account? <a href="/user/login">Sign In</a></p>
+  </div>
 </div>
 
-
 <script>
-  function show(input,iconeye){
-    iconeye.addEventListener('click',()=>{
-      if(input.type==='password'){
-        input.type='text';
-        iconeye.classList.add('ri-eye-line');
-        iconeye.classList.remove('ri-eye-off-line');
-      }else{
-        input.type='password';
-        iconeye.classList.remove('ri-eye-line');
-        iconeye.classList.add('ri-eye-off-line');
+  function show(input, iconeye) {
+    iconeye.addEventListener("click", () => {
+      if (input.type === "password") {
+        input.type = "text";
+        iconeye.classList.add("ri-eye-line");
+        iconeye.classList.remove("ri-eye-off-line");
+      } else {
+        input.type = "password";
+        iconeye.classList.remove("ri-eye-line");
+        iconeye.classList.add("ri-eye-off-line");
       }
-    })
+    });
   }
 
-  
-    const input=document.getElementById('password');
-    const cnfinput=document.getElementById('cnfpassword');
-    const iconeye=document.getElementById('logineye');
-    const cnficoneye=document.getElementById('cnflogineye');
-    var mismatchSpan = document.getElementById('passwordMismatch');
+  const input = document.getElementById("password");
+  const cnfinput = document.getElementById("cnfpassword");
+  const iconeye = document.getElementById("logineye");
+  const cnficoneye = document.getElementById("cnflogineye");
+  var mismatchSpan = document.getElementById("passwordMismatch");
 
-    show(input,iconeye);
-    show(cnfinput,cnficoneye);
-    
+  show(input, iconeye);
+  show(cnfinput, cnficoneye);
 
-    function validatepass(){
-      if(input.value!==cnfinput.value){
-      setTimeout(()=>{
-        mismatchSpan.style.display = 'none';
-      },2500)
-      mismatchSpan.style.display = 'block';
-    }else{
-      mismatchSpan.style.display = 'none';
+  function validatepass() {
+    if (input.value !== cnfinput.value) {
+      setTimeout(() => {
+        mismatchSpan.style.display = "none";
+      }, 2500);
+      mismatchSpan.style.display = "block";
+    } else {
+      mismatchSpan.style.display = "none";
       // Passwords match, you can proceed with form submission or other actions
-      document.getElementById('registerform').submit();
+      document.getElementById("registerform").submit();
     }
-    }
-    document.getElementById('registerform').addEventListener('submit',(event)=>{
+  }
+  document
+    .getElementById("registerform")
+    .addEventListener("submit", (event) => {
       event.preventDefault();
       validatepass();
-    })
-    
-  
-
+    });
 </script>
-

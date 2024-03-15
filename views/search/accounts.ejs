@@ -22,15 +22,16 @@
             <p>Search results for "<%= whattosearch %>"</p>
         </div>
         <% searchaccounts.forEach(account => { %>
+            <a href="/user/<%= account._id %>">
             <div id="<%= account._id %>" class="profilecardsearch">
                 <div class="avatarimg">
-                <a href="/user/<%= account._id %>"> <img src="<%=account.avatar.thumbnail %>" alt="author thumbnail">
-                    </a>
+                <img src="<%=account.avatar.thumbnail %>" alt="author thumbnail">
                 </div>
                 <div class="avatartitle">
-                    <a href="/user/<%= account._id %>"><h4><%= account.username %></h4></a>
+                    <h4><%= account.username %></h4>
                 </div>
             </div>
+            </a>
            
         <% }) %>
     </div>  

@@ -1,11 +1,8 @@
-import mongoose from "mongoose";
 import { Post } from "../models/blog.model.js";
 import { Subscription } from "../models/subscription.model.js";
 import { User } from "../models/user.model.js";
 import { catchAsync } from "../utils/CatchAsync.js";
-import { storeJoinedDate } from "../utils/CurrentDate.js";
 import { Bookmark } from "../models/bookmarks.model.js";
-import { Tag } from "../models/tags.model.js";
 import { cloudinary } from "../cloudinary/index.cloudinary.js";
 
 const userProfile = catchAsync(async (req, res) => {
@@ -18,11 +15,19 @@ const userProfile = catchAsync(async (req, res) => {
     follower: req.user?._id,
     following: user._id,
   })
-  // console.log(result);
+  const usergetfollowers=await Subscription.find({following:id}).populate('follower');
+  const userfollowers=usergetfollowers.map(subscription => subscription.follower);
+  
+  const usergetfollowings=await Subscription.find({follower:id}).populate('following');
+  const userfollowings=usergetfollowings.map(subscription => subscription.following)
+  
+  
+  
+  
   const isfollower = result.length? true: false;
-    // console.log(isfollower);
+   
+
     
-    // const tags = await Tag.distinct('tag',{ user: user._id });//to find distinct tags
    
   res.render("users/profile", {
     user,
@@ -30,6 +35,8 @@ const userProfile = catchAsync(async (req, res) => {
     followings,
     followers,
     isfollower,
+    userfollowers,
+    userfollowings
    
   });
 
@@ -118,7 +125,7 @@ const updateProfile = catchAsync(async (req, res) => {
   const user=await User.findById(id);
 
   
-  // console.log(req.file);
+  
   
     if(req.file){
       await cloudinary.uploader.destroy(user.avatar.filename)
@@ -129,16 +136,36 @@ const updateProfile = catchAsync(async (req, res) => {
       await User.findByIdAndUpdate(id,{avatar});
     }
 
+   const updateFields = {};
+
   
-  await User.findByIdAndUpdate(id, {
-    tagline,
-    description,
-    location,
-    instagramurl,
-    linkedinurl,
-    githuburl,
-   
-  });
+  if (tagline && tagline.length > 0) {
+    updateFields.tagline = tagline;
+  }
+
+  
+  if (description && description.length > 0) {
+    updateFields.description = description;
+  }
+  if (location && location.length > 0) {
+    updateFields.location = location;
+  }
+
+  
+  if (instagramurl && instagramurl.length > 0) {
+    updateFields.instagramurl = instagramurl;
+  }
+
+  
+  if (linkedinurl && linkedinurl.length > 0) {
+    updateFields.linkedinurl = linkedinurl;
+  }
+
+  if (githuburl && githuburl.length > 0) {
+    updateFields.githuburl = githuburl;
+  }
+  
+  await User.findByIdAndUpdate(id, updateFields);
 
   res.redirect(`/user/${id}`);
 });
@@ -149,7 +176,7 @@ const showBookmarks = catchAsync(async (req, res) => {
   const bookmarks=await Bookmark.find({user:id}).populate({
     path:"post",populate:{path:"author"}
   })
-  // console.log(bookmarks);
+ 
 
  
   
@@ -190,6 +217,8 @@ const unFollow = catchAsync(async (req, res) => {
   res.redirect(`/user/${user._id}`);
 });
 
+
+
 export {
   userProfile,
   deleteAccount,
@@ -202,4 +231,5 @@ export {
   showBookmarks,
   follow,
   unFollow,
+  
 };

@@ -1,90 +1,95 @@
 <% layout('layouts/boilerplate') %>
 
-   
 <div class="authcontainer">
   <div class="logincontainer">
     <div class="login">
       <h1 class="logintitle">Login</h1>
-    <form class="loginform" action="/user/login" method="post">
-      <div class="logincontent">
-        <div class="loginbox">
-          <i class="ri-user-3-line loginicon"></i>
-          <div class="loginboxinput">
-            <input type="text" id="username" class="logininput" name="username" placeholder="Username" required>
+      <form class="loginform" action="/user/login" method="post">
+        <div class="logincontent">
+          <div class="loginbox">
+            <i class="ri-user-3-line loginicon"></i>
+            <div class="loginboxinput">
+              <input
+                type="text"
+                id="username"
+                class="logininput"
+                name="username"
+                placeholder="Username"
+                required
+              />
+            </div>
+          </div>
+          <div class="loginbox">
+            <i class="ri-lock-2-line loginicon"></i>
+            <div class="loginboxinput">
+              <input
+                type="password"
+                id="password"
+                class="logininput"
+                placeholder="Password"
+                name="password"
+                required
+              />
+              <i class="ri-eye-off-line login_eye" id="logineye"></i>
+            </div>
           </div>
         </div>
-        <div class="loginbox">
-          <i class="ri-lock-2-line loginicon"></i>
-          <div class="loginboxinput">
-            <input type="password" id="password" class="logininput" placeholder="Password" name="password" required>
-            <i class="ri-eye-off-line login_eye" id="logineye"></i>
-          </div>
+        <div class="login_check">
+          <a href="/user/forgot" class="login_forgot">Forgot Password?</a>
         </div>
-      </div>
-      <div class="login_check">
-        <a href="/user/forgot" class="login_forgot">Forgot Password?</a>
-      </div>
-      <div class="login_btn">
-        <button class="loginbtn">
-          Login
-        </button>
-      </div> 
-    </form>
+        <div class="login_btn">
+          <button class="loginbtn">Login</button>
+        </div>
+      </form>
     </div>
-    
-   
+
     <div class="oauthcontainer">
       <p class="connection">Login using social networks</p>
       <div class="logo">
         <div class="googlelogo">
           <a href="/auth/google">
             <div class="logowrapper">
-              <img src="/images/google-logo.png" alt="google logo">
+              <img src="/images/google-logo.png" alt="google logo" />
             </div>
           </a>
         </div>
         <div class="githublogo">
           <a href="/auth/github">
             <div class="logowrapper">
-              <img src="/images/GitHub-logo.png" alt="github logo">
+              <img src="/images/GitHub-logo.png" alt="github logo" />
             </div>
           </a>
         </div>
       </div>
-    </div> 
+    </div>
+    <p class="mobileswitch">New here? <a href="/user/register">Sign Up</a></p>
   </div>
   <div class="newusercontainer">
     <div class="newuser">
       <h1>New Here?</h1>
       <div class="desc">
         <p>Sign up and discover a great</p>
-        <p >  amount of new opportunities!</p>
+        <p>amount of new opportunities!</p>
       </div>
       <div class="newsignupbtn">
         <a href="/user/register"><button>Sign Up</button></a>
       </div>
     </div>
-    
   </div>
-
 </div>
 
-
 <script>
-  
-    const input=document.getElementById('password');
-    const iconeye=document.getElementById('logineye');
-    iconeye.addEventListener('click',()=>{
-      if(input.type==='password'){
-        input.type='text';
-        iconeye.classList.add('ri-eye-line');
-        iconeye.classList.remove('ri-eye-off-line');
-      }else{
-        input.type='password';
-        iconeye.classList.remove('ri-eye-line');
-        iconeye.classList.add('ri-eye-off-line');
-      }
-    })
-  
-
+  const input = document.getElementById("password");
+  const iconeye = document.getElementById("logineye");
+  iconeye.addEventListener("click", () => {
+    if (input.type === "password") {
+      input.type = "text";
+      iconeye.classList.add("ri-eye-line");
+      iconeye.classList.remove("ri-eye-off-line");
+    } else {
+      input.type = "password";
+      iconeye.classList.remove("ri-eye-line");
+      iconeye.classList.add("ri-eye-off-line");
+    }
+  });
 </script>

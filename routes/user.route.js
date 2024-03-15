@@ -24,7 +24,7 @@ router.route("/login")
 
 router.route("/forgot")
       .get(forgotForm)
-      .post(forgotPassword)
+      .post(usernametolowercase,forgotPassword)
 
 router.post("/setpassword",setuserpassword)      
 

@@ -24,21 +24,23 @@
 
 <%searchresults.forEach((element)=>{%>
     <% if ( element && !(element.title) && !(element.username)) { %>
-        
-      <div  id="<%=element%>" class="tagcardsearch">
-        <a href="/tag/<%=element%>"><p><i class="ri-hashtag"></i>  <%=element%></p></a>
-    </div>
+      <a href="/tag/<%=element%>">
+        <div  id="<%=element%>" class="tagcardsearch">
+          <p><i class="ri-hashtag"></i>  <%=element%></p>
+        </div>
+      </a>
 
     <% }else if (element.username) { %>
+      <a href="/user/<%= element._id %>">
         <div id="<%= element._id %>" class="profilecardsearch">
             <div class="avatarimg">
-            <a href="/user/<%= element._id %>"> <img src="<%=element.avatar.thumbnail %>" alt="author thumbnail">
-                </a>
+            <img src="<%=element.avatar.thumbnail %>" alt="author thumbnail">
             </div>
             <div class="avatartitle">
-                <a href="/user/<%= element._id %>"><h4><%= element.username %></h4></a>
+                <h4><%= element.username %></h4>
             </div>
         </div>
+        </a>
         
     <% } else if(element.title) { %>
       <div id="<%= element.title %>" class="postcard">

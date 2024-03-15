@@ -15,12 +15,12 @@ const newForm = (req, res) => {
 };
 
 const composePost = catchAsync(async (req, res) => {
-  // console.log(req.body.tags);
+  
   const image={
     url:req.file.path,
     filename:req.file.filename,
   }
-  // console.log(req.file);
+ 
   const post = new Post({
     ...req.body.blog,
     date: storeJoinedDate(new Date()),
@@ -88,22 +88,26 @@ const updatePost = catchAsync(async (req, res) => {
   const idofupdate = req.params.id.trim();
   const post=await Post.findById(idofupdate).populate('tags');
 
-  
-  const removedTags = req.body.removedtags.split(",");
-  const addedTags= req.body.addedtags.split(",");
 
+  const removedTags = req.body.removedtags.split(",");
+  const addedTags=req.body.addedtags.length>0? req.body.addedtags.split(","):[];
+
+ 
   
   //adding in tags array
+ 
   for (const tag of addedTags) {
-    const newtag = new Tag({
-      tag: tag,
-      post: post._id,
-      user: req.user._id,
-    });
-    await newtag.save();
-    post.tags.push(newtag);
-    await post.save();
-  }
+      const newtag = new Tag({
+        tag: tag,
+        post: post._id,
+        user: req.user._id,
+      });
+      await newtag.save();
+      post.tags.push(newtag);
+      await post.save();
+    }
+
+  
   // remove 
   await Tag.deleteMany({post:post._id,tag:{$in:removedTags}});
   post.tags=post.tags.filter(tag => !removedTags.includes(tag.tag));

@@ -2,6 +2,55 @@
 
 
 <div class="profile">
+  <div class="followercontainer" id="followercontainer">
+    <div class="btnprofilepopup">
+      <p>Followers(<%= followers.length %>)</p>
+      <div class="crossiconpopup">
+        <i onclick="removefollowercontainer()" class="ri-close-line"></i>
+      </div>
+    </div>
+    <div class="showuserscontainer">
+      <% userfollowers.forEach(userfollower => { %>
+        <a href="/user/<%= userfollower._id %>">
+          <div id="<%= userfollower._id %>" class="profilesubscard">
+            <div class="useravatarimg">
+              <img src="<%=userfollower.avatar.thumbnail %>" alt="author thumbnail">
+            </div>
+            <div class="useravatartitle">
+              <p><%= userfollower.username %></p>
+            </div>
+          </div>
+         </a>
+      <% }) %>
+      
+
+    </div>
+  </div>
+  <div class="followingcontainer" id="followingcontainer">
+    <div class="btnprofilepopup">
+      <p>Followings(<%= followings.length %>)</p>
+      <div class="crossiconpopup">
+        <i onclick="removefollowingcontainer()" class="ri-close-line"></i>
+      </div>
+    </div>
+    <div class="showuserscontainer">
+      <% userfollowings.forEach(userfollowing => { %>
+        <a href="/user/<%= userfollowing._id %>">
+          <div id="<%= userfollowing._id %>" class="profilesubscard">
+            <div class="useravatarimg">
+              <img src="<%=userfollowing.avatar.thumbnail %>" alt="author thumbnail">
+            </div>
+            <div class="useravatartitle">
+              <p><%= userfollowing.username %></p>
+            </div>
+          </div>
+         </a>
+      <% }) %>
+      
+
+    </div>
+  </div>
+  
   <div class="profilecard">
       <div class="profiledesc">
           <div class="avatar">
@@ -21,10 +70,12 @@
               <div class="subscription">
                 <div class="subscnt">
                   <div class="followercnt">
-                    <h4> <%= followers.length %> </h4> <p>followers</p>
+                    <button onclick="getfollowercontainer()"> <h4> <%= followers.length %> </h4></button>
+                    <p>followers</p>
                   </div>
                   <div class="followingscnt">
-                    <h4> <%= followings.length %> </h4> <p>followings</p>
+                    <button onclick="getfollowingcontainer()"> <h4> <%= followings.length %> </h4></button>
+                    <p>followings</p>
                   </div>
                 </div>
               </div>
@@ -164,6 +215,37 @@ var animateButton = function (e) {
 
   for (var i = 0; i < classname.length; i++) {
     classname[i].addEventListener("click", animateButton, false);
+  }
+
+
+  // followers and followings show popup
+    const followercontainer=document.getElementById("followercontainer");
+    const followingcontainer=document.getElementById("followingcontainer");
+    
+  const removefollowercontainer=()=>{
+    followercontainer.classList.remove("followerconatineractive");
+    followercontainer.classList.add("followerconatiner");
+
+    
+
+  }
+  const removefollowingcontainer=()=>{
+    followingcontainer.classList.remove("followingconatineractive");
+    followingcontainer.classList.add("followingcontainer");
+
+
+  }
+  const getfollowercontainer=()=>{
+    followercontainer.classList.add("followerconatineractive");
+    followercontainer.classList.remove("followerconatiner");
+    // followercontainer.style.display='inline';
+
+  }
+  const getfollowingcontainer=()=>{
+    followingcontainer.classList.add("followingconatineractive");
+    followingcontainer.classList.remove("followingcontainer");
+    // followingcontainer.style.display='inline';
+
   }
 </script>
 

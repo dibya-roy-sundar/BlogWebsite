@@ -22,9 +22,11 @@
             <p>Search results for "<%= whattosearch %>"</p>
         </div>
         <% searchtags.forEach(tags => { %>
-            <div  id="<%=tags%>" class="tagcardsearch">
-                <a href="/tag/<%=tags%>"><p><i class="ri-hashtag"></i>  <%=tags%></p></a>
-            </div>
+            <a href="/tag/<%=tags%>">
+                <div  id="<%=tags%>" class="tagcardsearch">
+                    <p><i class="ri-hashtag"></i>  <%=tags%></p>
+                </div>
+            </a>
            
         
         <% }) %>
