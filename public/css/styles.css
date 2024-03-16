@@ -20,7 +20,11 @@ main {
     padding: 0.75rem;
 }
 
-/* Trick: */
+@media (max-width:450px) {
+  main p,h1,h2,h3,h4,h5,h6,ul,li,a,button,input,textarea{
+    transform: scale(0.9);
+  }
+}
 body {
   position: relative;
   /* padding: 1rem; */
