@@ -44,7 +44,7 @@
 * Follow or unfollow other contributors.
 * Receive ```personalized posts``` from followed contributors.
 
-**5. Blog Post Management**:
+**5. Post Management**:
 * Create, edit, and delete  posts with cover images, titles, tags, and content.
 
 **6. Comment**:
