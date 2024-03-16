@@ -40,25 +40,24 @@
 * Efficient search for posts, tags, and contributors based on ```Search Score by applying  indexing```.
 * Search posts by tags for a more targeted exploration.
 
-**4. Blog Post Management**:
-* Create, edit, and delete blog posts with cover images, titles, tags, and content.
-
-**5. Comment**:
-* Comment on posts and delete ```own``` comments.
-
-**6. Like**:
-* Like  posts and remove them also.
-
-**7. Bookmark**:
-* Bookmark  posts and remove  them also.
-
-  
-**8. profile administration**:
-* Personalized profiles with the ability to update details.
-  
-**9. Follow System**:
+**4. Follow System**:
 * Follow or unfollow other contributors.
 * Receive ```personalized posts``` from followed contributors.
+
+**5. Blog Post Management**:
+* Create, edit, and delete blog posts with cover images, titles, tags, and content.
+
+**6. Comment**:
+* Comment on posts and delete ```own``` comments.
+
+**7. Like**:
+* Like  posts and remove them also.
+
+**8. Bookmark**:
+* Bookmark  posts and remove  them also.
+
+**9. profile administration**:
+* Personalized profiles with the ability to update details.
   
 **10. Security**:
 * Robust  authorization mechanisms.
