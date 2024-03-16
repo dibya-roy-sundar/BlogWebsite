@@ -6,11 +6,7 @@
   box-sizing: border-box;
   font-family: "Quicksand", sans-serif;
 }
-@media (max-width:450px) {
-  body{
-    transform: scaleX(0.9)
-  }
-}
+
 ul {
   margin-top: 0;
   margin-bottom: 0;
@@ -20,12 +16,14 @@ ul {
 /* body{  margin:0; position:relative; } */
 main {
   min-height: 100vh;
-  /* position: relative; */
+    /* position: relative; */
+    padding: 0.75rem;
 }
 
 /* Trick: */
 body {
   position: relative;
+  /* padding: 1rem; */
   padding-top: 90px;
   margin-bottom: 30px;
 }
@@ -234,7 +232,18 @@ header .logo a img {
 }
 
 /* footer */
+@media (max-width:1050px) {
+  .footercontainer{
+    margin: 2rem;
+  }
+  
+}
+@media (max-width:450px) {
+  .footercontainer{
 
+    margin: 1rem;
+  }
+}
 .footercontainer {
   margin: 3rem;
   margin-top: 1rem;
@@ -1921,6 +1930,7 @@ textarea {
 }
 .searchoptions {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
   margin-top: 2rem;
