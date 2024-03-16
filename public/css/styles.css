@@ -187,7 +187,7 @@ header .logo a img {
   font-size: 2rem;
 }
 
-@media (max-width:900px) {
+@media (max-width:915px) {
   .container1{
     flex-direction: column;
     z-index: 200;
@@ -327,7 +327,7 @@ header .logo a img {
   padding-left: 0;
 }
 
-@media (max-width:900px) {
+@media (max-width:915px) {
   .footercontainer .links{
     /* flex-direction: column-reverse;
     gap: 1rem; */
@@ -537,7 +537,7 @@ header .logo a img {
   display: none;
 }
 
-@media (max-width:900px) {
+@media (max-width:915px) {
   .existingusercontainer, .newusercontainer{
     display: none;
   }
@@ -717,19 +717,19 @@ textarea {
   font-weight: 700;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
   .newfrmcontent {
     width: 70%;
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 820px) {
   .newfrmcontent {
     width: 80%;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 620px) {
   .newfrmcontent {
     width: 90%;
   }
@@ -1166,7 +1166,7 @@ textarea {
   margin-right: 4px;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1130px) {
   .authordesc {
     align-items: center;
   }
@@ -1211,13 +1211,13 @@ textarea {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 620px) {
   .profile {
     width: 85%;
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 470px) {
   .profile {
     width: 95%;
   }
@@ -1432,13 +1432,13 @@ textarea {
 
 } */
 
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
   .homepostcontainer {
     width: 75%;
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 820px) {
   .homepostcontainer {
     width: 85%;
   }
@@ -1459,7 +1459,7 @@ textarea {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 620px) {
   .homepostcontainer {
     width: 95%;
   }
@@ -1771,7 +1771,7 @@ textarea {
   max-width: 100%;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1120px) {
   .individualpost {
     flex-direction: column;
   }
@@ -1782,7 +1782,7 @@ textarea {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 620px) {
   .individualpost {
     padding: 2rem 1rem;
   }
@@ -1946,7 +1946,7 @@ textarea {
   color: #343333;
 }
 
-@media (max-width:1000px) {
+@media (max-width:1050px) {
   .searchoptions{
     padding: 0.5rem;
   }
@@ -2153,14 +2153,14 @@ textarea {
     box-shadow: 0 0 0 100vw #00000070;
 }
 
-@media (max-width:1000px) {
+@media (max-width:1050px) {
   .followerconatineractive,.followingconatineractive{
     height:65vh;
     top: 21vh;
   }
 }
 
-@media (max-width:700px) {
+@media (max-width:720px) {
   .followerconatineractive,.followingconatineractive{
     height: 71vh;
     top: 17vh;
