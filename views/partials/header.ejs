@@ -2,7 +2,7 @@
   <div class="menuicon"><i class="ri-menu-line"></i></div>
   <nav class="container1 flex">
     <div class="closeicon"><i class="ri-close-fill"></i></div>
-    <div class="logo flex">
+    <div id="logo" class="logo flex logomobile">
       <a href="/"
         ><img
           src="/images/ink-corner-high-resolution-logo-transparent-green.png"
@@ -76,11 +76,16 @@
   const menuicon = document.querySelector(".menuicon");
   const closeicon = document.querySelector(".closeicon");
   const container1 = document.querySelector(".container1");
+  const logo=document.getElementById("logo");
 
   menuicon.addEventListener("click", () => {
     container1.style.top = "0";
+    logo.style.display='none';
+    logo.classList.remove("logomobile")
   });
   closeicon.addEventListener("click", () => {
     container1.style.top = "-400px";
+    logo.style.display='inline';
+    logo.classList.add("logomobile")
   });
 </script>

@@ -24,6 +24,9 @@ main {
   main p,h1,h2,h3,h4,h5,h6,ul,li,a,button,input,textarea{
     transform: scale(0.9);
   }
+  body{
+    padding-top: 45px;
+  }
 }
 body {
   position: relative;
@@ -148,7 +151,7 @@ header .logo a img {
   font-size: 24px;
   font-weight: 500;
   text-decoration: none;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .signinusernavbar a button:hover {
   box-shadow: 0 0 8px 0 #41907a;
@@ -234,6 +237,20 @@ header .logo a img {
     font-size: 1rem;
   }
 }
+@media (max-width:950px) {
+  .logomobile{
+    position: absolute;
+    z-index: 500;
+    top: 400px;
+    transform: scale(0.9);
+    left: 9px;
+    
+  }
+  header{
+    padding-bottom: 3.85rem;
+  }
+}
+
 
 /* footer */
 @media (max-width:1050px) {
@@ -1815,7 +1832,7 @@ textarea {
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
 }
 .homesuggestioncont button {
   background: transparent;
