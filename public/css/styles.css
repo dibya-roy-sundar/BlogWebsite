@@ -705,6 +705,7 @@ textarea {
   display: flex;
   justify-content: end;
   padding-right: 18px;
+  margin-top: 0.5rem;
 }
 .rmvbtn button {
   padding: 12px;
@@ -2271,4 +2272,30 @@ textarea {
   font-size: 1.5rem;
   right: 0.5rem;
   top: 2.25rem;
+}
+
+
+.addbtn{
+ display: none;
+ transition: all 0.2s ease-in-out;
+}
+.tagaddbtn{
+  padding: 12px;
+  font-size: 20px;
+  border-radius: 15px;
+  border: none;
+  background: #00731e;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+ 
+}
+@media (max-width:950px) {
+  .addbtn{
+  display: flex;
+  justify-content: start;
+  padding-left: 18px;
+  margin-top: 0.5rem;
+  position: absolute;
+}
 }

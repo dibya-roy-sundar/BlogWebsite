@@ -25,6 +25,9 @@
                           
                       </ul>
                   </div>
+                  <div class="addbtn">
+                    <button  id="tagaddbtn" class="tagaddbtn" type="button">Add</button>
+                  </div>
                   <div class="rmvbtn">
                   <button type="button">Remove All</button>
                   </div>
@@ -60,6 +63,7 @@
     const ul = document.getElementById("tagarray");
     const input = document.getElementById("taginput");
     const addedInput = document.getElementById("addedtaginput");
+    const addtagbtn=document.getElementById("tagaddbtn");  
 
 
     const listcontainer=document.getElementById('listcontainer');
@@ -81,6 +85,22 @@
       document.getElementById("newform").submit();
   
     })
+    
+addtagbtn.addEventListener("click",(event)=>{
+    event.preventDefault();
+          let tag = input.value;
+          if(tag.length > 0 && !tags.includes(tag)){
+              if(tags.length <=4){
+                  tag.split(',').forEach(tag => {
+                      tags.push(tag);
+                      addedtags.push(tag);
+                      createTag();
+                  });
+              }
+          }
+          input.value = "";
+        
+})
 
 
     window.addEventListener("DOMContentLoaded", () => {
