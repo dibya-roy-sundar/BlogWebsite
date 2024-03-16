@@ -34,7 +34,7 @@
 * Manual registration and sign-in for flexibility.
 
 **2. Featured Post**:
-*  Engineered blog post ```sorting by views, likes, and comments```, enhancing user engagement and relevance.
+*  Engineered  post ```sorting by views, likes, and comments```, enhancing user engagement and relevance.
 
 **3. Search Functionality**:
 * Efficient search for posts, tags, and contributors based on ```Search Score by applying  indexing```.
@@ -45,7 +45,7 @@
 * Receive ```personalized posts``` from followed contributors.
 
 **5. Blog Post Management**:
-* Create, edit, and delete blog posts with cover images, titles, tags, and content.
+* Create, edit, and delete  posts with cover images, titles, tags, and content.
 
 **6. Comment**:
 * Comment on posts and delete ```own``` comments.
