@@ -54,9 +54,9 @@
   <div class="profilecard">
       <div class="profiledesc">
           <div class="avatar">
-            <a href="/user/<%= user._id %>">
+            
               <img src="<%=user.avatar.profile%>" alt="user avatar">
-            </a>
+            
           </div>
           <div class="authordesc">
               <div class="authordetails">
@@ -150,7 +150,7 @@
             <% posts.forEach((post) => { %>
               <div  id="<%= post._id %>" class="eachpost">
                 <p><%= post.date %></p>
-                <h3><a href="/post/<%= post._id %>"><%= post.title %></a></h3>
+                <a href="/post/<%= post._id %>"><h3><%= post.title %></h3></a>
               </div>
             <% }) %>
           </div>

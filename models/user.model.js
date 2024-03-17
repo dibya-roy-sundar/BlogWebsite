@@ -19,7 +19,7 @@ avatarSchema.virtual('profile').get(function (){
     return this.url.replace('/upload','/upload/w_150,h_150/r_max/f_auto')
   })
 avatarSchema.virtual('thumbnail').get(function (){
-return this.url.replace('/upload','/upload/w_45,h_45/r_max/f_auto')
+return this.url.replace('/upload','/upload/w_40,h_40/r_max/f_auto')
 })
  const userschema=new Schema({
     email:{
