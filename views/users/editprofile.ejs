@@ -3,34 +3,34 @@
 <div class="editprofileformcontainer">
     
   <form  id="updateprofileform" action="/user/<%=user._id%>/edit" method="post" enctype="multipart/form-data">
-    <div>
+    <div class="updateprofileforminputs">
       <label for="avatar">Profile Picture</label>
       <input type="file" name="avatar" id="avatar">
     </div>
-    <div>
+    <div class="updateprofileforminputs">
       <label for="tagline">Profile Tagline</label>
       <input type="text" id="tagline" name="tagline">
     </div>
-    <div>
+    <div class="updateprofileforminputs updateprofilegetlocation">
       <label for="location">Location</label>
       <input type="text" name="location" id="location" >
       <button type="button" onclick="getlocation()">Get Location</button>
     </div>
-    <div>
+    <div class="updateprofileforminputs">
       <label for="description">About You</label>
       <textarea name="description" id="description" cols="30" rows="10"></textarea>
     </div>
-    <div>
+    <div class="updateprofileforminputs">
       <label for="instagramurl">Instagram Profile</label>
       <input type="text" name="instagramurl" id="instagramurl">
       <span id="instaMismatch">Check the Instagram URL, please.</span>
     </div>
-    <div>
+    <div class="updateprofileforminputs">
       <label for="linkedinurl">LinkedIn Profile</label>
       <input type="text" name="linkedinurl" id="linkedinurl">
       <span id="linkedinMismatch">Check the LinkedIn URL, please.</span>
     </div>
-    <div>
+    <div class="updateprofileforminputs">
       <label for="githuburl">GitHub Profile</label>
       <input type="text" name="githuburl" id="githuburl">
       <span id="githubMismatch">Check the GitHub URL, please.</span>

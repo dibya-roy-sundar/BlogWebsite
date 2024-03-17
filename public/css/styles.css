@@ -20,19 +20,12 @@ main {
     padding: 0.75rem 0;
 }
 
-@media (max-width:450px) {
-  main p,h1,h2,h3,h4,h5,h6,ul,li,a,button,input,textarea{
-    transform: scale(0.9);
-  }
-  body{
-    padding-top: 45px;
-  }
-}
+
 body {
   position: relative;
-  /* padding: 1rem; */
-  padding-top: 90px;
-  margin-bottom: 30px;
+
+  padding-top: 5.2rem;
+
  overflow-y: scroll;
  scrollbar-color: rgb(247,248,248);
 }
@@ -114,7 +107,7 @@ header .logo a img {
   border-radius: 2.3rem;
   cursor: pointer;
   font-size: 1.2rem;
-  padding: 0.3rem 0.8rem;
+  padding: 0.5rem 1rem;
   font-weight: 500;
 }
 .navlist ul li a:hover {
@@ -268,7 +261,7 @@ header .logo a img {
   }
 }
 .footercontainer {
-  margin: 3rem;
+  margin: 2.5rem;
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 3px solid #e8e8e8;
@@ -484,14 +477,14 @@ header .logo a img {
 .registerbox,
 .loginbox {
   display: flex;
-  gap: 10px;
+  gap: 0.5rem;
   margin: 10px;
   margin-left: 0;
 }
 .registerbox i,
 .loginbox i {
   font-size: 1.3rem;
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
 }
 .registerboxinput,
 .loginboxinput {
@@ -501,9 +494,8 @@ header .logo a img {
 .registerboxinput i,
 .loginboxinput i {
   position: absolute;
-  right: 8px;
+  right: 0.75rem;
   cursor: pointer;
-  margin: 6px;
 }
 .registerinput,
 .logininput {
@@ -836,33 +828,41 @@ textarea {
 }
 #updateprofileform {
   background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
+  padding: 1.2rem;
+  border-radius: 0.5rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 40%;
-  margin: 20px;
+  width: 50%;
+  margin: 1.2rem;
+  position: relative;
+}
+.updateprofileforminputs{
+  width: 100%;
 }
 
 #updateprofileform label {
-  margin-bottom: 8px;
+  margin: 0.4rem 0;
+  font-size: 1.1rem;
 }
 
 #updateprofileform input,
 textarea {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 16px;
+  padding: 0.5rem;
+  margin-bottom: 0.4rem;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 0.5rem;
+  font-size: 1rem;
 }
 
 #updateprofileform button {
   background-color: #4caf50;
-  color: #fff;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+    color: #fff;
+    padding: 0.5rem 0.8rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+   
 }
 
 #updateprofileform span {
@@ -870,6 +870,17 @@ textarea {
   display: none;
   margin-top: 8px;
 }
+@media (max-width:950px) {
+  #updateprofileform{
+    width: 75%;
+  }
+}
+@media (max-width:500px) {
+  #updateprofileform{
+    width: 90%;
+  }
+}
+
 
 /*              profile page         */
 
@@ -1328,7 +1339,7 @@ textarea {
 }
 .postauthor {
   display: flex;
-  gap: 12px;
+  gap: 0.6rem;
   padding-left: 6px;
 }
 .postauthorimg img {
@@ -1345,7 +1356,7 @@ textarea {
 .postauthornamejoint .authorname {
   margin: 0;
   margin-top: 7px;
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: black;
   font-weight: 600;
 }
@@ -1749,7 +1760,7 @@ textarea {
   position: relative;
 }
 .individualpost .sticky_options {
-  bottom: 3%;
+  bottom: 5%;
 }
 .individualpost .options {
   display: none;
@@ -1758,7 +1769,7 @@ textarea {
   /* border: 2px solid rgb(0, 0, 0); */
   border-radius: 50px;
   gap: 1rem;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1.5rem;
   box-shadow: 0px 5px 10px 0px #8b8b8b;
   width: fit-content;
   margin: 0 auto;
@@ -1775,11 +1786,11 @@ textarea {
   cursor: pointer;
 }
 .individualpost .options button i {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   
 }
 .individualpost .like button {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 500;
 }
 
@@ -2273,8 +2284,8 @@ textarea {
  transition: all 0.2s ease-in-out;
 }
 .tagaddbtn{
-  padding: 12px;
-  font-size: 20px;
+  padding: 0.75rem;
+  font-size: 1.2rem;
   border-radius: 15px;
   border: none;
   background: #00731e;
