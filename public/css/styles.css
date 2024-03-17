@@ -616,13 +616,13 @@ textarea {
 .newfrmtitle {
   border: none;
   outline: none;
-  width: 700px;
+
   padding: 1.5rem 0.75rem;
   padding-left: 1.2rem;
   font-size: 1.2rem;
   background: #edfbf6;
   border-radius: 25px;
-  font-weight: 600;
+
   color: #474545;
 }
 .newfrmpost {
@@ -633,7 +633,6 @@ textarea {
   font-size: 1.2rem;
   border-radius: 25px;
   background: #edfbf6;
-  font-weight: 600;
   color: #474545;
 }
 .tagtitle {
@@ -1371,11 +1370,7 @@ textarea {
   font-size: 0.75rem;
   font-weight: 400;
 }
-.postdetails {
-  display: flex;
-  gap: 8px;
-  margin: 8px 10px;
-}
+
 .postthumbnail img {
   width: 7.3rem;
   border-radius: 15px;
@@ -1754,7 +1749,7 @@ textarea {
 }
 .individualpost .postdetails {
   text-align: justify;
-    padding: 8px;
+    padding: 0.5rem;
     font-size: 1rem;
     font-weight: 400;
     color: rgb(97, 98, 99);
