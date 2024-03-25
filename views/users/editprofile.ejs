@@ -53,17 +53,17 @@
         const mismatchlinkedin = document.getElementById('linkedinMismatch');
         const mismatchgithub = document.getElementById('githubMismatch');
 
-if(instagramUrl && !instagramUrl.startsWith('https://instagram.com/')){
+if(instagramUrl && !(instagramUrl.startsWith('https://www.instagram.com/') || instagramUrl.startsWith('https://instagram.com/'))){
     setTimeout(()=>{
         mismatchinsta.style.display = 'none'
         },2500)
         mismatchinsta.style.display = 'inline';
-}else if(linkedinurl && !linkedinurl.startsWith('https://www.linkedin.com/')){
+}else if(linkedinurl && !(linkedinurl.startsWith('https://www.linkedin.com/') || linkedinurl.startsWith('https://linkedin.com/') )){
     setTimeout(()=>{
         mismatchlinkedin.style.display = 'none'
         },2500)
         mismatchlinkedin.style.display = 'inline';
-}else if(githuburl && !githuburl.startsWith('https://github.com/')){
+}else if(githuburl && !(githuburl.startsWith('https://github.com/') || githuburl.startsWith('https://www.github.com/'))){
     setTimeout(()=>{
         mismatchgithub.style.display = 'none'
         },2500)
