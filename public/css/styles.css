@@ -2303,3 +2303,6 @@ textarea {
   position: absolute;
 }
 }
+.postcard .postdetails{
+  display: flex;
+}
